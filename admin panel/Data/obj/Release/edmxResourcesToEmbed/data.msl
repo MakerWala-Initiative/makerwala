@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dataModelStoreContainer" CdmEntityContainer="dataEntities">
+    <EntitySetMapping Name="clusters">
+      <EntityTypeMapping TypeName="dataModel.cluster">
+        <MappingFragment StoreEntitySet="cluster">
+          <ScalarProperty Name="clusterid" ColumnName="clusterid" />
+          <ScalarProperty Name="clustername" ColumnName="clustername" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="activitylogs">
+      <EntityTypeMapping TypeName="dataModel.activitylog">
+        <MappingFragment StoreEntitySet="activitylogs">
+          <ScalarProperty Name="appversion" ColumnName="appversion" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="details" ColumnName="details" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="application" ColumnName="application" />
+          <ScalarProperty Name="activitydate" ColumnName="activitydate" />
+          <ScalarProperty Name="activityid" ColumnName="activityid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_User_Login" FunctionName="dataModel.Store.Get_User_Login">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_User_Login_Result">
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+          <ScalarProperty Name="blockid" ColumnName="blockid" />
+          <ScalarProperty Name="blockname" ColumnName="blockname" />
+          <ScalarProperty Name="teachermobile" ColumnName="teachermobile" />
+          <ScalarProperty Name="teacheremail" ColumnName="teacheremail" />
+          <ScalarProperty Name="teacheraddress" ColumnName="teacheraddress" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isblockadmin" ColumnName="isblockadmin" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userroleid" ColumnName="userroleid" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="schoolid" ColumnName="schoolid" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="gmailid" ColumnName="gmailid" />
+          <ScalarProperty Name="teacherfirstname" ColumnName="teacherfirstname" />
+          <ScalarProperty Name="teacherlastname" ColumnName="teacherlastname" />
+          <ScalarProperty Name="otpcode" ColumnName="otpcode" />
+          <ScalarProperty Name="optexpiredon" ColumnName="optexpiredon" />
+          <ScalarProperty Name="countryname" ColumnName="countryname" />
+          <ScalarProperty Name="statename" ColumnName="statename" />
+          <ScalarProperty Name="cityname" ColumnName="cityname" />
+          <ScalarProperty Name="rolename" ColumnName="rolename" />
+          <ScalarProperty Name="schoolname" ColumnName="schoolname" />
+          <ScalarProperty Name="imgprofile" ColumnName="imgprofile" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateUserPassword" FunctionName="dataModel.Store.UpdateUserPassword" />
+    <FunctionImportMapping FunctionImportName="Get_State_List" FunctionName="dataModel.Store.Get_State_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_State_List_Result">
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="statename" ColumnName="statename" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="countryname" ColumnName="countryname" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="remakrs" ColumnName="remakrs" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_City_List" FunctionName="dataModel.Store.Get_City_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_City_List_Result">
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="cityname" ColumnName="cityname" />
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="statename" ColumnName="statename" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="countryname" ColumnName="countryname" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="City_SaveUpdateDelete" FunctionName="dataModel.Store.City_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="State_SaveUpdateDelete" FunctionName="dataModel.Store.State_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="Upload_video_SaveUpdateDelete" FunctionName="dataModel.Store.Upload_video_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="Teacher_SaveUpdateDelete" FunctionName="dataModel.Store.Teacher_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="Get_School_List" FunctionName="dataModel.Store.Get_School_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_School_List_Result">
+          <ScalarProperty Name="schoolid" ColumnName="schoolid" />
+          <ScalarProperty Name="schoolname" ColumnName="schoolname" />
+          <ScalarProperty Name="blockid" ColumnName="blockid" />
+          <ScalarProperty Name="blockname" ColumnName="blockname" />
+          <ScalarProperty Name="schooladdress" ColumnName="schooladdress" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="countryname" ColumnName="countryname" />
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="statename" ColumnName="statename" />
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="cityname" ColumnName="cityname" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Teacher_List" FunctionName="dataModel.Store.Get_Teacher_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_Teacher_List_Result">
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+          <ScalarProperty Name="blockid" ColumnName="blockid" />
+          <ScalarProperty Name="blockname" ColumnName="blockname" />
+          <ScalarProperty Name="teachermobile" ColumnName="teachermobile" />
+          <ScalarProperty Name="teacheremail" ColumnName="teacheremail" />
+          <ScalarProperty Name="teacheraddress" ColumnName="teacheraddress" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="countryname" ColumnName="countryname" />
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="statename" ColumnName="statename" />
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="cityname" ColumnName="cityname" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isblockadmin" ColumnName="isblockadmin" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userroleid" ColumnName="userroleid" />
+          <ScalarProperty Name="rolename" ColumnName="rolename" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="schoolid" ColumnName="schoolid" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="gmailid" ColumnName="gmailid" />
+          <ScalarProperty Name="imgprofile" ColumnName="imgprofile" />
+          <ScalarProperty Name="classid" ColumnName="classid" />
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="schoolname" ColumnName="schoolname" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="subjectName" ColumnName="subjectName" />
+          <ScalarProperty Name="teacherfirstname" ColumnName="teacherfirstname" />
+          <ScalarProperty Name="teacherlastname" ColumnName="teacherlastname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_TextBook_List" FunctionName="dataModel.Store.Get_TextBook_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_TextBook_List_Result">
+          <ScalarProperty Name="textbookid" ColumnName="textbookid" />
+          <ScalarProperty Name="textbookname" ColumnName="textbookname" />
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="subjectname" ColumnName="subjectname" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Block_SaveUpdateDelete" FunctionName="dataModel.Store.Block_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="Get_Block_List" FunctionName="dataModel.Store.Get_Block_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_Block_List_Result">
+          <ScalarProperty Name="blockid" ColumnName="blockid" />
+          <ScalarProperty Name="blockname" ColumnName="blockname" />
+          <ScalarProperty Name="blockurl" ColumnName="blockurl" />
+          <ScalarProperty Name="blockusername" ColumnName="blockusername" />
+          <ScalarProperty Name="blockpassword" ColumnName="blockpassword" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TextBook_SaveUpdateDelete" FunctionName="dataModel.Store.TextBook_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="School_SaveUpdateDelete" FunctionName="dataModel.Store.School_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="Subject_SaveUpdateDelete" FunctionName="dataModel.Store.Subject_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="Class_SaveUpdateDelete" FunctionName="dataModel.Store.Class_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="Cluster_SaveUpdateDelete" FunctionName="dataModel.Store.Cluster_SaveUpdateDelete" />
+    <FunctionImportMapping FunctionImportName="Type_SaveUpdateDelete" FunctionName="dataModel.Store.Type_SaveUpdateDelete" />
+    <EntitySetMapping Name="applicenses">
+      <EntityTypeMapping TypeName="dataModel.applicense">
+        <MappingFragment StoreEntitySet="applicense">
+          <ScalarProperty Name="apikey" ColumnName="apikey" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="applicenseid" ColumnName="applicenseid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_UploadVideo_List" FunctionName="dataModel.Store.Get_UploadVideo_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_UploadVideo_List_Result">
+          <ScalarProperty Name="videoid" ColumnName="videoid" />
+          <ScalarProperty Name="videotitle" ColumnName="videotitle" />
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+          <ScalarProperty Name="teacherfirstname" ColumnName="teacherfirstname" />
+          <ScalarProperty Name="teacherlastname" ColumnName="teacherlastname" />
+          <ScalarProperty Name="videodate" ColumnName="videodate" />
+          <ScalarProperty Name="classlevelid" ColumnName="classlevelid" />
+          <ScalarProperty Name="classlevelname" ColumnName="classlevelname" />
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="subjectname" ColumnName="subjectname" />
+          <ScalarProperty Name="textbookid" ColumnName="textbookid" />
+          <ScalarProperty Name="textbookname" ColumnName="textbookname" />
+          <ScalarProperty Name="youtubelink" ColumnName="youtubelink" />
+          <ScalarProperty Name="publicdetail" ColumnName="publicdetail" />
+          <ScalarProperty Name="privatedetail" ColumnName="privatedetail" />
+          <ScalarProperty Name="schoolid" ColumnName="schoolid" />
+          <ScalarProperty Name="schoolname" ColumnName="schoolname" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="isprivate" ColumnName="isprivate" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="blocks">
+      <EntityTypeMapping TypeName="dataModel.block">
+        <MappingFragment StoreEntitySet="block">
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="blockpassword" ColumnName="blockpassword" />
+          <ScalarProperty Name="blockusername" ColumnName="blockusername" />
+          <ScalarProperty Name="blockurl" ColumnName="blockurl" />
+          <ScalarProperty Name="blockname" ColumnName="blockname" />
+          <ScalarProperty Name="blockid" ColumnName="blockid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="dataModel.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="cityname" ColumnName="cityname" />
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="classlevels">
+      <EntityTypeMapping TypeName="dataModel.classlevel">
+        <MappingFragment StoreEntitySet="classlevel">
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="classlevelname" ColumnName="classlevelname" />
+          <ScalarProperty Name="classid" ColumnName="classid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="countries">
+      <EntityTypeMapping TypeName="dataModel.country">
+        <MappingFragment StoreEntitySet="country">
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="countryname" ColumnName="countryname" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="schools">
+      <EntityTypeMapping TypeName="dataModel.school">
+        <MappingFragment StoreEntitySet="school">
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="schooladdress" ColumnName="schooladdress" />
+          <ScalarProperty Name="blockid" ColumnName="blockid" />
+          <ScalarProperty Name="schoolname" ColumnName="schoolname" />
+          <ScalarProperty Name="schoolid" ColumnName="schoolid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="states">
+      <EntityTypeMapping TypeName="dataModel.state">
+        <MappingFragment StoreEntitySet="state">
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="remakrs" ColumnName="remakrs" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="statename" ColumnName="statename" />
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subjects">
+      <EntityTypeMapping TypeName="dataModel.subject">
+        <MappingFragment StoreEntitySet="subject">
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="subjectname" ColumnName="subjectname" />
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subjectclassmappings">
+      <EntityTypeMapping TypeName="dataModel.subjectclassmapping">
+        <MappingFragment StoreEntitySet="subjectclassmapping">
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="classid" ColumnName="classid" />
+          <ScalarProperty Name="subjectclassmapid" ColumnName="subjectclassmapid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="dataModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teachers">
+      <EntityTypeMapping TypeName="dataModel.teacher">
+        <MappingFragment StoreEntitySet="teacher">
+          <ScalarProperty Name="optexpiredon" ColumnName="optexpiredon" />
+          <ScalarProperty Name="otpcode" ColumnName="otpcode" />
+          <ScalarProperty Name="imgprofile" ColumnName="imgprofile" />
+          <ScalarProperty Name="gmailid" ColumnName="gmailid" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="schoolid" ColumnName="schoolid" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="userroleid" ColumnName="userroleid" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="isblockadmin" ColumnName="isblockadmin" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="teacheraddress" ColumnName="teacheraddress" />
+          <ScalarProperty Name="teacheremail" ColumnName="teacheremail" />
+          <ScalarProperty Name="teachermobile" ColumnName="teachermobile" />
+          <ScalarProperty Name="teacherlastname" ColumnName="teacherlastname" />
+          <ScalarProperty Name="teacherfirstname" ColumnName="teacherfirstname" />
+          <ScalarProperty Name="blockid" ColumnName="blockid" />
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teacherclassmappings">
+      <EntityTypeMapping TypeName="dataModel.teacherclassmapping">
+        <MappingFragment StoreEntitySet="teacherclassmapping">
+          <ScalarProperty Name="classlevelid" ColumnName="classlevelid" />
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+          <ScalarProperty Name="teacherclassmapid" ColumnName="teacherclassmapid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teachersubjectmappings">
+      <EntityTypeMapping TypeName="dataModel.teachersubjectmapping">
+        <MappingFragment StoreEntitySet="teachersubjectmapping">
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+          <ScalarProperty Name="teachersubjectmapid" ColumnName="teachersubjectmapid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="textbooks">
+      <EntityTypeMapping TypeName="dataModel.textbook">
+        <MappingFragment StoreEntitySet="textbook">
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="textbookname" ColumnName="textbookname" />
+          <ScalarProperty Name="textbookid" ColumnName="textbookid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="types">
+      <EntityTypeMapping TypeName="dataModel.type">
+        <MappingFragment StoreEntitySet="type">
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="typename" ColumnName="typename" />
+          <ScalarProperty Name="typeid" ColumnName="typeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userroles">
+      <EntityTypeMapping TypeName="dataModel.userrole">
+        <MappingFragment StoreEntitySet="userrole">
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="isadmin" ColumnName="isadmin" />
+          <ScalarProperty Name="rolename" ColumnName="rolename" />
+          <ScalarProperty Name="userroleid" ColumnName="userroleid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="country_SaveUpdateDelete" FunctionName="dataModel.Store.country_SaveUpdateDelete" />
+    <EntitySetMapping Name="videodatas">
+      <EntityTypeMapping TypeName="dataModel.videodata">
+        <MappingFragment StoreEntitySet="videodata">
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="schoolid" ColumnName="schoolid" />
+          <ScalarProperty Name="privatedetail" ColumnName="privatedetail" />
+          <ScalarProperty Name="isprivate" ColumnName="isprivate" />
+          <ScalarProperty Name="publicdetail" ColumnName="publicdetail" />
+          <ScalarProperty Name="youtubelink" ColumnName="youtubelink" />
+          <ScalarProperty Name="textbookid" ColumnName="textbookid" />
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="classlevelid" ColumnName="classlevelid" />
+          <ScalarProperty Name="videodate" ColumnName="videodate" />
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+          <ScalarProperty Name="videotitle" ColumnName="videotitle" />
+          <ScalarProperty Name="videoid" ColumnName="videoid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_Subject_List" FunctionName="dataModel.Store.Get_Subject_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_Subject_List_Result">
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="subjectname" ColumnName="subjectname" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="Classid" ColumnName="Classid" />
+          <ScalarProperty Name="className" ColumnName="className" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_teacher_class" FunctionName="dataModel.Store.Get_teacher_class">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_teacher_class_Result">
+          <ScalarProperty Name="teacherclassmapid" ColumnName="teacherclassmapid" />
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+          <ScalarProperty Name="classlevelid" ColumnName="classlevelid" />
+          <ScalarProperty Name="classlevelname" ColumnName="classlevelname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_teacher_subject" FunctionName="dataModel.Store.Get_teacher_subject">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_teacher_subject_Result">
+          <ScalarProperty Name="teachersubjectmapid" ColumnName="teachersubjectmapid" />
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="subjectname" ColumnName="subjectname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="listmasters">
+      <EntityTypeMapping TypeName="dataModel.listmaster">
+        <MappingFragment StoreEntitySet="listmaster">
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="listdescription" ColumnName="listdescription" />
+          <ScalarProperty Name="listname" ColumnName="listname" />
+          <ScalarProperty Name="listsequance" ColumnName="listsequance" />
+          <ScalarProperty Name="listtypeid" ColumnName="listtypeid" />
+          <ScalarProperty Name="listid" ColumnName="listid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="listtypes">
+      <EntityTypeMapping TypeName="dataModel.listtype">
+        <MappingFragment StoreEntitySet="listtype">
+          <ScalarProperty Name="listtypename" ColumnName="listtypename" />
+          <ScalarProperty Name="listypeid" ColumnName="listypeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="smslogs">
+      <EntityTypeMapping TypeName="dataModel.smslog">
+        <MappingFragment StoreEntitySet="smslogs">
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="branchid" ColumnName="branchid" />
+          <ScalarProperty Name="companyid" ColumnName="companyid" />
+          <ScalarProperty Name="smstemplate" ColumnName="smstemplate" />
+          <ScalarProperty Name="smsmobileno" ColumnName="smsmobileno" />
+          <ScalarProperty Name="reftypeid" ColumnName="reftypeid" />
+          <ScalarProperty Name="refid" ColumnName="refid" />
+          <ScalarProperty Name="smsid" ColumnName="smsid" />
+          <ScalarProperty Name="smslogid" ColumnName="smslogid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="smstemplates">
+      <EntityTypeMapping TypeName="dataModel.smstemplate">
+        <MappingFragment StoreEntitySet="smstemplates">
+          <ScalarProperty Name="companyid" ColumnName="companyid" />
+          <ScalarProperty Name="smstemplate1" ColumnName="smstemplate" />
+          <ScalarProperty Name="listid" ColumnName="listid" />
+          <ScalarProperty Name="smsid" ColumnName="smsid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactionlogs">
+      <EntityTypeMapping TypeName="dataModel.transactionlog">
+        <MappingFragment StoreEntitySet="transactionlogs">
+          <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+          <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+          <ScalarProperty Name="editedby" ColumnName="editedby" />
+          <ScalarProperty Name="isedited" ColumnName="isedited" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="reftypeid" ColumnName="reftypeid" />
+          <ScalarProperty Name="refid" ColumnName="refid" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="commenttext" ColumnName="commenttext" />
+          <ScalarProperty Name="typeid" ColumnName="typeid" />
+          <ScalarProperty Name="transtypeid" ColumnName="transtypeid" />
+          <ScalarProperty Name="transdatetime" ColumnName="transdatetime" />
+          <ScalarProperty Name="transid" ColumnName="transid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_Activitylogs_List" FunctionName="dataModel.Store.Get_Activitylogs_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_Activitylogs_List_Result">
+          <ScalarProperty Name="activityid" ColumnName="activityid" />
+          <ScalarProperty Name="activitydate" ColumnName="activitydate" />
+          <ScalarProperty Name="application" ColumnName="application" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="details" ColumnName="details" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="appversion" ColumnName="appversion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Teacher_Subject_List" FunctionName="dataModel.Store.Get_Teacher_Subject_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_Teacher_Subject_List_Result">
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+          <ScalarProperty Name="subjectname" ColumnName="subjectname" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="classid" ColumnName="classid" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Dashboard_Chart_data" FunctionName="dataModel.Store.Get_Dashboard_Chart_data">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_Dashboard_Chart_data_Result">
+          <ScalarProperty Name="Dates" ColumnName="Dates" />
+          <ScalarProperty Name="Visits" ColumnName="Visits" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Transactions_List" FunctionName="dataModel.Store.Get_Transactions_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_Transactions_List_Result">
+          <ScalarProperty Name="transid" ColumnName="transid" />
+          <ScalarProperty Name="transdatetime" ColumnName="transdatetime" />
+          <ScalarProperty Name="transtypeid" ColumnName="transtypeid" />
+          <ScalarProperty Name="typeid" ColumnName="typeid" />
+          <ScalarProperty Name="commenttext" ColumnName="commenttext" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="refid" ColumnName="refid" />
+          <ScalarProperty Name="reftypeid" ColumnName="reftypeid" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="imgprofile" ColumnName="imgprofile" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="isedited" ColumnName="isedited" />
+          <ScalarProperty Name="editedby" ColumnName="editedby" />
+          <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+          <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_Country_List" FunctionName="dataModel.Store.Get_Country_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_Country_List_Result">
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="countryname" ColumnName="countryname" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_classlevels_List" FunctionName="dataModel.Store.Get_classlevels_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_classlevels_List_Result">
+          <ScalarProperty Name="classid" ColumnName="classid" />
+          <ScalarProperty Name="classlevelname" ColumnName="classlevelname" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_clusters_List" FunctionName="dataModel.Store.Get_clusters_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_clusters_List_Result">
+          <ScalarProperty Name="clusterid" ColumnName="clusterid" />
+          <ScalarProperty Name="clustername" ColumnName="clustername" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_types_List" FunctionName="dataModel.Store.Get_types_List">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dataModel.Get_types_List_Result">
+          <ScalarProperty Name="typeid" ColumnName="typeid" />
+          <ScalarProperty Name="typename" ColumnName="typename" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="transactionlog_SaveUpdateDelete" FunctionName="dataModel.Store.transactionlog_SaveUpdateDelete" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.WebApi.MessageHandlers.Compression</id>
+    <version>2.0.0</version>
+    <title>Microsoft ASP.NET Web API Compression Support</title>
+    <authors>Ove Andersen</authors>
+    <owners>Ove Andersen</owners>
+    <licenseUrl>http://www.eyecatch.no/licenses/apache-20/</licenseUrl>
+    <projectUrl>https://github.com/azzlack/Microsoft.AspNet.WebApi.MessageHandlers.Compression</projectUrl>
+    <iconUrl>http://www.eyecatch.no/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NOTE!!!
+
+This is an obsolete package, it only installs the Microsoft.AspNet.WebApi.Extensions.Compression.Server and System.Net.Http.Extensions.Compression.Client packages.</description>
+    <summary>NOTE!!! This is an obsolete package, it only installs the Microsoft.AspNet.WebApi.Extensions.Compression.Server and System.Net.Http.Extensions.Compression.Client packages.</summary>
+    <copyright>Copyright EyeCatch 2016</copyright>
+    <language>en-US</language>
+    <tags>aspnet webapi aspnetwebapi compression gzip deflate eyecatch</tags>
+    <dependencies>
+      <dependency id="System.Net.Http.Extensions.Compression.Client" version="2.0.0" />
+      <dependency id="Microsoft.AspNet.WebApi.Extensions.Compression.Server" version="2.0.0" />
+    </dependencies>
+  </metadata>
+</package>

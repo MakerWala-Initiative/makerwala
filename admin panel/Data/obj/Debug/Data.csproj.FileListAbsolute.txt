@@ -1,0 +1,44 @@
+C:\Users\Alpesh\Desktop\WebApp\Data\bin\Debug\Data.dll.config
+C:\Users\Alpesh\Desktop\WebApp\Data\bin\Debug\Data.dll
+C:\Users\Alpesh\Desktop\WebApp\Data\bin\Debug\Data.pdb
+C:\Users\Alpesh\Desktop\WebApp\Data\bin\Debug\EntityFramework.dll
+C:\Users\Alpesh\Desktop\WebApp\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alpesh\Desktop\WebApp\Data\bin\Debug\EntityFramework.xml
+C:\Users\Alpesh\Desktop\WebApp\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Alpesh\Desktop\WebApp\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\Alpesh\Desktop\WebApp\Data\obj\Debug\Data.dll
+C:\Users\Alpesh\Desktop\WebApp\Data\obj\Debug\Data.pdb
+C:\Users\Alpesh\Desktop\WebApp\Data\bin\Debug\Model.dll
+C:\Users\Alpesh\Desktop\WebApp\Data\bin\Debug\Model.pdb
+E:\uvtech\teacher\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+E:\uvtech\teacher\Data\bin\Debug\Data.dll.config
+E:\uvtech\teacher\Data\bin\Debug\Data.dll
+E:\uvtech\teacher\Data\bin\Debug\Data.pdb
+E:\uvtech\teacher\Data\bin\Debug\EntityFramework.dll
+E:\uvtech\teacher\Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\uvtech\teacher\Data\bin\Debug\Model.dll
+E:\uvtech\teacher\Data\bin\Debug\System.Web.Helpers.dll
+E:\uvtech\teacher\Data\bin\Debug\System.Web.WebPages.dll
+E:\uvtech\teacher\Data\bin\Debug\System.Web.WebPages.Deployment.dll
+E:\uvtech\teacher\Data\bin\Debug\Model.pdb
+E:\uvtech\teacher\Data\bin\Debug\EntityFramework.xml
+E:\uvtech\teacher\Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\uvtech\teacher\Data\bin\Debug\System.Web.Helpers.xml
+E:\uvtech\teacher\Data\bin\Debug\System.Web.WebPages.xml
+E:\uvtech\teacher\Data\bin\Debug\System.Web.WebPages.Deployment.xml
+E:\uvtech\teacher\Data\obj\Debug\Data.dll
+E:\uvtech\teacher\Data\obj\Debug\Data.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\bin\Debug\Data.dll.config
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\bin\Debug\Data.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\bin\Debug\Data.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\bin\Debug\EntityFramework.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\bin\Debug\Model.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\bin\Debug\Model.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\bin\Debug\EntityFramework.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\obj\Debug\Data.csprojAssemblyReference.cache
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\obj\Debug\Data.csproj.CopyComplete
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\obj\Debug\Data.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Data\obj\Debug\Data.pdb

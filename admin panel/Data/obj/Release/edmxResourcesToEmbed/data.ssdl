@@ -1,0 +1,1203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="activitylogs">
+    <Key>
+      <PropertyRef Name="activityid" />
+    </Key>
+    <Property Name="activityid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="activitydate" Type="datetime" Nullable="false" />
+    <Property Name="application" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="details" Type="varchar(max)" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="appversion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="applicense">
+    <Key>
+      <PropertyRef Name="applicenseid" />
+    </Key>
+    <Property Name="applicenseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="int" />
+    <Property Name="apikey" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="block">
+    <Key>
+      <PropertyRef Name="blockid" />
+    </Key>
+    <Property Name="blockid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="blockname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="blockurl" Type="varchar" MaxLength="5000" />
+    <Property Name="blockusername" Type="varchar" MaxLength="50" />
+    <Property Name="blockpassword" Type="varchar" MaxLength="50" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="cityid" />
+    </Key>
+    <Property Name="cityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cityname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="stateid" Type="int" Nullable="false" />
+    <Property Name="countryid" Type="int" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" />
+  </EntityType>
+  <EntityType Name="classlevel">
+    <Key>
+      <PropertyRef Name="classid" />
+    </Key>
+    <Property Name="classid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="classlevelname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cluster">
+    <Key>
+      <PropertyRef Name="clusterid" />
+    </Key>
+    <Property Name="clusterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="clustername" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="countryid" />
+    </Key>
+    <Property Name="countryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="countryname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" />
+  </EntityType>
+  <EntityType Name="listmaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="listid" Type="int" Nullable="false" />
+    <Property Name="listtypeid" Type="int" Nullable="false" />
+    <Property Name="listsequance" Type="int" Nullable="false" />
+    <Property Name="listname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="listdescription" Type="varchar" MaxLength="250" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="listtype">
+    <Key>
+      <PropertyRef Name="listypeid" />
+    </Key>
+    <Property Name="listypeid" Type="int" Nullable="false" />
+    <Property Name="listtypename" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="school">
+    <Key>
+      <PropertyRef Name="schoolid" />
+    </Key>
+    <Property Name="schoolid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="schoolname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="blockid" Type="int" Nullable="false" />
+    <Property Name="schooladdress" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="countryid" Type="int" Nullable="false" />
+    <Property Name="stateid" Type="int" Nullable="false" />
+    <Property Name="cityid" Type="int" Nullable="false" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="smslogs">
+    <Key>
+      <PropertyRef Name="smslogid" />
+    </Key>
+    <Property Name="smslogid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="smsid" Type="int" Nullable="false" />
+    <Property Name="refid" Type="bigint" Nullable="false" />
+    <Property Name="reftypeid" Type="int" Nullable="false" />
+    <Property Name="smsmobileno" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="smstemplate" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="companyid" Type="int" Nullable="false" />
+    <Property Name="branchid" Type="int" Nullable="false" />
+    <Property Name="createdby" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="smstemplates">
+    <Key>
+      <PropertyRef Name="smsid" />
+    </Key>
+    <Property Name="smsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="listid" Type="int" Nullable="false" />
+    <Property Name="smstemplate" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="companyid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="stateid" />
+    </Key>
+    <Property Name="stateid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="statename" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="countryid" Type="int" Nullable="false" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+    <Property Name="remakrs" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" />
+  </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="subjectid" />
+    </Key>
+    <Property Name="subjectid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subjectname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="subjectclassmapping">
+    <Key>
+      <PropertyRef Name="subjectclassmapid" />
+    </Key>
+    <Property Name="subjectclassmapid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="classid" Type="int" Nullable="false" />
+    <Property Name="subjectid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="teacher">
+    <Key>
+      <PropertyRef Name="teacherid" />
+    </Key>
+    <Property Name="teacherid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="blockid" Type="int" Nullable="false" />
+    <Property Name="teacherfirstname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="teacherlastname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="teachermobile" Type="varchar" MaxLength="20" />
+    <Property Name="teacheremail" Type="varchar" MaxLength="50" />
+    <Property Name="teacheraddress" Type="varchar" MaxLength="500" />
+    <Property Name="countryid" Type="int" Nullable="false" />
+    <Property Name="stateid" Type="int" Nullable="false" />
+    <Property Name="cityid" Type="int" Nullable="false" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isblockadmin" Type="bit" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="userroleid" Type="int" />
+    <Property Name="isactive" Type="bit" />
+    <Property Name="schoolid" Type="int" />
+    <Property Name="createdby" Type="int" />
+    <Property Name="createddate" Type="datetime" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+    <Property Name="gmailid" Type="varchar" MaxLength="500" />
+    <Property Name="imgprofile" Type="varchar(max)" />
+    <Property Name="otpcode" Type="varchar" MaxLength="50" />
+    <Property Name="optexpiredon" Type="datetime" />
+  </EntityType>
+  <EntityType Name="teacherclassmapping">
+    <Key>
+      <PropertyRef Name="teacherclassmapid" />
+    </Key>
+    <Property Name="teacherclassmapid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="teacherid" Type="int" Nullable="false" />
+    <Property Name="classlevelid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="teachersubjectmapping">
+    <Key>
+      <PropertyRef Name="teachersubjectmapid" />
+    </Key>
+    <Property Name="teachersubjectmapid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="teacherid" Type="int" Nullable="false" />
+    <Property Name="subjectid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="textbook">
+    <Key>
+      <PropertyRef Name="textbookid" />
+    </Key>
+    <Property Name="textbookid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="textbookname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="subjectid" Type="int" Nullable="false" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="transactionlogs">
+    <Key>
+      <PropertyRef Name="transid" />
+    </Key>
+    <Property Name="transid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="transdatetime" Type="datetime" Nullable="false" />
+    <Property Name="transtypeid" Type="int" Nullable="false" />
+    <Property Name="typeid" Type="int" />
+    <Property Name="commenttext" Type="varchar" MaxLength="5000" />
+    <Property Name="rating" Type="tinyint" Nullable="false" />
+    <Property Name="refid" Type="bigint" Nullable="false" />
+    <Property Name="reftypeid" Type="int" Nullable="false" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="isedited" Type="bit" Nullable="false" />
+    <Property Name="editedby" Type="int" Nullable="false" />
+    <Property Name="isdeleted" Type="bit" Nullable="false" />
+    <Property Name="deletedby" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="type">
+    <Key>
+      <PropertyRef Name="typeid" />
+    </Key>
+    <Property Name="typeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="typename" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="remarks" Type="varchar" MaxLength="5000" />
+    <Property Name="isactive" Type="bit" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="userrole">
+    <Key>
+      <PropertyRef Name="userroleid" />
+    </Key>
+    <Property Name="userroleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rolename" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="isadmin" Type="bit" Nullable="false" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="videodata">
+    <Key>
+      <PropertyRef Name="videoid" />
+    </Key>
+    <Property Name="videoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="videotitle" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="teacherid" Type="int" Nullable="false" />
+    <Property Name="videodate" Type="datetime" Nullable="false" />
+    <Property Name="classlevelid" Type="int" Nullable="false" />
+    <Property Name="subjectid" Type="int" Nullable="false" />
+    <Property Name="textbookid" Type="int" />
+    <Property Name="youtubelink" Type="varchar" MaxLength="5000" Nullable="false" />
+    <Property Name="publicdetail" Type="varchar" MaxLength="5000" Nullable="false" />
+    <Property Name="isprivate" Type="bit" />
+    <Property Name="privatedetail" Type="varchar" MaxLength="5000" />
+    <Property Name="schoolid" Type="int" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+    <Property Name="createdby" Type="int" Nullable="false" />
+    <Property Name="createddate" Type="datetime" Nullable="false" />
+    <Property Name="updatedby" Type="int" />
+    <Property Name="updateddate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_block_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="block" Type="Self.block" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="block">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_block_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="block" Type="Self.block" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="block">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_city_state">
+    <End Role="state" Type="Self.state" Multiplicity="1" />
+    <End Role="city" Type="Self.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="stateid" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="stateid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_city_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="city" Type="Self.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_city_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="city" Type="Self.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_classlevel_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="classlevel" Type="Self.classlevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="classlevel">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_classlevel_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="classlevel" Type="Self.classlevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="classlevel">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cluster_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="cluster" Type="Self.cluster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="cluster">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cluster_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="cluster" Type="Self.cluster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="cluster">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_country_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="country" Type="Self.country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="country">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_country_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="country" Type="Self.country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="country">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_block">
+    <End Role="block" Type="Self.block" Multiplicity="1" />
+    <End Role="school" Type="Self.school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="block">
+        <PropertyRef Name="blockid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="blockid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_city">
+    <End Role="city" Type="Self.city" Multiplicity="1" />
+    <End Role="school" Type="Self.school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="cityid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="cityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_country">
+    <End Role="country" Type="Self.country" Multiplicity="1" />
+    <End Role="school" Type="Self.school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="countryid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="countryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_state">
+    <End Role="state" Type="Self.state" Multiplicity="1" />
+    <End Role="school" Type="Self.school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="stateid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="stateid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="school" Type="Self.school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="school" Type="Self.school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_state_country">
+    <End Role="country" Type="Self.country" Multiplicity="1" />
+    <End Role="state" Type="Self.state" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="countryid" />
+      </Principal>
+      <Dependent Role="state">
+        <PropertyRef Name="countryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subjectclassmapping_classlevel">
+    <End Role="classlevel" Type="Self.classlevel" Multiplicity="1" />
+    <End Role="subjectclassmapping" Type="Self.subjectclassmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classlevel">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="subjectclassmapping">
+        <PropertyRef Name="classid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subjectclassmapping_subject">
+    <End Role="subject" Type="Self.subject" Multiplicity="1" />
+    <End Role="subjectclassmapping" Type="Self.subjectclassmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="subjectclassmapping">
+        <PropertyRef Name="subjectid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_block">
+    <End Role="block" Type="Self.block" Multiplicity="1" />
+    <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="block">
+        <PropertyRef Name="blockid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="blockid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_city">
+    <End Role="city" Type="Self.city" Multiplicity="1" />
+    <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="cityid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="cityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_country">
+    <End Role="country" Type="Self.country" Multiplicity="1" />
+    <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="countryid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="countryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_school">
+    <End Role="school" Type="Self.school" Multiplicity="0..1" />
+    <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="school">
+        <PropertyRef Name="schoolid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="schoolid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_state">
+    <End Role="state" Type="Self.state" Multiplicity="1" />
+    <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="stateid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="stateid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="teacher1" Type="Self.teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="teacher1">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="teacher1" Type="Self.teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="teacher1">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_userrole">
+    <End Role="userrole" Type="Self.userrole" Multiplicity="0..1" />
+    <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userrole">
+        <PropertyRef Name="userroleid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="userroleid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacherclassmapping_classlevel">
+    <End Role="classlevel" Type="Self.classlevel" Multiplicity="1" />
+    <End Role="teacherclassmapping" Type="Self.teacherclassmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classlevel">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="teacherclassmapping">
+        <PropertyRef Name="classlevelid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacherclassmapping_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="teacherclassmapping" Type="Self.teacherclassmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="teacherclassmapping">
+        <PropertyRef Name="teacherid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teachersubjectmapping_subject">
+    <End Role="subject" Type="Self.subject" Multiplicity="1" />
+    <End Role="teachersubjectmapping" Type="Self.teachersubjectmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="teachersubjectmapping">
+        <PropertyRef Name="subjectid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teachersubjectmapping_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="teachersubjectmapping" Type="Self.teachersubjectmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="teachersubjectmapping">
+        <PropertyRef Name="teacherid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_textbook_subject">
+    <End Role="subject" Type="Self.subject" Multiplicity="1" />
+    <End Role="textbook" Type="Self.textbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="textbook">
+        <PropertyRef Name="subjectid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_textbook_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="textbook" Type="Self.textbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="textbook">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_textbook_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="textbook" Type="Self.textbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="textbook">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_type_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="type" Type="Self.type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="type">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_type_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="type" Type="Self.type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="type">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userrole_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="userrole" Type="Self.userrole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="userrole">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userrole_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="userrole" Type="Self.userrole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="userrole">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_videodata_classlevel">
+    <End Role="classlevel" Type="Self.classlevel" Multiplicity="1" />
+    <End Role="videodata" Type="Self.videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classlevel">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="classlevelid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_videodata_subject">
+    <End Role="subject" Type="Self.subject" Multiplicity="1" />
+    <End Role="videodata" Type="Self.videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="subjectid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_videodata_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="videodata" Type="Self.videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="teacherid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_videodata_teacher1">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+    <End Role="videodata" Type="Self.videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_videodata_textbook">
+    <End Role="textbook" Type="Self.textbook" Multiplicity="0..1" />
+    <End Role="videodata" Type="Self.videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="textbook">
+        <PropertyRef Name="textbookid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="textbookid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Block_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="City_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Class_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Cluster_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="country_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Get_Activitylogs_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar(max)" Mode="In" />
+    <Parameter Name="StartIndex" Type="int" Mode="In" />
+    <Parameter Name="MaximumRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRecords" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Get_Block_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_City_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+    <Parameter Name="State_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_classlevels_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_clusters_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Country_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Dashboard_Chart_data" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ChartType" Type="varchar" Mode="In" />
+    <Parameter Name="sSearch" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_School_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar(max)" Mode="In" />
+    <Parameter Name="User_Id" Type="int" Mode="In" />
+    <Parameter Name="StartIndex" Type="int" Mode="In" />
+    <Parameter Name="MaximumRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRecords" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Get_State_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Country_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_Subject_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="classids" Type="varchar" Mode="In" />
+    <Parameter Name="sSearch" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_teacher_class" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="teacherid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_Teacher_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar(max)" Mode="In" />
+    <Parameter Name="User_Id" Type="int" Mode="In" />
+    <Parameter Name="StartIndex" Type="int" Mode="In" />
+    <Parameter Name="MaximumRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRecords" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Get_teacher_subject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="teacherid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_Teacher_Subject_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="classid" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_TextBook_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_Transactions_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_types_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_UploadVideo_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sSearch" Type="varchar(max)" Mode="In" />
+    <Parameter Name="StartIndex" Type="int" Mode="In" />
+    <Parameter Name="MaximumRows" Type="int" Mode="In" />
+    <Parameter Name="TotalRecords" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Get_User_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="School_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="State_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Subject_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Teacher_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="TextBook_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="transactionlog_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="Type_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="UpdateUserPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="User_Id" Type="int" Mode="In" />
+    <Parameter Name="Current_Password" Type="varchar" Mode="In" />
+    <Parameter Name="New_Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Upload_video_SaveUpdateDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="XmlString" Type="xml" Mode="In" />
+    <Parameter Name="IsDelete" Type="bit" Mode="In" />
+    <Parameter Name="OutIdentity" Type="int" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="dataModelStoreContainer">
+    <EntitySet Name="activitylogs" EntityType="Self.activitylogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="applicense" EntityType="Self.applicense" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="block" EntityType="Self.block" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="classlevel" EntityType="Self.classlevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cluster" EntityType="Self.cluster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="listmaster" EntityType="Self.listmaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="listtype" EntityType="Self.listtype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="school" EntityType="Self.school" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="smslogs" EntityType="Self.smslogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="smstemplates" EntityType="Self.smstemplates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subject" EntityType="Self.subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subjectclassmapping" EntityType="Self.subjectclassmapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="teacher" EntityType="Self.teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="teacherclassmapping" EntityType="Self.teacherclassmapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="teachersubjectmapping" EntityType="Self.teachersubjectmapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="textbook" EntityType="Self.textbook" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transactionlogs" EntityType="Self.transactionlogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="type" EntityType="Self.type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userrole" EntityType="Self.userrole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="videodata" EntityType="Self.videodata" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_block_teacher" Association="Self.FK_block_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="block" EntitySet="block" />
+    </AssociationSet>
+    <AssociationSet Name="FK_block_teacher1" Association="Self.FK_block_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="block" EntitySet="block" />
+    </AssociationSet>
+    <AssociationSet Name="FK_city_state" Association="Self.FK_city_state">
+      <End Role="state" EntitySet="state" />
+      <End Role="city" EntitySet="city" />
+    </AssociationSet>
+    <AssociationSet Name="FK_city_teacher" Association="Self.FK_city_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="city" EntitySet="city" />
+    </AssociationSet>
+    <AssociationSet Name="FK_city_teacher1" Association="Self.FK_city_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="city" EntitySet="city" />
+    </AssociationSet>
+    <AssociationSet Name="FK_classlevel_teacher" Association="Self.FK_classlevel_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="classlevel" EntitySet="classlevel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_classlevel_teacher1" Association="Self.FK_classlevel_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="classlevel" EntitySet="classlevel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cluster_teacher" Association="Self.FK_cluster_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="cluster" EntitySet="cluster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cluster_teacher1" Association="Self.FK_cluster_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="cluster" EntitySet="cluster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_country_teacher" Association="Self.FK_country_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="country" EntitySet="country" />
+    </AssociationSet>
+    <AssociationSet Name="FK_country_teacher1" Association="Self.FK_country_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="country" EntitySet="country" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_block" Association="Self.FK_school_block">
+      <End Role="block" EntitySet="block" />
+      <End Role="school" EntitySet="school" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_city" Association="Self.FK_school_city">
+      <End Role="city" EntitySet="city" />
+      <End Role="school" EntitySet="school" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_country" Association="Self.FK_school_country">
+      <End Role="country" EntitySet="country" />
+      <End Role="school" EntitySet="school" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_state" Association="Self.FK_school_state">
+      <End Role="state" EntitySet="state" />
+      <End Role="school" EntitySet="school" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_teacher" Association="Self.FK_school_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="school" EntitySet="school" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_teacher1" Association="Self.FK_school_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="school" EntitySet="school" />
+    </AssociationSet>
+    <AssociationSet Name="FK_state_country" Association="Self.FK_state_country">
+      <End Role="country" EntitySet="country" />
+      <End Role="state" EntitySet="state" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subjectclassmapping_classlevel" Association="Self.FK_subjectclassmapping_classlevel">
+      <End Role="classlevel" EntitySet="classlevel" />
+      <End Role="subjectclassmapping" EntitySet="subjectclassmapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subjectclassmapping_subject" Association="Self.FK_subjectclassmapping_subject">
+      <End Role="subject" EntitySet="subject" />
+      <End Role="subjectclassmapping" EntitySet="subjectclassmapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_block" Association="Self.FK_teacher_block">
+      <End Role="block" EntitySet="block" />
+      <End Role="teacher" EntitySet="teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_city" Association="Self.FK_teacher_city">
+      <End Role="city" EntitySet="city" />
+      <End Role="teacher" EntitySet="teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_country" Association="Self.FK_teacher_country">
+      <End Role="country" EntitySet="country" />
+      <End Role="teacher" EntitySet="teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_school" Association="Self.FK_teacher_school">
+      <End Role="school" EntitySet="school" />
+      <End Role="teacher" EntitySet="teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_state" Association="Self.FK_teacher_state">
+      <End Role="state" EntitySet="state" />
+      <End Role="teacher" EntitySet="teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_teacher" Association="Self.FK_teacher_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="teacher1" EntitySet="teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_teacher1" Association="Self.FK_teacher_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="teacher1" EntitySet="teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_userrole" Association="Self.FK_teacher_userrole">
+      <End Role="userrole" EntitySet="userrole" />
+      <End Role="teacher" EntitySet="teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacherclassmapping_classlevel" Association="Self.FK_teacherclassmapping_classlevel">
+      <End Role="classlevel" EntitySet="classlevel" />
+      <End Role="teacherclassmapping" EntitySet="teacherclassmapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacherclassmapping_teacher" Association="Self.FK_teacherclassmapping_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="teacherclassmapping" EntitySet="teacherclassmapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teachersubjectmapping_subject" Association="Self.FK_teachersubjectmapping_subject">
+      <End Role="subject" EntitySet="subject" />
+      <End Role="teachersubjectmapping" EntitySet="teachersubjectmapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teachersubjectmapping_teacher" Association="Self.FK_teachersubjectmapping_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="teachersubjectmapping" EntitySet="teachersubjectmapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_textbook_subject" Association="Self.FK_textbook_subject">
+      <End Role="subject" EntitySet="subject" />
+      <End Role="textbook" EntitySet="textbook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_textbook_teacher" Association="Self.FK_textbook_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="textbook" EntitySet="textbook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_textbook_teacher1" Association="Self.FK_textbook_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="textbook" EntitySet="textbook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_type_teacher" Association="Self.FK_type_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="type" EntitySet="type" />
+    </AssociationSet>
+    <AssociationSet Name="FK_type_teacher1" Association="Self.FK_type_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="type" EntitySet="type" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userrole_teacher" Association="Self.FK_userrole_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="userrole" EntitySet="userrole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userrole_teacher1" Association="Self.FK_userrole_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="userrole" EntitySet="userrole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_videodata_classlevel" Association="Self.FK_videodata_classlevel">
+      <End Role="classlevel" EntitySet="classlevel" />
+      <End Role="videodata" EntitySet="videodata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_videodata_subject" Association="Self.FK_videodata_subject">
+      <End Role="subject" EntitySet="subject" />
+      <End Role="videodata" EntitySet="videodata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_videodata_teacher" Association="Self.FK_videodata_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="videodata" EntitySet="videodata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_videodata_teacher1" Association="Self.FK_videodata_teacher1">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="videodata" EntitySet="videodata" />
+    </AssociationSet>
+    <AssociationSet Name="FK_videodata_textbook" Association="Self.FK_videodata_textbook">
+      <End Role="textbook" EntitySet="textbook" />
+      <End Role="videodata" EntitySet="videodata" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

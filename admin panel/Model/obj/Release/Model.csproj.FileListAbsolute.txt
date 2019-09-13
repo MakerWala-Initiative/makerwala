@@ -1,0 +1,9 @@
+E:\uvtech\teacher\Model\bin\Release\Model.dll
+E:\uvtech\teacher\Model\bin\Release\Model.pdb
+E:\uvtech\teacher\Model\obj\Release\Model.dll
+E:\uvtech\teacher\Model\obj\Release\Model.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\bin\Release\Model.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\bin\Release\Model.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\obj\Release\Model.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\obj\Release\Model.pdb

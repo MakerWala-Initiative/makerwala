@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8f7b61b92d8d4b61b38cbdc1a21fca0c" Name="Diagram1">
+        <EntityTypeShape EntityType="dataModel.cluster" Width="1.5" PointX="0.5" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="dataModel.activitylog" Width="1.5" PointX="0.625" PointY="2.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="dataModel.applicense" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="dataModel.block" Width="1.5" PointX="5.25" PointY="13.125" />
+        <EntityTypeShape EntityType="dataModel.city" Width="1.5" PointX="8.25" PointY="12.125" />
+        <EntityTypeShape EntityType="dataModel.classlevel" Width="1.5" PointX="20.875" PointY="11.25" />
+        <EntityTypeShape EntityType="dataModel.country" Width="1.5" PointX="0.75" PointY="12.375" />
+        <EntityTypeShape EntityType="dataModel.school" Width="1.5" PointX="13.5" PointY="22.5" />
+        <EntityTypeShape EntityType="dataModel.state" Width="1.5" PointX="3" PointY="12.375" />
+        <EntityTypeShape EntityType="dataModel.subject" Width="1.5" PointX="15.625" PointY="10" />
+        <EntityTypeShape EntityType="dataModel.subjectclassmapping" Width="1.5" PointX="17.875" PointY="10.625" />
+        <EntityTypeShape EntityType="dataModel.sysdiagram" Width="1.5" PointX="12.625" PointY="12.75" />
+        <EntityTypeShape EntityType="dataModel.teacher" Width="1.5" PointX="7.375" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="dataModel.teacherclassmapping" Width="1.5" PointX="26.125" PointY="7.75" />
+        <EntityTypeShape EntityType="dataModel.teachersubjectmapping" Width="1.5" PointX="17.875" PointY="6" />
+        <EntityTypeShape EntityType="dataModel.textbook" Width="1.5" PointX="20.875" PointY="6.25" />
+        <EntityTypeShape EntityType="dataModel.type" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="dataModel.userrole" Width="1.5" PointX="13.5" PointY="28.125" />
+        <AssociationConnector Association="dataModel.FK_block_teacher" />
+        <AssociationConnector Association="dataModel.FK_block_teacher1" />
+        <AssociationConnector Association="dataModel.FK_school_block" />
+        <AssociationConnector Association="dataModel.FK_teacher_block" />
+        <AssociationConnector Association="dataModel.FK_city_state" />
+        <AssociationConnector Association="dataModel.FK_city_teacher" />
+        <AssociationConnector Association="dataModel.FK_city_teacher1" />
+        <AssociationConnector Association="dataModel.FK_school_city" />
+        <AssociationConnector Association="dataModel.FK_teacher_city" />
+        <AssociationConnector Association="dataModel.FK_classlevel_teacher" />
+        <AssociationConnector Association="dataModel.FK_classlevel_teacher1" />
+        <AssociationConnector Association="dataModel.FK_subjectclassmapping_classlevel" />
+        <AssociationConnector Association="dataModel.FK_teacherclassmapping_classlevel" />
+        <AssociationConnector Association="dataModel.FK_cluster_teacher" />
+        <AssociationConnector Association="dataModel.FK_cluster_teacher1" />
+        <AssociationConnector Association="dataModel.FK_country_teacher" />
+        <AssociationConnector Association="dataModel.FK_country_teacher1" />
+        <AssociationConnector Association="dataModel.FK_school_country" />
+        <AssociationConnector Association="dataModel.FK_state_country" />
+        <AssociationConnector Association="dataModel.FK_teacher_country" />
+        <AssociationConnector Association="dataModel.FK_school_state" />
+        <AssociationConnector Association="dataModel.FK_school_teacher" />
+        <AssociationConnector Association="dataModel.FK_school_teacher1" />
+        <AssociationConnector Association="dataModel.FK_teacher_school" />
+        <AssociationConnector Association="dataModel.FK_teacher_state" />
+        <AssociationConnector Association="dataModel.FK_subjectclassmapping_subject" />
+        <AssociationConnector Association="dataModel.FK_teachersubjectmapping_subject" />
+        <AssociationConnector Association="dataModel.FK_textbook_subject" />
+        <AssociationConnector Association="dataModel.FK_teacher_teacher" />
+        <AssociationConnector Association="dataModel.FK_teacher_teacher1" />
+        <AssociationConnector Association="dataModel.FK_teacher_userrole" />
+        <AssociationConnector Association="dataModel.FK_teacherclassmapping_teacher" />
+        <AssociationConnector Association="dataModel.FK_teachersubjectmapping_teacher" />
+        <AssociationConnector Association="dataModel.FK_textbook_teacher" />
+        <AssociationConnector Association="dataModel.FK_textbook_teacher1" />
+        <AssociationConnector Association="dataModel.FK_type_teacher" />
+        <AssociationConnector Association="dataModel.FK_type_teacher1" />
+        <AssociationConnector Association="dataModel.FK_userrole_teacher" />
+        <AssociationConnector Association="dataModel.FK_userrole_teacher1" />
+        <EntityTypeShape EntityType="dataModel.videodata" Width="1.5" PointX="23.125" PointY="5.125" />
+        <AssociationConnector Association="dataModel.FK_videodata_classlevel" />
+        <AssociationConnector Association="dataModel.FK_videodata_subject" />
+        <AssociationConnector Association="dataModel.FK_videodata_teacher" />
+        <AssociationConnector Association="dataModel.FK_videodata_teacher1" />
+        <AssociationConnector Association="dataModel.FK_videodata_textbook" />
+        <EntityTypeShape EntityType="dataModel.listmaster" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dataModel.listtype" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dataModel.smslog" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="dataModel.smstemplate" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="dataModel.transactionlog" Width="1.5" PointX="6.75" PointY="2.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

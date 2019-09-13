@@ -1,0 +1,1559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cluster">
+    <Key>
+      <PropertyRef Name="clusterid" />
+    </Key>
+    <Property Name="clusterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clustername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_cluster_teacher" FromRole="cluster" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_cluster_teacher1" FromRole="cluster" ToRole="teacher" />
+  </EntityType>
+  <EntityContainer Name="dataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="clusters" EntityType="Self.cluster" />
+    <EntitySet Name="activitylogs" EntityType="dataModel.activitylog" />
+    <FunctionImport Name="Get_User_Login" ReturnType="Collection(dataModel.Get_User_Login_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateUserPassword" ReturnType="Collection(Int32)">
+      <Parameter Name="User_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Current_Password" Mode="In" Type="String" />
+      <Parameter Name="New_Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_State_List" ReturnType="Collection(dataModel.Get_State_List_Result)">
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_City_List" ReturnType="Collection(dataModel.Get_City_List_Result)">
+      <Parameter Name="Country_Id" Mode="In" Type="Int32" />
+      <Parameter Name="State_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="City_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="State_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Upload_video_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Teacher_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_School_List" ReturnType="Collection(dataModel.Get_School_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+      <Parameter Name="User_Id" Mode="In" Type="Int32" />
+      <Parameter Name="StartIndex" Mode="In" Type="Int32" />
+      <Parameter Name="MaximumRows" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRecords" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Teacher_List" ReturnType="Collection(dataModel.Get_Teacher_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+      <Parameter Name="User_Id" Mode="In" Type="Int32" />
+      <Parameter Name="StartIndex" Mode="In" Type="Int32" />
+      <Parameter Name="MaximumRows" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRecords" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_TextBook_List" ReturnType="Collection(dataModel.Get_TextBook_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Block_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Block_List" ReturnType="Collection(dataModel.Get_Block_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="TextBook_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="School_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Subject_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Class_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Cluster_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Type_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="applicenses" EntityType="dataModel.applicense" />
+    <FunctionImport Name="Get_UploadVideo_List" ReturnType="Collection(dataModel.Get_UploadVideo_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+      <Parameter Name="StartIndex" Mode="In" Type="Int32" />
+      <Parameter Name="MaximumRows" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRecords" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="blocks" EntityType="dataModel.block" />
+    <EntitySet Name="cities" EntityType="dataModel.city" />
+    <EntitySet Name="classlevels" EntityType="dataModel.classlevel" />
+    <EntitySet Name="countries" EntityType="dataModel.country" />
+    <EntitySet Name="schools" EntityType="dataModel.school" />
+    <EntitySet Name="states" EntityType="dataModel.state" />
+    <EntitySet Name="subjects" EntityType="dataModel.subject" />
+    <EntitySet Name="subjectclassmappings" EntityType="dataModel.subjectclassmapping" />
+    <EntitySet Name="sysdiagrams" EntityType="dataModel.sysdiagram" />
+    <EntitySet Name="teachers" EntityType="dataModel.teacher" />
+    <EntitySet Name="teacherclassmappings" EntityType="dataModel.teacherclassmapping" />
+    <EntitySet Name="teachersubjectmappings" EntityType="dataModel.teachersubjectmapping" />
+    <EntitySet Name="textbooks" EntityType="dataModel.textbook" />
+    <EntitySet Name="types" EntityType="dataModel.type" />
+    <EntitySet Name="userroles" EntityType="dataModel.userrole" />
+    <AssociationSet Name="FK_block_teacher" Association="dataModel.FK_block_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="block" EntitySet="blocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_block_teacher1" Association="dataModel.FK_block_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="block" EntitySet="blocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_block" Association="dataModel.FK_school_block">
+      <End Role="block" EntitySet="blocks" />
+      <End Role="school" EntitySet="schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_block" Association="dataModel.FK_teacher_block">
+      <End Role="block" EntitySet="blocks" />
+      <End Role="teacher" EntitySet="teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_city_state" Association="dataModel.FK_city_state">
+      <End Role="state" EntitySet="states" />
+      <End Role="city" EntitySet="cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_city_teacher" Association="dataModel.FK_city_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="city" EntitySet="cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_city_teacher1" Association="dataModel.FK_city_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="city" EntitySet="cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_city" Association="dataModel.FK_school_city">
+      <End Role="city" EntitySet="cities" />
+      <End Role="school" EntitySet="schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_city" Association="dataModel.FK_teacher_city">
+      <End Role="city" EntitySet="cities" />
+      <End Role="teacher" EntitySet="teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_classlevel_teacher" Association="dataModel.FK_classlevel_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="classlevel" EntitySet="classlevels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_classlevel_teacher1" Association="dataModel.FK_classlevel_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="classlevel" EntitySet="classlevels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subjectclassmapping_classlevel" Association="dataModel.FK_subjectclassmapping_classlevel">
+      <End Role="classlevel" EntitySet="classlevels" />
+      <End Role="subjectclassmapping" EntitySet="subjectclassmappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacherclassmapping_classlevel" Association="dataModel.FK_teacherclassmapping_classlevel">
+      <End Role="classlevel" EntitySet="classlevels" />
+      <End Role="teacherclassmapping" EntitySet="teacherclassmappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cluster_teacher" Association="dataModel.FK_cluster_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="cluster" EntitySet="clusters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cluster_teacher1" Association="dataModel.FK_cluster_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="cluster" EntitySet="clusters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_country_teacher" Association="dataModel.FK_country_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="country" EntitySet="countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_country_teacher1" Association="dataModel.FK_country_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="country" EntitySet="countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_country" Association="dataModel.FK_school_country">
+      <End Role="country" EntitySet="countries" />
+      <End Role="school" EntitySet="schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_state_country" Association="dataModel.FK_state_country">
+      <End Role="country" EntitySet="countries" />
+      <End Role="state" EntitySet="states" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_country" Association="dataModel.FK_teacher_country">
+      <End Role="country" EntitySet="countries" />
+      <End Role="teacher" EntitySet="teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_state" Association="dataModel.FK_school_state">
+      <End Role="state" EntitySet="states" />
+      <End Role="school" EntitySet="schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_teacher" Association="dataModel.FK_school_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="school" EntitySet="schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_school_teacher1" Association="dataModel.FK_school_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="school" EntitySet="schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_school" Association="dataModel.FK_teacher_school">
+      <End Role="school" EntitySet="schools" />
+      <End Role="teacher" EntitySet="teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_state" Association="dataModel.FK_teacher_state">
+      <End Role="state" EntitySet="states" />
+      <End Role="teacher" EntitySet="teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subjectclassmapping_subject" Association="dataModel.FK_subjectclassmapping_subject">
+      <End Role="subject" EntitySet="subjects" />
+      <End Role="subjectclassmapping" EntitySet="subjectclassmappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teachersubjectmapping_subject" Association="dataModel.FK_teachersubjectmapping_subject">
+      <End Role="subject" EntitySet="subjects" />
+      <End Role="teachersubjectmapping" EntitySet="teachersubjectmappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_textbook_subject" Association="dataModel.FK_textbook_subject">
+      <End Role="subject" EntitySet="subjects" />
+      <End Role="textbook" EntitySet="textbooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_teacher" Association="dataModel.FK_teacher_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="teacher1" EntitySet="teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_teacher1" Association="dataModel.FK_teacher_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="teacher1" EntitySet="teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacher_userrole" Association="dataModel.FK_teacher_userrole">
+      <End Role="userrole" EntitySet="userroles" />
+      <End Role="teacher" EntitySet="teachers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teacherclassmapping_teacher" Association="dataModel.FK_teacherclassmapping_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="teacherclassmapping" EntitySet="teacherclassmappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teachersubjectmapping_teacher" Association="dataModel.FK_teachersubjectmapping_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="teachersubjectmapping" EntitySet="teachersubjectmappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_textbook_teacher" Association="dataModel.FK_textbook_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="textbook" EntitySet="textbooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_textbook_teacher1" Association="dataModel.FK_textbook_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="textbook" EntitySet="textbooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_type_teacher" Association="dataModel.FK_type_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="type" EntitySet="types" />
+    </AssociationSet>
+    <AssociationSet Name="FK_type_teacher1" Association="dataModel.FK_type_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="type" EntitySet="types" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userrole_teacher" Association="dataModel.FK_userrole_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="userrole" EntitySet="userroles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userrole_teacher1" Association="dataModel.FK_userrole_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="userrole" EntitySet="userroles" />
+    </AssociationSet>
+    <FunctionImport Name="country_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="videodatas" EntityType="dataModel.videodata" />
+    <AssociationSet Name="FK_videodata_classlevel" Association="dataModel.FK_videodata_classlevel">
+      <End Role="classlevel" EntitySet="classlevels" />
+      <End Role="videodata" EntitySet="videodatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_videodata_subject" Association="dataModel.FK_videodata_subject">
+      <End Role="subject" EntitySet="subjects" />
+      <End Role="videodata" EntitySet="videodatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_videodata_teacher" Association="dataModel.FK_videodata_teacher">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="videodata" EntitySet="videodatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_videodata_teacher1" Association="dataModel.FK_videodata_teacher1">
+      <End Role="teacher" EntitySet="teachers" />
+      <End Role="videodata" EntitySet="videodatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_videodata_textbook" Association="dataModel.FK_videodata_textbook">
+      <End Role="textbook" EntitySet="textbooks" />
+      <End Role="videodata" EntitySet="videodatas" />
+    </AssociationSet>
+    <FunctionImport Name="Get_Subject_List" ReturnType="Collection(dataModel.Get_Subject_List_Result)">
+      <Parameter Name="classids" Mode="In" Type="String" />
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_teacher_class" ReturnType="Collection(dataModel.Get_teacher_class_Result)">
+      <Parameter Name="teacherid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_teacher_subject" ReturnType="Collection(dataModel.Get_teacher_subject_Result)">
+      <Parameter Name="teacherid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="listmasters" EntityType="dataModel.listmaster" />
+    <EntitySet Name="listtypes" EntityType="dataModel.listtype" />
+    <EntitySet Name="smslogs" EntityType="dataModel.smslog" />
+    <EntitySet Name="smstemplates" EntityType="dataModel.smstemplate" />
+    <EntitySet Name="transactionlogs" EntityType="dataModel.transactionlog" />
+    <FunctionImport Name="Get_Activitylogs_List" ReturnType="Collection(dataModel.Get_Activitylogs_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+      <Parameter Name="StartIndex" Mode="In" Type="Int32" />
+      <Parameter Name="MaximumRows" Mode="In" Type="Int32" />
+      <Parameter Name="TotalRecords" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Teacher_Subject_List" ReturnType="Collection(dataModel.Get_Teacher_Subject_List_Result)">
+      <Parameter Name="classid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Dashboard_Chart_data" ReturnType="Collection(dataModel.Get_Dashboard_Chart_data_Result)">
+      <Parameter Name="ChartType" Mode="In" Type="String" />
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Transactions_List" ReturnType="Collection(dataModel.Get_Transactions_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_Country_List" ReturnType="Collection(dataModel.Get_Country_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_classlevels_List" ReturnType="Collection(dataModel.Get_classlevels_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_clusters_List" ReturnType="Collection(dataModel.Get_clusters_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Get_types_List" ReturnType="Collection(dataModel.Get_types_List_Result)">
+      <Parameter Name="sSearch" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="transactionlog_SaveUpdateDelete" ReturnType="Collection(Int32)">
+      <Parameter Name="XmlString" Mode="In" Type="String" />
+      <Parameter Name="IsDelete" Mode="In" Type="Boolean" />
+      <Parameter Name="OutIdentity" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="activitylog">
+    <Key>
+      <PropertyRef Name="activityid" />
+    </Key>
+    <Property Name="activityid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="activitydate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="application" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="details" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="userid" Type="Int32" Nullable="false" />
+    <Property Name="appversion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="Get_User_Login_Result">
+    <Property Type="Int32" Name="teacherid" Nullable="false" />
+    <Property Type="Int32" Name="blockid" Nullable="false" />
+    <Property Type="String" Name="blockname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="teachermobile" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="teacheremail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="teacheraddress" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="countryid" Nullable="false" />
+    <Property Type="Int32" Name="stateid" Nullable="false" />
+    <Property Type="Int32" Name="cityid" Nullable="false" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isblockadmin" Nullable="true" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="userroleid" Nullable="true" />
+    <Property Type="Boolean" Name="isactive" Nullable="true" />
+    <Property Type="Int32" Name="schoolid" Nullable="true" />
+    <Property Type="Int32" Name="createdby" Nullable="true" />
+    <Property Type="DateTime" Name="createddate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="gmailid" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="teacherfirstname" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="teacherlastname" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="otpcode" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="optexpiredon" Nullable="true" Precision="23" />
+    <Property Type="String" Name="countryname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="statename" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="cityname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="rolename" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="schoolname" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="imgprofile" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_State_List_Result">
+    <Property Type="Int32" Name="stateid" Nullable="false" />
+    <Property Type="String" Name="statename" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="countryid" Nullable="false" />
+    <Property Type="String" Name="countryname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="remakrs" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_City_List_Result">
+    <Property Type="Int32" Name="cityid" Nullable="false" />
+    <Property Type="String" Name="cityname" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="stateid" Nullable="false" />
+    <Property Type="String" Name="statename" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="countryid" Nullable="true" />
+    <Property Type="String" Name="countryname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_School_List_Result">
+    <Property Type="Int32" Name="schoolid" Nullable="false" />
+    <Property Type="String" Name="schoolname" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="blockid" Nullable="false" />
+    <Property Type="String" Name="blockname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="schooladdress" Nullable="false" MaxLength="500" />
+    <Property Type="Int32" Name="countryid" Nullable="false" />
+    <Property Type="String" Name="countryname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="stateid" Nullable="false" />
+    <Property Type="String" Name="statename" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="cityid" Nullable="false" />
+    <Property Type="String" Name="cityname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="false" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Get_Teacher_List_Result">
+    <Property Type="Int32" Name="teacherid" Nullable="false" />
+    <Property Type="Int32" Name="blockid" Nullable="false" />
+    <Property Type="String" Name="blockname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="teachermobile" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="teacheremail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="teacheraddress" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="countryid" Nullable="false" />
+    <Property Type="String" Name="countryname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="stateid" Nullable="false" />
+    <Property Type="String" Name="statename" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="cityid" Nullable="false" />
+    <Property Type="String" Name="cityname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isblockadmin" Nullable="true" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="userroleid" Nullable="true" />
+    <Property Type="String" Name="rolename" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="isactive" Nullable="true" />
+    <Property Type="Int32" Name="schoolid" Nullable="true" />
+    <Property Type="Int32" Name="createdby" Nullable="true" />
+    <Property Type="DateTime" Name="createddate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="gmailid" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="imgprofile" Nullable="true" />
+    <Property Type="String" Name="classid" Nullable="true" />
+    <Property Type="String" Name="subjectid" Nullable="true" />
+    <Property Type="String" Name="schoolname" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ClassName" Nullable="true" />
+    <Property Type="String" Name="subjectName" Nullable="true" />
+    <Property Type="String" Name="teacherfirstname" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="teacherlastname" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_TextBook_List_Result">
+    <Property Type="Int32" Name="textbookid" Nullable="false" />
+    <Property Type="String" Name="textbookname" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="subjectid" Nullable="false" />
+    <Property Type="String" Name="subjectname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="false" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Get_Block_List_Result">
+    <Property Type="Int32" Name="blockid" Nullable="false" />
+    <Property Type="String" Name="blockname" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="blockurl" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="blockusername" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="blockpassword" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="applicense">
+    <Key>
+      <PropertyRef Name="applicenseid" />
+    </Key>
+    <Property Name="applicenseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="apikey" Type="Guid" />
+  </EntityType>
+  <ComplexType Name="Get_UploadVideo_List_Result">
+    <Property Type="Int32" Name="videoid" Nullable="false" />
+    <Property Type="String" Name="videotitle" Nullable="false" MaxLength="500" />
+    <Property Type="Int32" Name="teacherid" Nullable="false" />
+    <Property Type="String" Name="teacherfirstname" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="teacherlastname" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="videodate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="classlevelid" Nullable="false" />
+    <Property Type="String" Name="classlevelname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="subjectid" Nullable="false" />
+    <Property Type="String" Name="subjectname" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="textbookid" Nullable="true" />
+    <Property Type="String" Name="textbookname" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="youtubelink" Nullable="false" MaxLength="5000" />
+    <Property Type="String" Name="publicdetail" Nullable="false" MaxLength="5000" />
+    <Property Type="String" Name="privatedetail" Nullable="true" MaxLength="5000" />
+    <Property Type="Int32" Name="schoolid" Nullable="true" />
+    <Property Type="String" Name="schoolname" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="isactive" Nullable="false" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="isprivate" Nullable="true" />
+    <Property Type="Int32" Name="rating" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="block">
+    <Key>
+      <PropertyRef Name="blockid" />
+    </Key>
+    <Property Name="blockid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="blockname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="blockurl" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="blockusername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="blockpassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_block_teacher" FromRole="block" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_block_teacher1" FromRole="block" ToRole="teacher" />
+    <NavigationProperty Name="schools" Relationship="dataModel.FK_school_block" FromRole="block" ToRole="school" />
+    <NavigationProperty Name="teachers" Relationship="dataModel.FK_teacher_block" FromRole="block" ToRole="teacher" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="cityid" />
+    </Key>
+    <Property Name="cityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cityname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="stateid" Type="Int32" Nullable="false" />
+    <Property Name="countryid" Type="Int32" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" />
+    <NavigationProperty Name="state" Relationship="dataModel.FK_city_state" FromRole="city" ToRole="state" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_city_teacher" FromRole="city" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_city_teacher1" FromRole="city" ToRole="teacher" />
+    <NavigationProperty Name="schools" Relationship="dataModel.FK_school_city" FromRole="city" ToRole="school" />
+    <NavigationProperty Name="teachers" Relationship="dataModel.FK_teacher_city" FromRole="city" ToRole="teacher" />
+  </EntityType>
+  <EntityType Name="classlevel">
+    <Key>
+      <PropertyRef Name="classid" />
+    </Key>
+    <Property Name="classid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="classlevelname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_classlevel_teacher" FromRole="classlevel" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_classlevel_teacher1" FromRole="classlevel" ToRole="teacher" />
+    <NavigationProperty Name="subjectclassmappings" Relationship="dataModel.FK_subjectclassmapping_classlevel" FromRole="classlevel" ToRole="subjectclassmapping" />
+    <NavigationProperty Name="teacherclassmappings" Relationship="dataModel.FK_teacherclassmapping_classlevel" FromRole="classlevel" ToRole="teacherclassmapping" />
+    <NavigationProperty Name="videodatas" Relationship="dataModel.FK_videodata_classlevel" FromRole="classlevel" ToRole="videodata" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="countryid" />
+    </Key>
+    <Property Name="countryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="countryname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_country_teacher" FromRole="country" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_country_teacher1" FromRole="country" ToRole="teacher" />
+    <NavigationProperty Name="schools" Relationship="dataModel.FK_school_country" FromRole="country" ToRole="school" />
+    <NavigationProperty Name="states" Relationship="dataModel.FK_state_country" FromRole="country" ToRole="state" />
+    <NavigationProperty Name="teachers" Relationship="dataModel.FK_teacher_country" FromRole="country" ToRole="teacher" />
+  </EntityType>
+  <EntityType Name="school">
+    <Key>
+      <PropertyRef Name="schoolid" />
+    </Key>
+    <Property Name="schoolid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="schoolname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="blockid" Type="Int32" Nullable="false" />
+    <Property Name="schooladdress" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="countryid" Type="Int32" Nullable="false" />
+    <Property Name="stateid" Type="Int32" Nullable="false" />
+    <Property Name="cityid" Type="Int32" Nullable="false" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="block" Relationship="dataModel.FK_school_block" FromRole="school" ToRole="block" />
+    <NavigationProperty Name="city" Relationship="dataModel.FK_school_city" FromRole="school" ToRole="city" />
+    <NavigationProperty Name="country" Relationship="dataModel.FK_school_country" FromRole="school" ToRole="country" />
+    <NavigationProperty Name="state" Relationship="dataModel.FK_school_state" FromRole="school" ToRole="state" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_school_teacher" FromRole="school" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_school_teacher1" FromRole="school" ToRole="teacher" />
+    <NavigationProperty Name="teachers" Relationship="dataModel.FK_teacher_school" FromRole="school" ToRole="teacher" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="stateid" />
+    </Key>
+    <Property Name="stateid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="statename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="countryid" Type="Int32" Nullable="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <Property Name="remakrs" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" />
+    <NavigationProperty Name="cities" Relationship="dataModel.FK_city_state" FromRole="state" ToRole="city" />
+    <NavigationProperty Name="country" Relationship="dataModel.FK_state_country" FromRole="state" ToRole="country" />
+    <NavigationProperty Name="schools" Relationship="dataModel.FK_school_state" FromRole="state" ToRole="school" />
+    <NavigationProperty Name="teachers" Relationship="dataModel.FK_teacher_state" FromRole="state" ToRole="teacher" />
+  </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="subjectid" />
+    </Key>
+    <Property Name="subjectid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subjectname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="subjectclassmappings" Relationship="dataModel.FK_subjectclassmapping_subject" FromRole="subject" ToRole="subjectclassmapping" />
+    <NavigationProperty Name="teachersubjectmappings" Relationship="dataModel.FK_teachersubjectmapping_subject" FromRole="subject" ToRole="teachersubjectmapping" />
+    <NavigationProperty Name="textbooks" Relationship="dataModel.FK_textbook_subject" FromRole="subject" ToRole="textbook" />
+    <NavigationProperty Name="videodatas" Relationship="dataModel.FK_videodata_subject" FromRole="subject" ToRole="videodata" />
+  </EntityType>
+  <EntityType Name="subjectclassmapping">
+    <Key>
+      <PropertyRef Name="subjectclassmapid" />
+    </Key>
+    <Property Name="subjectclassmapid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="classid" Type="Int32" Nullable="false" />
+    <Property Name="subjectid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="classlevel" Relationship="dataModel.FK_subjectclassmapping_classlevel" FromRole="subjectclassmapping" ToRole="classlevel" />
+    <NavigationProperty Name="subject" Relationship="dataModel.FK_subjectclassmapping_subject" FromRole="subjectclassmapping" ToRole="subject" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="teacher">
+    <Key>
+      <PropertyRef Name="teacherid" />
+    </Key>
+    <Property Name="teacherid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="blockid" Type="Int32" Nullable="false" />
+    <Property Name="teacherfirstname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="teacherlastname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="teachermobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="teacheremail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="teacheraddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="countryid" Type="Int32" Nullable="false" />
+    <Property Name="stateid" Type="Int32" Nullable="false" />
+    <Property Name="cityid" Type="Int32" Nullable="false" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isblockadmin" Type="Boolean" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userroleid" Type="Int32" />
+    <Property Name="isactive" Type="Boolean" />
+    <Property Name="schoolid" Type="Int32" />
+    <Property Name="createdby" Type="Int32" />
+    <Property Name="createddate" Type="DateTime" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <Property Name="gmailid" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="imgprofile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="otpcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="optexpiredon" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="blocks" Relationship="dataModel.FK_block_teacher" FromRole="teacher" ToRole="block" />
+    <NavigationProperty Name="blocks1" Relationship="dataModel.FK_block_teacher1" FromRole="teacher" ToRole="block" />
+    <NavigationProperty Name="block" Relationship="dataModel.FK_teacher_block" FromRole="teacher" ToRole="block" />
+    <NavigationProperty Name="cities" Relationship="dataModel.FK_city_teacher" FromRole="teacher" ToRole="city" />
+    <NavigationProperty Name="cities1" Relationship="dataModel.FK_city_teacher1" FromRole="teacher" ToRole="city" />
+    <NavigationProperty Name="city" Relationship="dataModel.FK_teacher_city" FromRole="teacher" ToRole="city" />
+    <NavigationProperty Name="classlevels" Relationship="dataModel.FK_classlevel_teacher" FromRole="teacher" ToRole="classlevel" />
+    <NavigationProperty Name="classlevels1" Relationship="dataModel.FK_classlevel_teacher1" FromRole="teacher" ToRole="classlevel" />
+    <NavigationProperty Name="clusters" Relationship="dataModel.FK_cluster_teacher" FromRole="teacher" ToRole="cluster" />
+    <NavigationProperty Name="clusters1" Relationship="dataModel.FK_cluster_teacher1" FromRole="teacher" ToRole="cluster" />
+    <NavigationProperty Name="countries" Relationship="dataModel.FK_country_teacher" FromRole="teacher" ToRole="country" />
+    <NavigationProperty Name="countries1" Relationship="dataModel.FK_country_teacher1" FromRole="teacher" ToRole="country" />
+    <NavigationProperty Name="country" Relationship="dataModel.FK_teacher_country" FromRole="teacher" ToRole="country" />
+    <NavigationProperty Name="schools" Relationship="dataModel.FK_school_teacher" FromRole="teacher" ToRole="school" />
+    <NavigationProperty Name="schools1" Relationship="dataModel.FK_school_teacher1" FromRole="teacher" ToRole="school" />
+    <NavigationProperty Name="school" Relationship="dataModel.FK_teacher_school" FromRole="teacher" ToRole="school" />
+    <NavigationProperty Name="state" Relationship="dataModel.FK_teacher_state" FromRole="teacher" ToRole="state" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_teacher_teacher" FromRole="teacher" ToRole="teacher1" />
+    <NavigationProperty Name="teacher2" Relationship="dataModel.FK_teacher_teacher" FromRole="teacher1" ToRole="teacher" />
+    <NavigationProperty Name="teacher11" Relationship="dataModel.FK_teacher_teacher1" FromRole="teacher" ToRole="teacher1" />
+    <NavigationProperty Name="teacher3" Relationship="dataModel.FK_teacher_teacher1" FromRole="teacher1" ToRole="teacher" />
+    <NavigationProperty Name="userrole" Relationship="dataModel.FK_teacher_userrole" FromRole="teacher" ToRole="userrole" />
+    <NavigationProperty Name="teacherclassmappings" Relationship="dataModel.FK_teacherclassmapping_teacher" FromRole="teacher" ToRole="teacherclassmapping" />
+    <NavigationProperty Name="teachersubjectmappings" Relationship="dataModel.FK_teachersubjectmapping_teacher" FromRole="teacher" ToRole="teachersubjectmapping" />
+    <NavigationProperty Name="textbooks" Relationship="dataModel.FK_textbook_teacher" FromRole="teacher" ToRole="textbook" />
+    <NavigationProperty Name="textbooks1" Relationship="dataModel.FK_textbook_teacher1" FromRole="teacher" ToRole="textbook" />
+    <NavigationProperty Name="types" Relationship="dataModel.FK_type_teacher" FromRole="teacher" ToRole="type" />
+    <NavigationProperty Name="types1" Relationship="dataModel.FK_type_teacher1" FromRole="teacher" ToRole="type" />
+    <NavigationProperty Name="userroles" Relationship="dataModel.FK_userrole_teacher" FromRole="teacher" ToRole="userrole" />
+    <NavigationProperty Name="userroles1" Relationship="dataModel.FK_userrole_teacher1" FromRole="teacher" ToRole="userrole" />
+    <NavigationProperty Name="videodatas" Relationship="dataModel.FK_videodata_teacher" FromRole="teacher" ToRole="videodata" />
+    <NavigationProperty Name="videodatas1" Relationship="dataModel.FK_videodata_teacher1" FromRole="teacher" ToRole="videodata" />
+  </EntityType>
+  <EntityType Name="teacherclassmapping">
+    <Key>
+      <PropertyRef Name="teacherclassmapid" />
+    </Key>
+    <Property Name="teacherclassmapid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="teacherid" Type="Int32" Nullable="false" />
+    <Property Name="classlevelid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="classlevel" Relationship="dataModel.FK_teacherclassmapping_classlevel" FromRole="teacherclassmapping" ToRole="classlevel" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_teacherclassmapping_teacher" FromRole="teacherclassmapping" ToRole="teacher" />
+  </EntityType>
+  <EntityType Name="teachersubjectmapping">
+    <Key>
+      <PropertyRef Name="teachersubjectmapid" />
+    </Key>
+    <Property Name="teachersubjectmapid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="teacherid" Type="Int32" Nullable="false" />
+    <Property Name="subjectid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="subject" Relationship="dataModel.FK_teachersubjectmapping_subject" FromRole="teachersubjectmapping" ToRole="subject" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_teachersubjectmapping_teacher" FromRole="teachersubjectmapping" ToRole="teacher" />
+  </EntityType>
+  <EntityType Name="textbook">
+    <Key>
+      <PropertyRef Name="textbookid" />
+    </Key>
+    <Property Name="textbookid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="textbookname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="subjectid" Type="Int32" Nullable="false" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="subject" Relationship="dataModel.FK_textbook_subject" FromRole="textbook" ToRole="subject" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_textbook_teacher" FromRole="textbook" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_textbook_teacher1" FromRole="textbook" ToRole="teacher" />
+    <NavigationProperty Name="videodatas" Relationship="dataModel.FK_videodata_textbook" FromRole="textbook" ToRole="videodata" />
+  </EntityType>
+  <EntityType Name="type">
+    <Key>
+      <PropertyRef Name="typeid" />
+    </Key>
+    <Property Name="typeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="typename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="remarks" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isactive" Type="Boolean" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_type_teacher" FromRole="type" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_type_teacher1" FromRole="type" ToRole="teacher" />
+  </EntityType>
+  <EntityType Name="userrole">
+    <Key>
+      <PropertyRef Name="userroleid" />
+    </Key>
+    <Property Name="userroleid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rolename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isadmin" Type="Boolean" Nullable="false" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="teachers" Relationship="dataModel.FK_teacher_userrole" FromRole="userrole" ToRole="teacher" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_userrole_teacher" FromRole="userrole" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_userrole_teacher1" FromRole="userrole" ToRole="teacher" />
+  </EntityType>
+  <Association Name="FK_block_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.block" Role="block" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="block">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_block_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.block" Role="block" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="block">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_block">
+    <End Type="dataModel.block" Role="block" Multiplicity="1" />
+    <End Type="dataModel.school" Role="school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="block">
+        <PropertyRef Name="blockid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="blockid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_block">
+    <End Type="dataModel.block" Role="block" Multiplicity="1" />
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="block">
+        <PropertyRef Name="blockid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="blockid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_city_state">
+    <End Type="dataModel.state" Role="state" Multiplicity="1" />
+    <End Type="dataModel.city" Role="city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="stateid" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="stateid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_city_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.city" Role="city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_city_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.city" Role="city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_city">
+    <End Type="dataModel.city" Role="city" Multiplicity="1" />
+    <End Type="dataModel.school" Role="school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="cityid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="cityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_city">
+    <End Type="dataModel.city" Role="city" Multiplicity="1" />
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="cityid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="cityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_classlevel_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.classlevel" Role="classlevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="classlevel">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_classlevel_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.classlevel" Role="classlevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="classlevel">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subjectclassmapping_classlevel">
+    <End Type="dataModel.classlevel" Role="classlevel" Multiplicity="1" />
+    <End Type="dataModel.subjectclassmapping" Role="subjectclassmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classlevel">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="subjectclassmapping">
+        <PropertyRef Name="classid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacherclassmapping_classlevel">
+    <End Type="dataModel.classlevel" Role="classlevel" Multiplicity="1" />
+    <End Type="dataModel.teacherclassmapping" Role="teacherclassmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classlevel">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="teacherclassmapping">
+        <PropertyRef Name="classlevelid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cluster_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.cluster" Role="cluster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="cluster">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cluster_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.cluster" Role="cluster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="cluster">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_country_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.country" Role="country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="country">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_country_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.country" Role="country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="country">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_country">
+    <End Type="dataModel.country" Role="country" Multiplicity="1" />
+    <End Type="dataModel.school" Role="school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="countryid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="countryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_state_country">
+    <End Type="dataModel.country" Role="country" Multiplicity="1" />
+    <End Type="dataModel.state" Role="state" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="countryid" />
+      </Principal>
+      <Dependent Role="state">
+        <PropertyRef Name="countryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_country">
+    <End Type="dataModel.country" Role="country" Multiplicity="1" />
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="countryid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="countryid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_state">
+    <End Type="dataModel.state" Role="state" Multiplicity="1" />
+    <End Type="dataModel.school" Role="school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="stateid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="stateid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.school" Role="school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_school_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.school" Role="school" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="school">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_school">
+    <End Type="dataModel.school" Role="school" Multiplicity="0..1" />
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="school">
+        <PropertyRef Name="schoolid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="schoolid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_state">
+    <End Type="dataModel.state" Role="state" Multiplicity="1" />
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="stateid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="stateid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subjectclassmapping_subject">
+    <End Type="dataModel.subject" Role="subject" Multiplicity="1" />
+    <End Type="dataModel.subjectclassmapping" Role="subjectclassmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="subjectclassmapping">
+        <PropertyRef Name="subjectid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teachersubjectmapping_subject">
+    <End Type="dataModel.subject" Role="subject" Multiplicity="1" />
+    <End Type="dataModel.teachersubjectmapping" Role="teachersubjectmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="teachersubjectmapping">
+        <PropertyRef Name="subjectid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_textbook_subject">
+    <End Type="dataModel.subject" Role="subject" Multiplicity="1" />
+    <End Type="dataModel.textbook" Role="textbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="textbook">
+        <PropertyRef Name="subjectid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.teacher" Role="teacher1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="teacher1">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.teacher" Role="teacher1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="teacher1">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacher_userrole">
+    <End Type="dataModel.userrole" Role="userrole" Multiplicity="0..1" />
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userrole">
+        <PropertyRef Name="userroleid" />
+      </Principal>
+      <Dependent Role="teacher">
+        <PropertyRef Name="userroleid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teacherclassmapping_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.teacherclassmapping" Role="teacherclassmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="teacherclassmapping">
+        <PropertyRef Name="teacherid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teachersubjectmapping_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.teachersubjectmapping" Role="teachersubjectmapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="teachersubjectmapping">
+        <PropertyRef Name="teacherid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_textbook_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.textbook" Role="textbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="textbook">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_textbook_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.textbook" Role="textbook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="textbook">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_type_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.type" Role="type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="type">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_type_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.type" Role="type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="type">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userrole_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.userrole" Role="userrole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="userrole">
+        <PropertyRef Name="createdby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userrole_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.userrole" Role="userrole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="userrole">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="videodata">
+    <Key>
+      <PropertyRef Name="videoid" />
+    </Key>
+    <Property Name="videoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="videotitle" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="teacherid" Type="Int32" Nullable="false" />
+    <Property Name="videodate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="classlevelid" Type="Int32" Nullable="false" />
+    <Property Name="subjectid" Type="Int32" Nullable="false" />
+    <Property Name="textbookid" Type="Int32" />
+    <Property Name="youtubelink" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="publicdetail" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="isprivate" Type="Boolean" />
+    <Property Name="privatedetail" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="schoolid" Type="Int32" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="classlevel" Relationship="dataModel.FK_videodata_classlevel" FromRole="videodata" ToRole="classlevel" />
+    <NavigationProperty Name="subject" Relationship="dataModel.FK_videodata_subject" FromRole="videodata" ToRole="subject" />
+    <NavigationProperty Name="teacher" Relationship="dataModel.FK_videodata_teacher" FromRole="videodata" ToRole="teacher" />
+    <NavigationProperty Name="teacher1" Relationship="dataModel.FK_videodata_teacher1" FromRole="videodata" ToRole="teacher" />
+    <NavigationProperty Name="textbook" Relationship="dataModel.FK_videodata_textbook" FromRole="videodata" ToRole="textbook" />
+  </EntityType>
+  <Association Name="FK_videodata_classlevel">
+    <End Type="dataModel.classlevel" Role="classlevel" Multiplicity="1" />
+    <End Type="dataModel.videodata" Role="videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classlevel">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="classlevelid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_videodata_subject">
+    <End Type="dataModel.subject" Role="subject" Multiplicity="1" />
+    <End Type="dataModel.videodata" Role="videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="subjectid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_videodata_teacher">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="1" />
+    <End Type="dataModel.videodata" Role="videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="teacherid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_videodata_teacher1">
+    <End Type="dataModel.teacher" Role="teacher" Multiplicity="0..1" />
+    <End Type="dataModel.videodata" Role="videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="teacherid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="updatedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_videodata_textbook">
+    <End Type="dataModel.textbook" Role="textbook" Multiplicity="0..1" />
+    <End Type="dataModel.videodata" Role="videodata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="textbook">
+        <PropertyRef Name="textbookid" />
+      </Principal>
+      <Dependent Role="videodata">
+        <PropertyRef Name="textbookid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Get_Subject_List_Result">
+    <Property Type="Int32" Name="subjectid" Nullable="false" />
+    <Property Type="String" Name="subjectname" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="false" />
+    <Property Type="String" Name="Classid" Nullable="true" />
+    <Property Type="String" Name="className" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_teacher_class_Result">
+    <Property Type="Int32" Name="teacherclassmapid" Nullable="false" />
+    <Property Type="Int32" Name="teacherid" Nullable="false" />
+    <Property Type="Int32" Name="classlevelid" Nullable="false" />
+    <Property Type="String" Name="classlevelname" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="Get_teacher_subject_Result">
+    <Property Type="Int32" Name="teachersubjectmapid" Nullable="false" />
+    <Property Type="Int32" Name="teacherid" Nullable="false" />
+    <Property Type="Int32" Name="subjectid" Nullable="false" />
+    <Property Type="String" Name="subjectname" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="listmaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="listid" Type="Int32" Nullable="false" />
+    <Property Name="listtypeid" Type="Int32" Nullable="false" />
+    <Property Name="listsequance" Type="Int32" Nullable="false" />
+    <Property Name="listname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="listdescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedby" Type="Int32" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="listtype">
+    <Key>
+      <PropertyRef Name="listypeid" />
+    </Key>
+    <Property Name="listypeid" Type="Int32" Nullable="false" />
+    <Property Name="listtypename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="smslog">
+    <Key>
+      <PropertyRef Name="smslogid" />
+    </Key>
+    <Property Name="smslogid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="smsid" Type="Int32" Nullable="false" />
+    <Property Name="refid" Type="Int64" Nullable="false" />
+    <Property Name="reftypeid" Type="Int32" Nullable="false" />
+    <Property Name="smsmobileno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="smstemplate" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="companyid" Type="Int32" Nullable="false" />
+    <Property Name="branchid" Type="Int32" Nullable="false" />
+    <Property Name="createdby" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="smstemplate">
+    <Key>
+      <PropertyRef Name="smsid" />
+    </Key>
+    <Property Name="smsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="listid" Type="Int32" Nullable="false" />
+    <Property Name="smstemplate1" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="companyid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="transactionlog">
+    <Key>
+      <PropertyRef Name="transid" />
+    </Key>
+    <Property Name="transid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transdatetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="transtypeid" Type="Int32" Nullable="false" />
+    <Property Name="typeid" Type="Int32" />
+    <Property Name="commenttext" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="rating" Type="Byte" Nullable="false" />
+    <Property Name="refid" Type="Int64" Nullable="false" />
+    <Property Name="reftypeid" Type="Int32" Nullable="false" />
+    <Property Name="createdby" Type="Int32" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="isedited" Type="Boolean" Nullable="false" />
+    <Property Name="editedby" Type="Int32" Nullable="false" />
+    <Property Name="isdeleted" Type="Boolean" Nullable="false" />
+    <Property Name="deletedby" Type="Int32" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="Get_Activitylogs_List_Result">
+    <Property Type="Int64" Name="activityid" Nullable="false" />
+    <Property Type="DateTime" Name="activitydate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="application" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="type" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="details" Nullable="false" />
+    <Property Type="Int32" Name="userid" Nullable="false" />
+    <Property Type="String" Name="appversion" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="Get_Teacher_Subject_List_Result">
+    <Property Type="Int32" Name="subjectid" Nullable="false" />
+    <Property Type="String" Name="subjectname" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="false" />
+    <Property Type="Int32" Name="classid" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_Dashboard_Chart_data_Result">
+    <Property Type="DateTime" Name="Dates" Nullable="true" />
+    <Property Type="Int32" Name="Visits" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_Transactions_List_Result">
+    <Property Type="Int64" Name="transid" Nullable="false" />
+    <Property Type="DateTime" Name="transdatetime" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="transtypeid" Nullable="false" />
+    <Property Type="Int32" Name="typeid" Nullable="true" />
+    <Property Type="String" Name="commenttext" Nullable="true" MaxLength="5000" />
+    <Property Type="Byte" Name="rating" Nullable="false" />
+    <Property Type="Int64" Name="refid" Nullable="false" />
+    <Property Type="Int32" Name="reftypeid" Nullable="false" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="imgprofile" Nullable="true" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="isedited" Nullable="false" />
+    <Property Type="Int32" Name="editedby" Nullable="false" />
+    <Property Type="Boolean" Name="isdeleted" Nullable="false" />
+    <Property Type="Int32" Name="deletedby" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_Country_List_Result">
+    <Property Type="Int32" Name="countryid" Nullable="false" />
+    <Property Type="String" Name="countryname" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_classlevels_List_Result">
+    <Property Type="Int32" Name="classid" Nullable="false" />
+    <Property Type="String" Name="classlevelname" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_clusters_List_Result">
+    <Property Type="Int32" Name="clusterid" Nullable="false" />
+    <Property Type="String" Name="clustername" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="true" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Get_types_List_Result">
+    <Property Type="Int32" Name="typeid" Nullable="false" />
+    <Property Type="String" Name="typename" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="remarks" Nullable="true" MaxLength="5000" />
+    <Property Type="Boolean" Name="isactive" Nullable="true" />
+    <Property Type="Int32" Name="createdby" Nullable="false" />
+    <Property Type="DateTime" Name="createddate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="updatedby" Nullable="true" />
+    <Property Type="DateTime" Name="updateddate" Nullable="true" Precision="23" />
+  </ComplexType>
+</Schema>

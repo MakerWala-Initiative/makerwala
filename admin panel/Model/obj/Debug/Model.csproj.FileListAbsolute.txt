@@ -1,0 +1,15 @@
+C:\Users\Alpesh\Desktop\WebApp\Model\bin\Debug\Model.dll
+C:\Users\Alpesh\Desktop\WebApp\Model\bin\Debug\Model.pdb
+C:\Users\Alpesh\Desktop\WebApp\Model\obj\Debug\Model.dll
+C:\Users\Alpesh\Desktop\WebApp\Model\obj\Debug\Model.pdb
+E:\uvtech\teacher\Model\bin\Debug\Model.dll
+E:\uvtech\teacher\Model\bin\Debug\Model.pdb
+E:\uvtech\teacher\Model\obj\Debug\Model.dll
+E:\uvtech\teacher\Model\obj\Debug\Model.pdb
+E:\uvtech\teacher\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\bin\Debug\Model.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\bin\Debug\Model.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\obj\Debug\Model.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\obj\Debug\Model.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\Model\obj\Debug\Model.csprojAssemblyReference.cache
