@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Textbook";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrTextbookForm" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Textbook Details</h6>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 ">
+                        <label for="exampleFormControlInput1">Name<lable style="color: red">&nbsp*</lable></label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrTextbookForm.textbookname" maxlength="50" required Textbook autofocus ngmessage="Please enter the Textbook Name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 ">
+                        <label for="exampleFormControlSelect1">Subject<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrTextbookForm.subjectid" autocomplete="off" ng-options="x.subjectid as x.subjectname for x in SubjectList" class="form-control" required Textbook autofocus ngmessage="Please select Subject">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Remark </label>
+                    <textarea class="form-control" rows="3" autocomplete="off" ng-model="ctrTextbookForm.remarks" required   autofocus ngmessage="Please enter the remarks"></textarea>
+                </div>
+
+                <div class="form-check">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 ">
+                            <input type="checkbox" class="form-check-input" ng-model="ctrTextbookForm.isactive">
+                            <label class="form-check-label" for="exampleCheck1">Is Active</label>
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr class="style1">
+        <div style="margin-top: 10px" class="form-group">
+            <!-- Button -->
+
+            <div class="col-sm-12 controls">
+                <button id="btn-Save" class="btn btn-primary" ng-click="SaveUpdateDeleteTextbook(false)">Save</button>
+                <a id="btn-cancel" class="btn btn-secondary" href="@Url.Action("index", "TextBook")">Cancel</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    app.controller("ctrTextbookForm", function ($scope, $http, $q, $interval, $window, DTOptionsBuilder, DTColumnBuilder) {
+
+        $scope.ctrTextbookForm = {};
+        $scope.ctrTextbookForm.isactive = true;
+
+        $scope.getSubjectList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_subjects_List", "subject")', obj).then(
+                           function (response) {
+                              // $scope.SubjectList = response.data.aaData;
+                               $scope.SubjectList = _.where(response.data.aaData, { isactive: true });
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getSubjectList();
+
+        var tbid = parseInt(getQueryStringValue("id") != "" ? getQueryStringValue("id") : "0");
+        if (tbid > 0) {
+            $scope.getTextbookData = function () {
+
+                var obj = {};
+                obj.Search = " and tb.textbookid=" + tbid;
+                $http.post('@Url.Action("Get_Textbook_List", "TextBook")', obj).then(
+                               function (response) {
+                                   $scope.ctrTextbookForm = response.data.aaData[0];
+                               },
+                               function (err) {
+                                   var error = err;
+                               });
+            }
+            $scope.getTextbookData();
+        }
+
+
+        $scope.SaveUpdateDeleteTextbook = function (Delete) {
+            if (!ValidateRequired("Textbook")) {
+                return;
+            }
+            var obj = {};
+            obj.tb = $scope.ctrTextbookForm;
+            obj.isDelete = Delete;
+
+            $http.post('@Url.Action("SaveUpdate_Delete_Textbook", "TextBook")', obj).then(
+                           function (response) {
+                               if (response.data.aaData == 1) {
+                                   showSuccessToast("Data Saved Sucessfully");
+                                   setTimeout(window.location.href = "@Url.Action("Index", "TextBook")", 1000)
+                               } else if (response.data.aaData == 2) {
+                                   showInfoToast("Already exist Textbook Name...");
+                               }
+                               else {
+                                   showWarningToast("Something went wrong.Please Try Again..")
+                               };
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+
+        }
+
+    });
+
+</script>
+

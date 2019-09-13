@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "Activity List";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+
+<div ng-controller="ctrActivitylogs">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Activity log List  
+                <br>
+                <hr class="style1">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 ">
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrActivitylogs.fromdate" month-picker placeholder="from date">
+                    </div>
+                    <div class="col-lg-2 col-md-2 ">
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrActivitylogs.todate" month-picker placeholder="to date">
+                    </div>
+                    <div class="col-lg-2 col-md-2 ">
+                        <select class="form-control border-primary" ng-model="ctrActivitylogs.application">
+                            <option>Web</option>
+                            <option>Mobile</option>
+                            <option>API</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-2 ">
+                        <select class="form-control border-primary" ng-model="ctrActivitylogs.type">
+                            <option>Information</option>
+                            <option>Exception</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-2 ">
+                        <button ng-click="getActivitylogList()" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        <button ng-click="clear()" class="btn btn-primary"><i class="fas fa-sync"></i></button>
+                    </div>
+                </div>
+            </h6>
+
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" datatable="ng" dt-options="dtOptions" width="100%"  cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Activity Date</th>
+                            <th>Application</th>
+                            <th>Type</th>
+                            <th>Details</th>
+                            <th>App Version</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in ActivitylogList">
+                            <td>{{item.activitydate |mydate | date: 'dd-MMM-yyyy'}}</td>
+                            <td>{{item.application}}</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.details}}</td>
+                            <td>{{item.appversion}}</td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+                @Html.Partial("~/Areas/Admin/Views/Shared/_Pagination.cshtml")
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    app.controller("ctrActivitylogs", function ($scope, $http, $q, $interval, $window, $ngConfirm, $filter, DTOptionsBuilder, DTColumnBuilder) {
+        $scope.ctrActivitylogs = {}
+
+        $scope.maxSize = 10;
+        $scope.totalCount = 0;
+        $scope.pageIndex = 1;
+        $scope.pageSizeSelected = 10;
+
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+         // .withDisplayLength(8)
+              .withOption('destroy', true)
+          .withOption('order', [0, 'desc'])
+          .withOption('searching', false)
+          .withOption('lengthChange', false)
+          .withOption('bInfo', false)
+          .withOption('paging', false);
+
+        $scope.stsearch = "";
+       
+        $scope.clear = function () {
+            $scope.stsearch = "";
+            $scope.ctrActivitylogs.fromdate = null;
+            $scope.ctrActivitylogs.todate = null;
+            $scope.ctrActivitylogs.type = null;
+            $scope.ctrActivitylogs.application = null;
+            $scope.getActivitylogList();
+        }
+        
+
+        $scope.getActivitylogList = function () {
+            var datefilter = getQueryStringValue("id");
+            if (datefilter == "1m") {
+                $scope.ctrActivitylogs.fromdate = $filter('date')(new Date(new Date().setDate(new Date().getDate()-30)), 'dd-MMM-yyyy');
+                $scope.ctrActivitylogs.todate = $filter('date')(new Date(), 'dd-MMM-yyyy');
+            }
+
+            $scope.stsearch = "";
+            if ($scope.ctrActivitylogs.fromdate != null && $scope.ctrActivitylogs.todate != null) {
+                $scope.stsearch = " And a.activitydate >= '" + $scope.ctrActivitylogs.fromdate + "' AND a.activitydate <= DATEADD(d, 1, '" + $scope.ctrActivitylogs.todate + "')";
+            }
+            if ($scope.ctrActivitylogs.type != null) {
+                $scope.stsearch += " And a.type = '" + $scope.ctrActivitylogs.type + "'";
+            }
+            if ($scope.ctrActivitylogs.application != null) {
+                $scope.stsearch += " And a.application = '" + $scope.ctrActivitylogs.application + "'";
+            }
+
+            var obj = {};
+            obj.Search = $scope.stsearch;
+            obj.pageIndex = $scope.pageIndex - 1;
+            obj.PageSize = $scope.maxSize;
+
+            $http.post('@Url.Action("Get_Activitylogs_List", "activitylog")', obj).then(
+                           function (response) {
+                               debugger
+                               $scope.ActivitylogList = response.data.aaData;
+                               $scope.totalCount = response.data.totalRecords;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+       // $scope.getActivitylogList();
+
+
+        $scope.pageChanged = function (pageIndex) {
+            $scope.pageIndex = pageIndex;
+            $scope.getActivitylogList();
+        };
+
+    });
+
+</script>
+
+

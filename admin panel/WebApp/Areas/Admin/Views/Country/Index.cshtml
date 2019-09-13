@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "Country Form";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrCountry" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 ">
+                    <label class="m-0 font-weight-bold text-primary">Country List </label>
+                </div>
+                <div class="col-lg-4 col-md-4 ">
+                </div>
+                <div class="col-lg-3 col-md-3 ">
+                    <div style="text-align: right;">
+                        @{
+                            if (WebApp.Utility.SessionFacade.AdminUserSession.userroleid == 1)
+                            {
+                                <a href="@Url.Action("CountryForm", "Country")" class="btn btn-primary"><i class="far fa-plus-square"></i>Add New</a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered" width="100%" cellspacing="0" datatable="ng" dt-options="dtOptions">
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Active</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*  <tr>
+                                <td>India</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a type="button" class="btn btn-primary btn-rounded" href="@Url.Action("CountryForm", "Country")">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-primary btn-rounded" ng-click="DeleteCountry(item,true)">
+                                            <i class="fas fa-trash-alt"></i>
+
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>*@
+
+                        <tr ng-repeat="item in CountryList">
+                            <td>{{item.countryname}}</td>
+                            <td>
+                                <input type="checkbox" ng-model="item.isactive" disabled />
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a type="button" class="btn btn-primary btn-rounded" href="@Url.Action("CountryForm", "Country")?id={{item.countryid}}">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    @{
+                                        if (WebApp.Utility.SessionFacade.AdminUserSession.userroleid == 1)
+                                        {
+                                            <button type="button" class="btn btn-primary btn-rounded" ng-click="DeleteCountry(item,$index,true)">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        }
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        app.controller("ctrCountry", function ($scope, $http, $q, $interval, $window, $ngConfirm, DTOptionsBuilder, DTColumnBuilder) {
+
+            $scope.ctrCountry = {};
+
+            $scope.dtOptions = DTOptionsBuilder.newOptions()
+            // .withDisplayLength(8)
+              .withOption('order', [0, 'asc'])
+              .withOption('searching', true)
+              .withOption('lengthChange', true)
+              .withOption('bInfo', false)
+              .withOption('paging', true);
+
+            $scope.getCountryList = function () {
+                var obj = {};
+                obj.Search = "";
+                $http.post('@Url.Action("Get_Country_List", "Country")', obj).then(
+                           function (response) {
+                               $scope.CountryList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+            }
+            $scope.getCountryList();
+
+            $scope.DeleteCountry = function (objCountry, index, Delete) {
+                $ngConfirm({
+                    title: 'Are you want to Confirm?',
+                    content: 'Do you want to delete: ' + objCountry.countryname,
+                    autoClose: 'cancel|8000',
+                    buttons: {
+                        deleteUser: {
+                            text: 'ok',
+                            btnClass: 'btn btn-primary',
+                            action: function () {
+                                /**/
+                                var obj = {};
+                                obj.Co = objCountry;
+                                obj.isDelete = Delete;
+                                if (objCountry.countryid > 0) {
+                                    $http.post('@Url.Action("SaveUpdate_Delete_Country", "Country")', obj).then(
+                                   function (response) {
+                                       if (response.data.aaData == 3) {
+                                           showSuccessToast("Data Deleted Sucessfully");
+                                           $scope.CountryList.splice(index, 1);
+                                       } else if (response.data.aaData == -1) {
+                                           showWarningToast("Something went wrong.Please Try Again..")
+                                       } else {
+                                           showWarningToast("this Record used some other table.so can't delete this records")
+                                       };
+                                   },
+                                   function (err) {
+                                       var error = err;
+                                   });
+                            } else {
+                                $scope.CountryList.splice(index, 1);
+                                showSuccessToast("Data Deleted Sucessfully");
+                            }
+
+                            /**/
+                        }
+                    },
+                    cancel: function () {
+                        return
+                    }
+                }
+            });
+
+        }
+
+        });
+
+    </script>

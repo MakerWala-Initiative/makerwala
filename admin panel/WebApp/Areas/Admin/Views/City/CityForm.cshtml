@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = "City";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrCityForm" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">City</h6>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 ">
+                        <label for="exampleFormControlInput1">
+                            Name  
+                            <lable style="color: red">&nbsp*</lable>
+                        </label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrCityForm.cityname" maxlength="50" required city autofocus ngmessage="Please enter the City Name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlSelect1">
+                            Country   
+                            <lable style="color: red">&nbsp*</lable>
+                        </label>
+                        <select ng-model="ctrCityForm.countryid" autocomplete="off" ng-options="x.countryid as x.countryname for x in CountryList" ng-change="FilterState()" class="form-control" required city autofocus ngmessage="Please select Country">
+                        </select>
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlSelect1">
+                            State    
+                            <lable style="color: red">&nbsp*</lable>
+                        </label>
+                        <select ng-model="ctrCityForm.stateid" autocomplete="off" ng-options="x.stateid as x.statename for x in StateList" ng-disabled="ctrCityForm.countryid==null" class="form-control" required city autofocus ngmessage="Please select City">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Remark </label>
+                    <textarea class="form-control" rows="3" autocomplete="off" ng-model="ctrCityForm.remarks" required autofocus></textarea>
+                </div>
+                <div class="form-check">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 ">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" ng-model="ctrCityForm.isactive">
+                            <label class="form-check-label" for="exampleCheck1">Is Active</label>
+                        </div>
+                    </div>
+                </div>
+                <hr class="style1">
+                <div style="margin-top: 10px" class="form-group">
+                    <!-- Button -->
+                    <div class="col-sm-12 controls">
+                        <button id="btn-Save" class="btn btn-primary" ng-click="SaveUpdateDeleteState(false)">Save</button>
+                        <a id="btn-cancel" class="btn btn-secondary" href="@Url.Action("index", "city")">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    app.controller("ctrCityForm", function ($scope, $http, $q, $interval, $window, DTOptionsBuilder, DTColumnBuilder) {
+        $scope.ctrCityForm = {};
+        $scope.ctrCityForm.isactive = true;
+
+        $scope.getCountryList = function () {
+
+            $http.post('@Url.Action("Get_Country_List", "Country")').then(
+                                   function (response) {
+                                       // $scope.CountryList = response.data.aaData;
+                                       $scope.CountryList = _.where(response.data.aaData, { isactive: true });
+
+                                       $scope.getStateList();
+                                   },
+                                   function (err) {
+                                       var error = err;
+                                   });
+        }
+        $scope.getCountryList();
+
+
+        $scope.getStateList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_State_List", "State")', obj).then(
+                           function (response) {
+                               $scope.StateList = _.where(response.data.aaData, { isactive: true });
+                               $scope.TStateList = _.where(response.data.aaData, { isactive: true });
+
+                               // $scope.StateList = response.data.aaData;
+                               //$scope.TStateList = response.data.aaData;
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+
+        $scope.FilterState = function () {
+
+            if ($scope.ctrCityForm.countryid > 0) {
+                $scope.StateList = _.where($scope.TStateList, { countryid: $scope.ctrCityForm.countryid });
+            } else {
+                showInfoToast("Please Select Country..");
+            }
+        }
+
+        var ctid = parseInt(getQueryStringValue("id") != "" ? getQueryStringValue("id") : "0");
+        if (ctid > 0) {
+            $scope.getCityList = function () {
+                var obj = {};
+                obj.Search = "";
+                $http.post('@Url.Action("Get_city_List", "City")', obj).then(
+                               function (response) {
+
+                                   $scope.ctrCityForm = _.where(response.data.aaData, { cityid: ctid })[0];
+                                   $scope.FilterState();
+                               },
+                               function (err) {
+                                   var error = err;
+                               });
+            }
+            $scope.getCityList();
+
+        }
+
+
+        $scope.SaveUpdateDeleteState = function (Delete) {
+            if (!ValidateRequired("city")) {
+                return;
+            }
+            var obj = {};
+            obj.ct = $scope.ctrCityForm;
+            obj.isDelete = Delete;
+
+            $http.post('@Url.Action("SaveUpdate_Delete_city", "city")', obj).then(
+                           function (response) {
+                               debugger
+                               if (response.data.aaData == 1) {
+                                   showSuccessToast("Data Saved Sucessfully");
+                                   setTimeout(window.location.href = "@Url.Action("Index", "city")", 1000)
+                               } else if (response.data.aaData == 2) {
+                                   showInfoToast("Already exist State Name...");
+                               }
+                               else {
+                                   showWarningToast("Something went wrong.Please Try Again..")
+                               };
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+    });
+
+</script>

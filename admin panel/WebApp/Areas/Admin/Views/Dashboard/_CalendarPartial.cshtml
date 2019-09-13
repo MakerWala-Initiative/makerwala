@@ -1,0 +1,369 @@
+﻿<div class="row col-sm-12">
+
+
+    <div class="row">
+
+
+
+
+        <div class="col-lg-10 col-md-10 ">
+            <label for="exampleFormControlInput1">Type </label>
+            <select name="color" class="form-control" id="drpTypeFilter">
+                <option value="">Choose</option>
+                <option value="Appoinment">Appoinment</option>
+                <option value="Event">Event</option>
+                <option value="Metting">Metting</option>
+            </select>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-5 ">
+            <label for="exampleFormControlInput1"></label>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="LoadeventFilter()">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="calendar"></div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-horizontal" method="POST" action="addEvent.php">
+
+                <input type="hidden" name="title" class="form-control" id="txt_EventMaster_ID" value="0" />
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Add Event</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Title</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="title" class="form-control" id="txt_title" placeholder="Title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-5 control-label">Description</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="title" class="form-control" id="txt_Desc" placeholder="Description">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="color" class="col-sm-2 control-label">Type</label>
+                        <div class="col-sm-10">
+                            <select name="color" class="form-control" id="drpType">
+                                <option value="">Choose</option>
+                                <option value="Appoinment">Appoinment</option>
+                                <option value="Event">Event</option>
+                                <option value="Metting">Metting</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="start" class="col-sm-5 control-label">Start date</label>
+                        <div class="col-sm-10" style="position: relative">
+                            <input type="text" name="start" class="form-control datetimepicker" id="txt_startDate" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group" style="position: relative">
+                        <label for="end" class="col-sm-5 control-label">End date</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="end" class="form-control datetimepicker" id="txt_endDate" readonly>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <div class="row col-md-12">
+                        <div class="col-md-3">
+                            <button type="button" id="btn_Delete" class="btn btn-danger pull-left" onclick="SaveUpdateEvent('true')">Delete</button>
+                        </div>
+                        <div class="col-md-9 text-right">
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="SaveUpdateEvent('false')">Save changes</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print" />
+
+<script src="~/Areas/Admin/Content/js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
+
+
+
+<link href="https://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+<script src="https://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js?t=20130302"></script>
+
+
+<style>
+    .fc-view-container *, .fc-view-container :after, .fc-view-container :before {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        color: black;
+    }
+</style>
+<script>
+
+    setTimeout(function () {
+        $("#txt_EventMaster_ID").val(0)
+        Loadevent()
+    }, 1000);
+
+
+    function LoadeventFilter() {
+        $('#calendar').fullCalendar('refetchEvents');
+        Loadevent();
+
+    }
+
+    function Loadevent() {
+
+
+        $(".datetimepicker").datetimepicker({
+            format: "dd-MM-yyyy hh:ii",
+            autoclose: true,
+            todayBtn: true,
+            startDate: "2013-02-14 10:00",
+            minuteStep: 10
+        });
+
+        $('#calendar').fullCalendar({
+            header:
+            {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: false,
+            // droppable: false,
+            eventLimit: true, // allow "more" link when too many events
+            selectable: true,
+            // selectHelper: true,
+            buttonText: {
+                today: 'today',
+                month: 'month',
+                week: 'week',
+                day: 'day'
+            },
+            eventClick: function (calEvent, jsEvent, view) {
+                $("#btn_Delete").show()
+                $("#txt_EventMaster_ID").val(calEvent.EventMaster_ID) * 1;
+                $('#txt_title').val(calEvent.title);
+                $('#txt_Desc').val(calEvent.Desc); // parse int dd-mm-yyyy hh:ii
+                $('#txt_startDate').val(moment(calEvent.start).format('DD-MM-YYYY HH:mm'));
+                $('#txt_endDate').val(moment(calEvent.end).format('DD-MM-YYYY HH:mm'));
+                $('#drpType').val(calEvent.Type)
+                $('#ModalAdd').modal('show');
+            },
+            events: function (start, end, timezone, callback) {
+
+                var obj = {};
+
+                $.post('@Url.Action("GetEventList", "Dashboard")', { Type: $('#drpTypeFilter').val() },
+                function (result) {
+                    result = result.aaData;
+                    var events = [];
+                    $.each(result, function (i, data) {
+                        var Bgcolor = "#9501fc";
+                        if (data.Type == "Appoinment") {
+                            Bgcolor = "#50B719"
+                        }
+                        else if (data.Type == "Event") {
+                            Bgcolor = "#4280f4"
+                        }
+                        else if (data.Type == "Metting") {
+                            Bgcolor = "#E4F04E"
+                        }
+                        events.push(
+                        {
+                            EventMaster_ID: data.EventMaster_ID,
+                            title: data.Title,
+                            Desc: data.Desc,
+                            Type: data.Type,
+                            start: moment(data.Start_Date).format('YYYY-MM-DD hh:mm:ss'),
+                            end: moment(data.End_Date).format('YYYY-MM-DD hh:mm:ss'),
+                            backgroundColor: Bgcolor,
+                            borderColor: "#fc0101"
+                        });
+                    });
+                    callback(events);
+                }).fail(function () {
+                    console.log("error");
+                });
+
+               @* debugger
+                $.ajax({
+                    url: '@Url.Action("GetEventList", "Dashboard")',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: JSON.stringify(obj),
+                    success: function (result) {
+                        result = result.aaData;
+                        var events = [];
+                        $.each(result, function (i, data) {
+                            var Bgcolor = "#9501fc";
+                            if (data.Type == "Appoinment") {
+                                Bgcolor = "#50B719"
+                            }
+                            else if (data.Type == "Event") {
+                                Bgcolor = "#4280f4"
+                            }
+                            else if (data.Type == "Metting") {
+                                Bgcolor = "#E4F04E"
+                            }
+                            events.push(
+                            {
+                                EventMaster_ID: data.EventMaster_ID,
+                                title: data.Title,
+                                Desc: data.Desc,
+                                Type: data.Type,
+                                start: moment(data.Start_Date).format('YYYY-MM-DD hh:mm:ss'),
+                                end: moment(data.End_Date).format('YYYY-MM-DD hh:mm:ss'),
+                                backgroundColor: Bgcolor,
+                                borderColor: "#fc0101"
+                            });
+                        });
+                        callback(events);
+                    }
+                });*@
+            },
+            eventRender: function (event, element) {
+                element.qtip(
+                {
+                    content: event.Desc,
+                });
+                //element.click(function () {
+                //    alert("2")
+                //    $("#startTime").html(moment(event.start).format('MMM Do h:mm A'));
+                //    $("#endTime").html(moment(event.end).format('MMM Do h:mm A'));
+                //    $("#eventInfo").html(event.description);
+                //    $("#eventLink").attr('href', event.url);
+                //    $("#eventContent").dialog({ modal: true, title: event.title, width: 350 });
+                //});
+            },
+            select: function (start, end) {
+                $("#btn_Delete").hide()
+                $("#ModalAdd #txt_EventMaster_ID").val("0") * 1;  // parse int
+                $('#ModalAdd #txt_title').val('');
+                $('#ModalAdd #txt_Desc').val(''); // parse int
+                $('#ModalAdd #txt_startDate').val(moment(start).format('DD-MM-YYYY HH:mm'));
+                $('#ModalAdd #txt_endDate').val(moment(end).format('DD-MM-YYYY HH:mm'));
+                $('#ModalAdd #drpType').val("")
+
+                $('#ModalAdd').modal('show');
+            },
+
+            //eventRender: function (event, element) {
+            //    debugger
+            //    element.bind('dblclick', function () {
+            //        $('#ModalEdit #id').val(event.id);
+            //        $('#ModalEdit #title').val(event.title);
+            //        $('#ModalEdit #color').val(event.color);
+            //        $('#ModalEdit').modal('show');
+            //    });
+            //},
+            //eventDrop: function (event, delta, revertFunc) { // si changement de position
+            //    debugger
+            //   // SaveUpdateEvent(event);
+            //},
+            //eventResize: function (event, dayDelta, minuteDelta, revertFunc) { // si changement de longueur
+            //    debugger
+            //    //SaveUpdateEvent(event);
+            //},
+
+            dayClick: function (date, jsEvent, view) {
+                //alert('Clicked on: ' + date.format());
+                //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                //alert('Current view: ' + view.name);
+                // change the day's background color just for fun
+                //  $(this).css('background-color', 'red');
+
+                // $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+                // $('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+                // $('#ModalAdd').modal('show');
+            },
+        });
+    }
+
+
+    function SaveUpdateEvent(IsDelete) {
+        if ($('#txt_title').val() == "") {
+            showInfoToast("Enter The title...");
+            return;
+        }
+        if ($('#txt_Desc').val() == "") {
+            showInfoToast("Enter The Desc...");
+            return;
+        }
+        if ($('#txt_startDate').val() == "") {
+            showInfoToast("Enter The Start Date...");
+            return;
+        }
+        if ($('#txt_endDate').val() == "") {
+            showInfoToast("Enter The End Date...");
+            return;
+        }
+        debugger
+        if ($('#drpType option:selected').val() == "") {
+            showInfoToast("Enter The Type...");
+            return;
+        }
+
+        var Event_obj = {};
+        Event_obj.EventMaster_ID = $("#txt_EventMaster_ID").val() * 1;  // parse int
+        Event_obj.Title = $('#txt_title').val();
+        Event_obj.Desc = $('#txt_Desc').val(); // parse int
+        Event_obj.Start_Date = $('#txt_startDate').val();
+        Event_obj.End_Date = $('#txt_endDate').val();
+        Event_obj.Type = $('#drpType option:selected').text()
+
+        var AllFormData = {
+            "UE": Event_obj,
+            "Is_Delete": IsDelete
+        };
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: '@Url.Action("Save_Update_Delete_Event", "Dashboard")',
+            data: JSON.stringify(AllFormData),
+            cache: false,
+            dataType: 'JSON',
+            async: true,
+            success: function (data) {
+                //
+                Loadevent()
+                $('#calendar').fullCalendar('refetchEvents');
+                $('#ModalAdd').modal('hide');
+
+            },
+        });
+    }
+
+</script>
+
+

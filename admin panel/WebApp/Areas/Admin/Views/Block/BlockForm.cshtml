@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Block";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrBlockForm" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Block Details</h6>
+        </div>
+        <div class="card-body">
+            <form>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 ">
+                        <label for="exampleFormControlInput1">Name
+                            <lable style="color: red">*</lable>
+                        </label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrBlockForm.blockname" maxlength="50" required block autofocus ngmessage="Please enter the Name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 ">
+                        <label for="exampleFormControlInput1">URL</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrBlockForm.blockurl" required autofocus ngmessage="Please enter the blockurl">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 ">
+                        <label for="exampleFormControlSelect1">User Name</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrBlockForm.blockusername" required autofocus ngmessage="Please enter the Username">
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <label for="exampleFormControlSelect1">Password</label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrBlockForm.blockpassword" required autofocus ngmessage="Please enter the Password">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Remark </label>
+                    <textarea class="form-control" rows="3" autocomplete="off" ng-model="ctrBlockForm.remarks" required autofocus ngmessage="Please enter the remarks"></textarea>
+                </div>
+
+                <div class="form-check">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 ">
+                            <input type="checkbox" class="form-check-input" ng-model="ctrBlockForm.isactive">
+                            <label class="form-check-label" for="exampleCheck1">Is Active</label>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <br>
+        <hr class="style1">
+        <div style="margin-top: 10px" class="form-group">
+            <!-- Button -->
+
+            <div class="col-sm-12 controls">
+                <button id="btn-Save" class="btn btn-primary" ng-click="SaveUpdateDeleteBlock(false)">Save</button>
+                <a id="btn-cancel" class="btn btn-secondary" href="@Url.Action("index", "Block")">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    app.controller("ctrBlockForm", function ($scope, $http, $q, $interval, $window, DTOptionsBuilder, DTColumnBuilder) {
+
+        $scope.ctrBlockForm = {};
+        $scope.ctrBlockForm.isactive = true;
+
+        var bid = parseInt(getQueryStringValue("id") != "" ? getQueryStringValue("id") : "0");
+
+        if (bid > 0) {
+            $scope.getBlockList = function () {
+
+                var obj = {};
+                obj.Search = " and b.blockid=" + bid;
+                $http.post('@Url.Action("Get_block_List", "Block")', obj).then(
+                               function (response) {
+                                   $scope.ctrBlockForm = response.data.aaData[0];
+                               },
+                               function (err) {
+                                   var error = err;
+                               });
+            }
+            $scope.getBlockList()
+        }
+
+
+        $scope.SaveUpdateDeleteBlock = function (Delete) {
+            if (!ValidateRequired("block")) {
+                return;
+            }
+            var obj = {};
+            obj.bk = $scope.ctrBlockForm;
+            obj.isDelete = Delete;
+
+            $http.post('@Url.Action("SaveUpdate_Delete_Block", "Block")', obj).then(
+                           function (response) {
+                               if (response.data.aaData == 1) {
+                                   showSuccessToast("Data Saved Sucessfully");
+                                   setTimeout(window.location.href = "@Url.Action("Index", "Block")", 1000)
+                               } else if (response.data.aaData == 2) {
+                                   showInfoToast("Already exist Block Name.");
+                               }
+                               else {
+                                   showWarningToast("Something went wrong.Please Try Again..")
+                               };
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+
+        }
+
+    });
+
+</script>

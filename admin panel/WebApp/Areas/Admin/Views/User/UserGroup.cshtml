@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "User List";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+
+<div ng-controller="ctrUserGroup">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">User Group List  
+                <br>
+                <hr class="style1">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 ">
+                    </div>
+                    <div class="col-lg-4 col-md-4 ">
+                    </div>
+                    <div class="col-lg-4 col-md-4 ">
+                        <div style="text-align: right;">
+                            <a href="@Url.Action("UserGroupForm", "User")" class="btn btn-primary"><i class="far fa-plus-square"></i>Add New</a>
+                        </div>
+                    </div>
+                </div>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" datatable="ng" dt-options="dtOptions" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Group Name</th>
+                            <th>Group Desc</th>
+                            <th>Active</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in UserGroupList">
+                            <td>{{item.GroupName}}</td>
+                            <td>{{item.GroupDesc}}</td>
+                            <td>
+                                <input type="checkbox" disabled id="exampleCheck1" ng-model="item.IsAdmin">
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a type="button" class="btn btn-primary btn-rounded" href="@Url.Action("UserGroupForm", "User")/{{item.ID}}">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-primary btn-rounded" ng-click="DeleteUserGroup(item,true)">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                @Html.Partial("~/Areas/Admin/Views/Shared/_Pagination.cshtml")
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    app.controller("ctrUserGroup", function ($scope, $http, $q, $interval, $window, DTOptionsBuilder, DTColumnBuilder) {
+        $scope.ctrUser = {}
+        $scope.maxSize = 10;
+        $scope.totalCount = 0;
+        $scope.pageIndex = 1;
+        $scope.pageSizeSelected = 10;
+
+
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withOption('order', [0, 'asc'])
+            .withOption('lengthChange', false)
+            .withOption('bInfo', false)
+        .withOption('paging', false);
+
+        $scope.getUserGroupList = function () {
+            var obj = {};
+            obj.pageIndex = $scope.pageIndex;
+
+
+            $http.post('@Url.Action("Get_User_Group_List", "User")', obj).then(
+                           function (response) {
+                               $scope.UserGroupList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+
+        $scope.getUserGroupList();
+
+
+        $scope.DeleteUserGroup = function (obj, Isdelete) {
+            var obj = {
+                UPL: obj,
+                GM: obj,
+                IsDelete: Isdelete
+            };
+
+            if ($window.confirm("Do you want to delete: " + obj.GM.GroupName) == false) {
+                return
+            }
+
+            $http.post('@Url.Action("User_Permission_SaveUpdateDelete", "User")', obj).then(
+                                      function (response) {
+                                          if (response.data.aaData == 1 && Isdelete) {
+                                              showSuccessToast("Data Deleted Sucessfully");
+                                              $scope.getUserGroupList();
+                                          }
+                                      },
+                                      function (err) {
+                                          var error = err;
+                                      });
+        }
+
+        $scope.pageChanged = function (pageIndex) {
+            $scope.pageIndex = pageIndex;
+            $scope.getUserGroupList();
+        };
+    });
+
+</script>
+
+

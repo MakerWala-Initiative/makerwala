@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Change password";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+<div ng-controller="ctrChangePassword" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Change Password</h6>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 ">
+                        <label for="exampleFormControlInput1">Current Password</label>
+                        <input type="password" class="form-control" autocomplete="off" ng-model="ctrChangePassword.CurrenPassword" required password autofocus ngmessage="Please enter Old password">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 ">
+                        <label for="exampleFormControlInput1">New Password</label>
+                        <input type="password" class="form-control" autocomplete="off" ng-model="ctrChangePassword.NewPassword" required password autofocus ngmessage="Please enter the  New Password">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 ">
+                        <label for="exampleFormControlInput1">Confirm Password</label>
+                        <input type="password" class="form-control" autocomplete="off" ng-model="ctrChangePassword.ConfirmPassword" required password autofocus ngmessage="Please enter the Confirm Password">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr class="style1">
+        <div style="margin-top: 10px" class="form-group">
+            <!-- Button -->
+            <div class="col-sm-12 controls">
+                <button id="btn-Save" class="btn btn-primary" ng-click="ChangePassword()">Change Password</button>
+                <a id="btn-cancel" class="btn btn-secondary" href="@Url.Action("index", "Dashboard")">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    app.controller("ctrChangePassword", ['$scope', '$http', '$q', '$interval', function ($scope, $http, $q, $interval) {
+        $scope.ctrChangePassword = {};
+
+        $scope.ctrChangePassword.NewPassword = "";
+        $scope.ctrChangePassword.ConfirmPassword = "";
+
+        $scope.ChangePassword = function () {
+
+            if (!ValidateRequired("password")) {
+                return;
+            }
+
+            if ($scope.ctrChangePassword.NewPassword != $scope.ctrChangePassword.ConfirmPassword) {
+                showInfoToast("Password Not Matched");
+                return
+            }
+
+            var obj = {};
+            obj.NewPassword = $scope.ctrChangePassword.NewPassword;
+            obj.CurrenPassword = $scope.ctrChangePassword.CurrenPassword;
+            $scope.myPromise = $http.post('@Url.Action("SaveUpdate_Password", "Changepasword")', obj).then(
+                          function (response) {
+                              if (response.data.aaData == 1) {
+                                  showSuccessToast("Password Change Successfully")
+                                  setTimeout(window.location.href = "@Url.Action("Index", "Dashboard")", 1000)
+                              }
+                              else {
+                                  showWarningToast("Not Change password.Please Try again")
+                              }
+                          },
+                          function (err) {
+                              var error = err;
+                          });
+        }
+
+    }]);
+
+</script>
+

@@ -1,0 +1,293 @@
+﻿@{
+    ViewBag.Title = "User Group";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+
+<div ng-controller="ctrUserFormPermission" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">User Group</h6>
+        </div>
+        <div class="card-body">
+
+            <input type="hidden" class="form-control" ng-model="ctrUserFormPermission.ID">
+            <form>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 ">
+                        <label for="exampleFormControlInput1">Group Name </label>
+                        <input type="text" class="form-control" id="txt_GroupName" ng-model="ctrUserFormPermission.GroupName" ng-blur='CheckUserGroupName()' required autofocus ngmessage="Please enter the Group Name">
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-3 ">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Desc</label>
+                            <input type="text" class="form-control" ng-model="ctrUserFormPermission.GroupDesc" required autofocus ngmessage="Please enter the Contact Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 ">
+                        <input type="checkbox" id="ProcessingConsultantYN" ng-model="ctrUserFormPermission.IsAdmin" />
+                        <label class="checkbox-inline" for="ProcessingConsultantYN">Is Admin</label>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="table-responsive " ng-repeat="item in ctrUserGroupPerList | unique:'TabDName'">
+                <div class="card-body">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">{{item.TabDName}}</h6>
+                    </div>
+
+                    <div ng-repeat="Parentitem in ctrUserGroupPerList | unique:'ParentGName'" data-ng-if="Parentitem.ParentGName == item.TabGroupName">
+
+                        <table class="table table-bordered table-striped" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Module</th>
+                                    <th>Add</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{Parentitem.ParentDName}} </td>
+                                    <td>
+                                        <input type="checkbox" ng-model="Parentitem.Add_H" ng-change="SelectChildAddRow(Parentitem,this)">@* ng-model="Parentitem.Add_"*@
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" ng-model="Parentitem.Edit_H" ng-change="SelectChildUpdateRow(Parentitem,this)">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" ng-model="Parentitem.Delete_H" ng-change="SelectChildDeleteRow(Parentitem,this)">
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" ng-model="Parentitem.View_H" ng-change="SelectChildViewRow(Parentitem,this)">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="col-sm-11 controls">
+                            <table class="table table-bordered table-striped " width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Add</th>
+                                        <th>Update</th>
+                                        <th>Delete</th>
+                                        <th>View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="Childitem in ctrUserGroupPerList " data-ng-if="Childitem.ChilGName == Parentitem.ChilCGName">
+                                        <td>{{Childitem.ChilName}}</td>
+                                        <td>
+                                            <input type="checkbox" ng-model="Childitem.Add_" ng-change="RowAddClick(Childitem)">
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" ng-model="Childitem.Edit_">
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" ng-model="Childitem.Delete_">
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" ng-model="Childitem.View_" ng-change="RowViewClick(Childitem)">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <br>
+            <hr class="style1">
+            <div style="margin-top: 10px" class="form-group">
+                <div class="col-sm-12 controls">
+                    <a id="btn-Save" href="javscript:void(0)" class="btn btn-primary" ng-click="SaveUpdateDeleteUserPermission(false)">Save</a>
+                    <button id="btn-cancel" class="btn btn-secondary" ng-click="CleanUserGroupForm()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+<script>
+    app.controller("ctrUserFormPermission", function ($scope, $http, $q, $interval, $window, $filter) {
+
+        $scope.ctrUserFormPermission = {};
+        $scope.ctrUserFormPermission.ID = '@ViewBag.GroupID' * 1;
+
+
+        $scope.RowAddClick = function (Childitem) {
+            Childitem.View_ = Childitem.Add_
+            Childitem.Edit_ = 0
+            Childitem.Delete_ = 0
+        }
+        $scope.RowViewClick = function (Childitem) {
+            Childitem.Add_ = Childitem.View_
+            Childitem.Edit_ = Childitem.View_
+            Childitem.Delete_ = Childitem.View_
+        }
+        $scope.SelectChildAddRow = function (Parentitem, e) {
+
+            var parentChecked = Parentitem.Add_;
+            for (var i = 0; i < $scope.ctrUserGroupPerList.length; i++) {
+
+                if ($scope.ctrUserGroupPerList[i].ChilGName == Parentitem.ChilCGName) {
+
+                    if (parentChecked == true) {
+                        $scope.ctrUserGroupPerList[i].Add_ = false
+                    } else {
+                        $scope.ctrUserGroupPerList[i].Add_ = true
+                    }
+                }
+            }
+        }
+        $scope.SelectChildUpdateRow = function (Parentitem, e) {
+
+            var parentChecked = Parentitem.Edit_;
+            for (var i = 0; i < $scope.ctrUserGroupPerList.length; i++) {
+
+                if ($scope.ctrUserGroupPerList[i].ChilGName == Parentitem.ChilCGName) {
+
+                    if (parentChecked == true) {
+                        $scope.ctrUserGroupPerList[i].Edit_ = false
+                    } else {
+                        $scope.ctrUserGroupPerList[i].Edit_ = true
+                    }
+                }
+            }
+        }
+
+        $scope.SelectChildDeleteRow = function (Parentitem, e) {
+
+            var parentChecked = Parentitem.Delete_;
+            for (var i = 0; i < $scope.ctrUserGroupPerList.length; i++) {
+
+                if ($scope.ctrUserGroupPerList[i].ChilGName == Parentitem.ChilCGName) {
+
+                    if (parentChecked == true) {
+                        $scope.ctrUserGroupPerList[i].Delete_ = false
+                    } else {
+                        $scope.ctrUserGroupPerList[i].Delete_ = true
+                    }
+                }
+            }
+        }
+
+        $scope.SelectChildViewRow = function (Parentitem, e) {
+
+            var parentChecked = Parentitem.View_;
+            for (var i = 0; i < $scope.ctrUserGroupPerList.length; i++) {
+
+                if ($scope.ctrUserGroupPerList[i].ChilGName == Parentitem.ChilCGName) {
+
+                    if (parentChecked == true) {
+                        $scope.ctrUserGroupPerList[i].View_ = false
+                    } else {
+                        $scope.ctrUserGroupPerList[i].View_ = true
+                    }
+                }
+            }
+        }
+        $scope.CheckUserGroupName = function () {
+            var obj = {};
+            obj.Name = $scope.ctrUserFormPermission.GroupName;
+            obj.Group_Id = $scope.ctrUserFormPermission.ID;
+
+            $http.post('@Url.Action("check_User_Group", "User")', obj).then(
+                           function (response) {
+                               if (response.data.aaData > 0) {
+                                   $scope.ctrUserFormPermission.GroupName = "";
+                                   $("#txt_GroupName").focus()
+                                   showInfoToast("User Name Is Already Exist...");
+                               }
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+          }
+
+        $scope.getUserformPermissionList = function () {
+            var obj = {};
+            obj.GroupID = $scope.ctrUserFormPermission.ID;
+
+            $http.post('@Url.Action("Get_User_Form_Permission", "User")', obj).then(
+                           function (response) {
+                               if (response.data.aaData.length > 0) {
+                                   $scope.ctrUserGroupPerList = response.data.aaData;
+                                   $scope.ctrUserFormPermission = $scope.ctrUserGroupPerList[0];
+                                   $scope.ctrUserFormPermission.ID = $scope.ctrUserGroupPerList[0].GroupID;
+                               }
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+        $scope.getUserformPermissionList();
+
+
+
+        $scope.SaveUpdateDeleteUserPermission = function (Isdelete) {
+
+            if (!ValidateRequired()) {
+                return;
+            }
+
+            //if ($scope.CustomerContactList.length == 0) {
+            //    showInfoToast("Add At least one Contact...");
+
+            //    return;
+            //}
+
+            var obj = {
+                UPL: $scope.ctrUserGroupPerList,
+                GM: $scope.ctrUserFormPermission,
+                IsDelete: Isdelete
+            };
+
+            $http.post('@Url.Action("User_Permission_SaveUpdateDelete", "User")', obj).then(
+                                    function (response) {
+                                        if (response.data.aaData == 1 && Isdelete) {
+                                            showSuccessToast("Data Deleted Sucessfully");
+                                        }
+                                        else if (response.data.aaData == 1) {
+                                            showSuccessToast("Data Saved Sucessfully");
+                                        };
+                                        setTimeout(window.location.href = "@Url.Action("UserGroup", "User")", 1000)
+                                    },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+        $scope.CleanUserGroupForm = function () {
+            if ($window.confirm("Do you want to cancel Form") == false) {
+                return
+            }
+            window.location.href = "@Url.Action("UserGroup", "User")";
+
+            $scope.ctrUserFormPermission = {};
+
+        }
+
+
+    });
+
+</script>
+
+

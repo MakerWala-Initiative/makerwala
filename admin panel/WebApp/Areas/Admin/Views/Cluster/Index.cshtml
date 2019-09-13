@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "Cluster List";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrCluster">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 ">
+                    <label class="m-0 font-weight-bold text-primary">Cluster List  </label>
+                </div>
+                <div class="col-lg-4 col-md-4 ">
+                </div>
+                <div class="col-lg-3 col-md-3 ">
+                    <div style="text-align: right;">
+                        @{
+                            if (WebApp.Utility.SessionFacade.AdminUserSession.userroleid == 1)
+                            {
+                                <a href="@Url.Action("ClusterForm", "Cluster")" class="btn btn-primary"><i class="far fa-plus-square"></i>Add New</a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" datatable="ng" dt-options="dtOptions" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Active</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @* <tr>
+                                <td>Cluster123</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a type="button" class="btn btn-primary btn-rounded" href="@Url.Action("ClusterForm", "Cluster")">
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-primary btn-rounded" ng-click="DeleteCustomer(item,true)">
+                                            <i class="fas fa-trash-alt"></i>
+
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>*@
+                        <tr ng-repeat="item in ClusterList">
+                            <td>{{item.clustername}}</td>
+                            <td>
+                                <input type="checkbox" disabled ng-model="item.isactive">
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a type="button" class="btn btn-primary btn-rounded" href="@Url.Action("ClusterForm", "Cluster")?id={{item.clusterid}}">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    @{
+                                        if (WebApp.Utility.SessionFacade.AdminUserSession.userroleid == 1)
+                                        {
+                                            <button type="button" class="btn btn-primary btn-rounded" ng-click="DeleteCluster(item,$index,true)">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        }
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    app.controller("ctrCluster", function ($scope, $http, $q, $interval, $window, $ngConfirm, DTOptionsBuilder, DTColumnBuilder) {
+        $scope.ctrCluster = {}
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+          // .withDisplayLength(8)
+           .withOption('order', [0, 'asc'])
+           .withOption('searching', true)
+           .withOption('lengthChange', true)
+           .withOption('bInfo', false)
+           .withOption('paging', true);
+
+        $scope.getClusterList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_Cluster_List", "Cluster")', obj).then(
+                           function (response) {
+                               $scope.ClusterList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getClusterList();
+
+        $scope.DeleteCluster = function (objCluster, index, Delete) {
+
+            $ngConfirm({
+                title: 'Are you want to Confirm?',
+                content: 'Do you want to delete: ' + objCluster.clustername,
+                autoClose: 'cancel|8000',
+                buttons: {
+                    deleteUser: {
+                        text: 'ok',
+                        btnClass: 'btn btn-primary',
+                        action: function () {
+                            /**/
+                            var obj = {};
+                            obj.cl = objCluster;
+                            obj.isDelete = Delete;
+                            if (objCluster.clusterid > 0) {
+                                $http.post('@Url.Action("SaveUpdate_Delete_Cluster", "Cluster")', obj).then(
+                           function (response) {
+                               if (response.data.aaData == 3) {
+                                   showSuccessToast("Data Deleted Sucessfully");
+                                   $scope.ClusterList.splice(index, 1);
+                               } else if (response.data.aaData == -1) {
+                                   showWarningToast("Something went wrong.Please Try Again..")
+                               } else {
+                                   showWarningToast("this Record used some other table.so can't delete this records")
+                               };
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+                            } else {
+                                $scope.ClusterList.splice(index, 1);
+                                showSuccessToast("Data Deleted Sucessfully");
+                            }
+
+                            /**/
+                        }
+                    },
+                    cancel: function () {
+                        return
+                    }
+                }
+            });
+
+
+
+
+        }
+
+    });
+
+</script>
+

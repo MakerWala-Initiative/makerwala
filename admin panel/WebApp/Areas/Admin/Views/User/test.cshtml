@@ -1,0 +1,271 @@
+﻿@{
+    ViewBag.Title = "User List";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+
+<div ng-controller="ctrUser">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">User List  
+                <br>
+                <hr class="style1">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 ">
+                        <div style="text-align: left;">
+
+                            <div class="input-group">
+                                <input type="text" ng-model="ctrUser.Search" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" ng-click="getUserList()">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 ">
+                    </div>
+                    <div class="col-lg-3 col-md-3 ">
+                        <div style="text-align: right;">
+                            <a href="@Url.Action("Userform", "User")" class="btn btn-primary"><i class="far fa-plus-square"></i>Add New</a>
+                        </div>
+                    </div>
+                </div>
+            </h6>
+
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                @*     <table class="table table-bordered table-striped" datatable="ng" dt-options="dtOptions" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>FirstNm</th>
+                            <th>LastNm</th>
+                            <th>UserNm</th>
+                            <th>Addr</th>
+                            <th>Email</th>
+                            <th>Active</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                     <tfoot>
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Address1</th>
+                            <th>Address2</th>
+                            <th>PostCode</th>
+                            <th>ContactName</th>
+                            <th>Active</th>
+                            <th>#</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr ng-repeat="item in UserList">
+                            <td>{{item.FirstNm}}</td>
+                            <td>{{item.LastNm}}</td>
+                            <td>{{item.UserNm}}</td>
+                            <td>{{item.Addr}}</td>
+                            <td>{{item.Email}}</td>
+                            <td>
+                                <input type="checkbox" disabled id="exampleCheck1" ng-model="item.IsActive">
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a type="button" class="btn btn-primary btn-rounded" href="@Url.Action("UserForm", "User")/{{item.UserID}}">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-primary btn-rounded" ng-click="DeleteUser(item,true)">
+                                        <i class="fas fa-trash-alt"></i>
+
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+
+                </table>*@
+
+                <table class="table table-bordered bordered table-striped table-condensed datatable" datatable="" dt-columns="dtColumns" dt-options="dtOptions">
+                </table>
+                @Html.Partial("~/Areas/Admin/Views/Shared/_Pagination.cshtml")
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    app.controller("ctrUser", function ($scope, $http, $q, $interval, $window, $compile, DTOptionsBuilder, DTColumnBuilder) {
+        $scope.ctrUser = {}
+        $scope.maxSize = 10;
+        $scope.totalCount = 0;
+        $scope.pageIndex = 1;
+        $scope.pageSizeSelected = 10;
+
+
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+            .withOption('order', [0, 'asc'])
+            .withOption('lengthChange', false)
+            .withOption('bInfo', false)
+        //.withOption('paging', false)
+        //  .withOption('processing', true)
+       .withOption('serverSide', true)
+        ;
+
+        $scope.getUserList = function () {
+            var obj = {};
+            obj.pageIndex = $scope.pageIndex;
+            if ($scope.ctrUser.Search != null) {
+                obj.Search = " and GU.UserNm like '%" + $scope.ctrUser.Search + "%'";
+            } else {
+                obj.Search = "";
+            }
+
+            $http.post('@Url.Action("Get_User_List", "User")', obj).then(
+                           function (response) {
+
+                               $scope.UserList = response.data.aaData;
+
+                               $scope.totalCount = response.data.totalRecords;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+
+        $scope.getUserList();
+
+
+        // $scope.dtOptions = DTOptionsBuilder.newOptions()
+        //    .withOption('order', [0, 'asc']);
+
+
+
+        $scope.DeleteUser = function (obj, Isdelete) {
+            var obj = {
+                CM: obj,
+                IsDelete: Isdelete
+            };
+
+            debugger
+            if ($window.confirm("Do you want to delete: " + obj.CM.FirstNm) == false) {
+                return
+            }
+
+            $http.post('@Url.Action("SaveUpdateDeleteUser", "User")', obj).then(
+                                      function (response) {
+                                          if (response.data.aaData == 1 && Isdelete) {
+                                              showSuccessToast("Data Deleted Sucessfully");
+                                              $scope.getUserList();
+                                          }
+                                      },
+                                      function (err) {
+                                          var error = err;
+                                      });
+
+        }
+
+        $scope.toDatetable = function () {
+            $scope.pageData = {
+                total: 0,
+            };
+
+            // this function used to get all leads
+            var get = function (sSource, aoData, fnCallback, oSettings) {
+                var draw = aoData[0].value;
+                var order = aoData[2].value;
+                var start = aoData[3].value;
+                var length = aoData[4].value;
+
+                debugger
+                var params = {
+                    start: start,
+                    limit: length,
+                }
+
+                var obj = {};
+                obj.pageIndex = $scope.pageIndex;
+                if ($scope.ctrUser.Search != null) {
+                    obj.Search = " and GU.UserNm like '%" + $scope.ctrUser.Search + "%'";
+                } else {
+                    obj.Search = "";
+                }
+                $http.post('@Url.Action("Get_User_List", "User")', obj).then(
+                           function (response) {
+
+                               var records = {
+                                   'draw': 0,
+                                   'recordsTotal': 0,
+                                   'recordsFiltered': 0,
+                                   'data': []
+                               };
+                               if (response.data.aaData) {
+                                   records = {
+                                       'draw': draw,
+                                       'recordsTotal':500,
+                                       'recordsFiltered':500,
+                                       'data': response.data.aaData
+                                   };
+                               }
+                               $scope.pageData.total = 500;
+                               fnCallback(records);
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+
+
+            }
+
+            function rowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                $compile(nRow)($scope);
+            }
+
+            $scope.dtOptions = DTOptionsBuilder.newOptions()
+                .withFnServerData(get) // method name server call
+                .withDataProp('data')// parameter name of list use in getLeads Fuction
+                .withOption('processing', true) // required
+                .withOption('serverSide', true)// required
+                .withOption('paging', true)// required
+                .withPaginationType('full_numbers')
+                .withDisplayLength(10)
+                .withOption('rowCallback', rowCallback)
+                 .withDOM('lrtip');
+
+            $scope.dtColumns = [
+              DTColumnBuilder.newColumn('FirstNm', 'First name').withOption('defaultContent', ""),
+              DTColumnBuilder.newColumn('LastNm', 'Last name').withOption('defaultContent', ""),
+              DTColumnBuilder.newColumn('UserNm', 'User Nm').withOption('defaultContent', ""),
+            ];
+
+            // function ends
+
+        }
+
+        $scope.toDatetable();
+
+
+
+
+
+
+
+
+        $scope.pageChanged = function (pageIndex) {
+            $scope.pageIndex = pageIndex;
+            $scope.getUserList();
+        };
+
+    });
+
+</script>
+
+

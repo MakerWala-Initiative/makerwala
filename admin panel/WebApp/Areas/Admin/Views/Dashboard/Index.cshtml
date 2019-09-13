@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div class="container-fluid wrapper" ng-controller="ctrDashboardForm">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        @*<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Generate Report</a>*@
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Daily Traffic</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" ng-bind="DailyTraffic"></div>
+                        </div>
+                        @*<div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Video (This Month)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" ng-bind="VideoCount"></div>
+                        </div>
+                        @*<div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-12 col-md-12 mb-4">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h6 class="m-0 font-weight-bold text-primary"><a href="@Url.Action("Index", "activitylog")?id=1m">Daily Traffic</a></h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-bar">
+                        <canvas id="TrafficBarChart"></canvas>
+                    </div>
+                    <hr>
+                    @*Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.*@
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12 col-md-12 mb-4">
+            <div class="card shadow mb-12">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold "><a href="@Url.Action("Index", "UploadVideo")?id=1m" style="color: #1cc88a">Video Last 30 days</a></h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-bar">
+                        <canvas id="VideoyBarChart"></canvas>
+                    </div>
+                    <hr>
+                    @*Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file*@.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    app.controller("ctrDashboardForm", function ($scope, $http, $q, $interval, $window, DTOptionsBuilder, DTColumnBuilder) {
+
+        $scope.ctrDashboardForm = {};
+
+
+        $scope.getDashboardchartdata = function (type, search) {
+
+            var obj = {};
+            obj.chartType = type;
+            obj.sSearch = search;
+
+            $http.post('@Url.Action("getLineChartData", "Dashboard")', obj).then(
+                                            function (response) {
+                                                $scope.ctrSchoolForm = response.data.aaData;
+
+                                                if (type == "ACTIVITYLOG") {
+                                                    $scope.DailyTraffic = response.data.aaData[1][response.data.aaData[1].length - 1]
+                                                    AutoFollow("TrafficBarChart", "", "#2e59d9", response.data.aaData)
+                                                } else {
+                                                    $scope.VideoCount = _.reduce(response.data.aaData[1], function (memoizer, number) {
+                                                        return memoizer + number;
+                                                    });
+                                                    
+                                                    AutoFollow("VideoyBarChart", "", "#1cc88a", response.data.aaData)
+                                                }
+
+                                            },
+                                            function (err) {
+                                                var error = err;
+                                            });
+        }
+        $scope.getDashboardchartdata("ACTIVITYLOG", " And a.activitydate >=  DATEADD(d, -30, getdate()) AND a.activitydate <= DATEADD(d, 1, getdate())");
+        $scope.getDashboardchartdata("VIDEOLIST", " And a.createddate >=  DATEADD(d, -30, getdate()) AND a.createddate <= DATEADD(d, 1, getdate())");
+
+
+
+        function AutoFollow(chartid, labelName, colorcode, data) {
+            var aLabels = data[0];
+            var aDatasets1 = data[1];
+
+            var ctx = document.getElementById(chartid).getContext('2d');
+            var myChart = new Chart(ctx,
+                {
+                    type: 'bar',
+                    data: {
+                        labels: aLabels, // here i want to show my date value
+                        datasets: [
+                            {
+                                label: labelName,
+                                data: aDatasets1, // here show my total count date wise
+                                backgroundColor: colorcode
+                            }
+                        ]
+
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        layout: {
+                            padding: {
+                                left: 10,
+                                right: 25,
+                                top: 25,
+                                bottom: 0
+                            }
+                        }, legend: {
+                            display: false
+                        }
+                    }
+                });
+        }
+
+
+    });
+
+</script>
+
+
+

@@ -1,0 +1,235 @@
+﻿@{
+    ViewBag.Title = "Video";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrUploadForm" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Video Details</h6>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlInput1">Title<lable style="color: red">&nbsp*</lable></label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrUploadForm.videotitle" maxlength="500" required uploadvideo autofocus ngmessage="Please enter the Video Title">
+                    </div>
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlInput1">Teacher<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrUploadForm.teacherid" autocomplete="off" ng-options="x.teacherid as x.teacherfirstname for x in TeachersList" class="form-control" required teacher autofocus ngmessage="Please select Teacher">
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlInput1">Date<lable style="color: red">&nbsp*</lable></label>
+                        <input type="text" class="form-control" month-picker autocomplete="off" ng-model="ctrUploadForm.videodate" required uploadvideo autofocus ngmessage="Please select the Date">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlInput1">School<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrUploadForm.schoolid" autocomplete="off" ng-options="x.schoolid as x.schoolname for x in SchoolList" class="form-control" required teacher autofocus ngmessage="Please select School">
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlInput1">Class<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrUploadForm.classlevelid" autocomplete="off" ng-options="x.classid as x.classlevelname for x in ClassLevelList" ng-disabled="ctrUploadForm.schoolid==null" class="form-control" required teacher autofocus ngmessage="Please select Class">
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlInput1">Subject<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrUploadForm.subjectid" autocomplete="off" ng-options="x.subjectid as x.subjectname for x in SubjectList" ng-disabled="ctrUploadForm.schoolid==null" class="form-control" required teacher autofocus ngmessage="Please select Subject">
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlInput1">Text Book</label>
+                        <select ng-model="ctrUploadForm.textbookid" autocomplete="off" ng-options="x.textbookid as x.textbookname for x in TextBookList" ng-disabled="ctrUploadForm.schoolid==null" class="form-control" required autofocus ngmessage="Please select textbook">
+                        </select>
+                    </div>
+                    <div class="col-lg-7 col-md-7 ">
+                        <label for="exampleFormControlInput1">Youtube<lable style="color: red">&nbsp*</lable></label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrUploadForm.youtubelink" maxlength="5000" required uploadvideo autofocus ngmessage="Please enter the Youtube link">
+                    </div>
+                    <div class="col-lg-1 col-md-1 ">
+                        <label for="exampleFormControlInput1">View</label>
+                        <a type="button" class="btn btn-primary btn-rounded" ng-click="openwindow()">
+                            <i class="far fa-eye"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Details
+                        <lable style="color: red">&nbsp*</lable>
+                    </label>
+                    <textarea class="form-control" rows="3" autocomplete="off" ng-model="ctrUploadForm.publicdetail" maxlength="5000" required uploadvideo autofocus ngmessage="Please enter the Address"></textarea>
+                </div>
+                <div class="form-check">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 ">
+                            <input type="checkbox" class="form-check-input" ng-model="ctrUploadForm.isprivate">
+                            <label class="form-check-label" for="exampleCheck1">Is private</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-show="ctrUploadForm.isprivate">
+                    <label for="exampleFormControlTextarea1">Private Details </label>
+                    <textarea class="form-control" rows="3" autocomplete="off" ng-model="ctrUploadForm.privatedetail" maxlength="5000" required uploadvideo autofocus ngmessage="Please enter the Address"></textarea>
+                </div>
+
+                <div class="form-check">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 ">
+                            <input type="checkbox" class="form-check-input" ng-model="ctrUploadForm.isactive">
+                            <label class="form-check-label" for="exampleCheck1">Is Active</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <hr class="style1">
+            <div style="margin-top: 10px" class="form-group">
+                <div class="col-sm-12 controls">
+                    <button id="btn-Save" class="btn btn-primary" ng-click="SaveUpdateDeleteUploadVideo(false)">Save</button>
+                    <a id="btn-cancel" class="btn btn-secondary" href="@Url.Action("index", "UploadVideo")">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    app.controller("ctrUploadForm", function ($scope, $http, $q, $interval, $window, $filter, DTOptionsBuilder, DTColumnBuilder) {
+
+        $scope.ctrUploadForm = {};
+        $scope.ctrUploadForm.isactive = true;
+
+        $scope.getSchoolList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_School_List", "School")', obj).then(
+                           function (response) {
+                               $scope.SchoolList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getSchoolList();
+        $scope.getSubjectList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_subject_List", "subject")', obj).then(
+                           function (response) {
+                               $scope.SubjectList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getSubjectList();
+        $scope.getClassList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_Class_List", "ClassLevel")', obj).then(
+                           function (response) {
+                               $scope.ClassLevelList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getClassList();
+
+
+
+        $scope.getTextBookList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_Textbook_List", "textbook")', obj).then(
+                           function (response) {
+                               $scope.TextBookList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getTextBookList()
+
+        $scope.getTeacherList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_Teacher_List", "Teacher")', obj).then(
+                           function (response) {
+                               $scope.TeachersList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getTeacherList();
+
+        $scope.openwindow = function () {
+            var url = '';
+            if (!/^http[s]?:\/\//.test($scope.ctrUploadForm.youtubelink)) {
+                url += 'http://';
+            }
+
+            url += $scope.ctrUploadForm.youtubelink;
+            window.open(url, '_blank');
+        }
+
+        var stid = parseInt(getQueryStringValue("id") != "" ? getQueryStringValue("id") : "0");
+
+        if (stid > 0) {
+            $scope.getUploadVideoList = function () {
+                var obj = {};
+
+                obj.Search = " AND vd.videoid=" + stid;
+                $http.post('@Url.Action("Get_UploadVideo_List", "UploadVideo")', obj).then(
+                           function (response) {
+                               debugger
+                               $scope.ctrUploadForm = response.data.aaData[0];
+                               $scope.ctrUploadForm.videodate = $filter('jsonDate')(response.data.aaData[0].videodate, 'dd-MMM-yyyy');
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getUploadVideoList();
+    }
+
+
+        $scope.SaveUpdateDeleteUploadVideo = function (Delete) {
+
+            //$scope.ctrUploadForm.videodate = $filter('date')(parseInt($scope.ctrUploadForm.videodate.substr(6)), 'dd-MMM-yyyy');
+
+            if (!ValidateRequired("uploadvideo")) {
+                return;
+            }
+            var obj = {};
+            obj.vd = $scope.ctrUploadForm;
+            obj.isDelete = Delete;
+
+            $http.post('@Url.Action("SaveUpdate_Delete_UploadVideo", "UploadVideo")', obj).then(
+                           function (response) {
+                               if (response.data.aaData == 1 || response.data.aaData == 2) {
+                                   showSuccessToast("Data Saved Sucessfully");
+                                   setTimeout(window.location.href = "@Url.Action("Index", "UploadVideo")", 1000)
+                               } else {
+                                   showWarningToast("Something went wrong.Please Try Again..")
+                               };
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+
+        }
+
+    });
+
+</script>

@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "Block List";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrBlock">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 ">
+                    <label class="m-0 font-weight-bold text-primary">Block List </label>
+                </div>
+                <div class="col-lg-4 col-md-4 ">
+                </div>
+                <div class="col-lg-3 col-md-3 ">
+                      @{
+                            if (WebApp.Utility.SessionFacade.AdminUserSession.userroleid == 1)
+                            {
+                                <div style="text-align: right;">
+                                    <a href="@Url.Action("Blockform", "Block")" class="btn btn-primary"><i class="far fa-plus-square"></i>Add New</a>
+                                </div>
+                            }
+                        }
+                    </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" datatable="ng" dt-options="dtOptions" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Block</th>
+                            <th>URL</th>
+                            <th>UserName</th>
+                            <th>Password</th>
+                            <th>Active</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in BlockList">
+                            <td>{{item.blockname}}</td>
+                            <td><a type="button" class="btn btn-primary btn-rounded" ng-click="openwindow(item)">
+                                <i class="far fa-eye"></i></td>
+                            <td>{{item.blockusername}}</td>
+                            <td>{{item.blockpassword}}</td>
+                            <td>
+                                <input type="checkbox" disabled ng-model="item.isactive">
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a type="button" class="btn btn-primary btn-rounded" href="@Url.Action("BlockForm", "Block")?id={{item.blockid}}">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    @{
+                                        if (WebApp.Utility.SessionFacade.AdminUserSession.userroleid == 1)
+                                        {
+                                        <button type="button" class="btn btn-primary btn-rounded" ng-click="DeleteBlock(item,$index,true)">
+                                            <i class="fas fa-trash-alt"></i>
+
+                                        </button>
+                                        }
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    app.controller("ctrBlock", function ($scope, $http, $q, $interval, $window, $ngConfirm, DTOptionsBuilder, DTColumnBuilder) {
+        $scope.ctrBlock = {}
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+         // .withDisplayLength(8)
+          .withOption('order', [0, 'desc'])
+          .withOption('searching', true)
+          .withOption('lengthChange', true)
+          .withOption('bInfo', false)
+          .withOption('paging', true);
+
+        $scope.openwindow = function (item) {
+            var url = '';
+            if (!/^http[s]?:\/\//.test(item.blockurl)) {
+                url += 'http://';
+            }
+
+            url += item.blockurl;
+            window.open(url, '_blank');
+        }
+
+
+
+        $scope.getblockList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_block_List", "Block")', obj).then(
+                           function (response) {
+                               $scope.BlockList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getblockList();
+
+
+        $scope.DeleteBlock = function (objBlock, index, Delete) {
+
+            $ngConfirm({
+                title: 'Are you want to Confirm?',
+                content: 'Do you want to delete: ' + objBlock.blockname,
+                autoClose: 'cancel|8000',
+                buttons: {
+                    deleteUser: {
+                        text: 'ok',
+                        btnClass: 'btn btn-primary',
+                        action: function () {
+                            var obj = {};
+                            obj.bk = objBlock;
+                            obj.isDelete = Delete;
+                            if (objBlock.blockid > 0) {
+                                $http.post('@Url.Action("SaveUpdate_Delete_Block", "Block")', obj).then(
+                                               function (response) {
+                                                   if (response.data.aaData == 3) {
+                                                       showSuccessToast("Data Deleted Sucessfully");
+                                                       $scope.BlockList.splice(index, 1);
+                                                   } else if (response.data.aaData == -1) {
+                                                       showWarningToast("Something went wrong.Please Try Again..")
+                                                   } else {
+                                                       showWarningToast("Something went wrong.Please Try Again..")
+                                                   };
+                                               },
+                                               function (err) {
+                                                   var error = err;
+                                               });
+                            } else {
+                                $scope.BlockList.splice(index, 1);
+                                showSuccessToast("Data Deleted Sucessfully");
+                            }
+
+                        }
+                    },
+                    cancel: function () {
+                        // $ngConfirm('action is canceled');
+                    }
+                }
+            });
+
+
+
+        }
+
+    });
+
+</script>

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+
+<html ng-app="app">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="/Areas/Admin/Content/fevi-icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/Areas/Admin/Content/fevi-icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/Areas/Admin/Content/fevi-icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/Areas/Admin/Content/fevi-icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/Areas/Admin/Content/fevi-icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/Areas/Admin/Content/fevi-icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/Areas/Admin/Content/fevi-icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/Areas/Admin/Content/fevi-icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Areas/Admin/Content/fevi-icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/Areas/Admin/Content/fevi-icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Areas/Admin/Content/fevi-icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/Areas/Admin/Content/fevi-icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Areas/Admin/Content/fevi-icon/favicon-16x16.png">
+    @*<link rel="manifest" href="/Areas/Admin/Content/fevi-icon/manifest.json">*@
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/Areas/Admin/Content/fevi-icon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>MakerWala - Admin-Login</title>
+
+
+
+
+    <!-- Custom fonts for this template-->
+    <link href="~/Areas/Admin/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    @*    <script src="~/Areas/Admin/Content/js/jquery/dist/jquery.min.js"></script>*@
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <script src="~/Areas/Admin/Content/js/angular-1.7.2/angular.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/angular-1.7.2/angular-animate.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/angular-1.7.2/angular-touch.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/angular-1.7.2/angular-ui.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/Angular-Multi-Select/angularjs-dropdown-multiselect.min.js"></script>
+
+    <link href="~/Areas/Admin/Content/js/angular-1.7.2/angular-busy.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Content/js/angular-1.7.2/angular-busy.js"></script>
+
+    <link href="~/Areas/Admin/Content/js/angular-confirm/angular-confirm.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Content/js/angular-confirm/angular-confirm.js"></script>
+
+
+    <link href="~/Areas/Admin/Content/js/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/Content/js/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/jquery-toast-plugin/dist/toastDemo.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.css">
+
+
+    <script src="~/Areas/Admin/Content/Datatable/angular-datatables.min.js"></script>
+    <script src="~/Areas/Admin/Content/Datatable/jquery.dataTables.min.js"></script>
+    <link href="~/Areas/Admin/Content/Datatable/datatables.bootstrap.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template-->
+    <link href="~/Areas/Admin/Content/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="~/Areas/Admin/Content/js/App/app.js"></script>
+</head>
+<body class="bg-gradient-primary">
+    <div cg-busy="myPromise"></div>
+    <ion-loader></ion-loader>
+    <div>
+        @RenderBody()
+    </div>
+    <script src="~/Areas/Admin/Content/js/App/app.directive.js"></script>
+    <script src="~/Areas/Admin/Content/js/App/app.module.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Areas/Admin/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Areas/Admin/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Areas/Admin/Content/js/bootstrap/js/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Areas/Admin/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Areas/Admin/Content/js/sb-admin-2.js"></script>
+</body>
+</html>

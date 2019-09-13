@@ -1,0 +1,443 @@
+﻿@{
+    ViewBag.Title = "Teacher";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrTeacherForm" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Teacher Details</h6>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-lg-9 col-md-9 ">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 ">
+                                <label for="exampleFormControlInput1">FirstName<lable style="color: red">&nbsp*</lable></label>
+                                <input type="text" class="form-control" autocomplete="off" ng-model="ctrTeacherForm.teacherfirstname" maxlength="100" required teacher autofocus ngmessage="Please enter the Teacher Name">
+                            </div>
+                            <div class="col-lg-4 col-md-4 ">
+                                <label for="exampleFormControlInput1">Last Name<lable style="color: red">&nbsp*</lable></label>
+                                <input type="text" class="form-control" autocomplete="off" ng-model="ctrTeacherForm.teacherlastname" maxlength="100" required teacher autofocus ngmessage="Please enter the Teacher Name">
+                            </div>
+                            <div class="col-lg-4 col-md-4 ">
+                                <label for="exampleFormControlInput1">Mobile No<lable style="color: red">&nbsp*</lable></label>
+                                <input type="text" class="form-control" autocomplete="off" ng-model="ctrTeacherForm.teachermobile" maxlength="20" numbers-only required teacher autofocus ngmessage="Please enter the Mobile No">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 ">
+                                <label for="exampleFormControlInput1">Email<lable style="color: red">&nbsp*</lable></label>
+                                <input type="text" class="form-control" autocomplete="off" ng-model="ctrTeacherForm.teacheremail" maxlength="50" required teacher email autofocus ngmessage="Please enter the Email Address">
+                            </div>
+                            <div class="col-lg-4 col-md-4 ">
+                                <label for="exampleFormControlInput1">Password<lable style="color: red">&nbsp*</lable></label>
+                                <input type="password" class="form-control" autocomplete="off" ng-model="ctrTeacherForm.password" required teacher autofocus ngmessage="Please enter the Password">
+                            </div>
+                            @* <div class="col-lg-4 col-md-4 ">
+                                <label for="exampleFormControlInput1">Confirm Password<lable style="color: red">&nbsp*</lable></label>
+                                <input type="password" class="form-control" autocomplete="off" ng-model="ctrTeacherForm.confirmpassword" required teacher autofocus ngmessage="Please enter the Password">
+                            </div>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 ">
+                        @*<img src="~/Areas/Admin/Content/img/download.png" style="height: 163px; width: 163px" />*@
+                        <label class="cabinet center-block">
+                            <figure>
+                                <input type="file" class="item-img file center-block" accept="image/png, image/jpeg" name="file_photo" onchange="fileChangeEvent(this,163,163,'imgprofile')" />
+                                <img ng-src="{{ctrTeacherForm.imgprofile}}" id="imgprofile" height="163" width="163" class="gambar img-preview" err-src src="~/Areas/Admin/Content/img/download.png" />
+                                <figcaption><i class="fa fa-camera"></i></figcaption>
+                            </figure>
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">
+                        Address
+                        <lable style="color: red">&nbsp*</lable>
+                    </label>
+                    <textarea class="form-control" rows="3" autocomplete="off" ng-model="ctrTeacherForm.teacheraddress" maxlength="500" required teacher autofocus ngmessage="Please enter the Address"></textarea>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlSelect1">Country<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrTeacherForm.countryid" autocomplete="off" ng-options="x.countryid as x.countryname for x in CountryList" ng-change="FilterState()" class="form-control" required teacher autofocus ngmessage="Please select Country">
+                        </select>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlSelect1">State<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrTeacherForm.stateid" autocomplete="off" ng-options="x.stateid as x.statename for x in StateList" ng-change="Filtercity()" ng-disabled="ctrTeacherForm.countryid==null" class="form-control" required teacher autofocus ngmessage="Please select City">
+                        </select>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlSelect1">City<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrTeacherForm.cityid" autocomplete="off" ng-options="x.cityid as x.cityname for x in CityList" ng-disabled="ctrTeacherForm.stateid==null" class="form-control" required teacher autofocus ngmessage="Please select City">
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlSelect1">School<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrTeacherForm.schoolid" autocomplete="off" ng-options="x.schoolid as x.schoolname for x in SchoolList" class="form-control" required teacher autofocus ngmessage="Please select City">
+                        </select>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlSelect1">Class Level<lable style="color: red">&nbsp*</lable></label>
+                        @* <select ng-model="ctrTeacherForm.classid"  autocomplete="off" ng-options="x.classid as x.classlevelname for x in ClassLevelList" ng-disabled="ctrTeacherForm.schoolid==null" class="form-control" required teacher autofocus ngmessage="Please select City">
+                        </select>*@
+                        <div ng-dropdown-multiselect="" options="Classdata" selected-model="ClassSelectmodel" extra-settings="setting2" events="yourEvents"></div>
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlSelect1">Subject<lable style="color: red">&nbsp*</lable></label>
+                        @* <select ng-model="ctrTeacherForm.subjectid" autocomplete="off" ng-options="x.subjectid as x.subjectname for x in SubjectList" ng-disabled="ctrTeacherForm.schoolid==null" class="form-control" required teacher autofocus ngmessage="Please select City">
+                        </select>*@
+                        <div ng-dropdown-multiselect="" options="Subjectdata" selected-model="SubjectSelectmodel" extra-settings="setting2" ng-disabled="ClassSelectmodel.length==0"></div>
+
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Remark </label>
+                    <textarea class="form-control" rows="3" autocomplete="off" ng-model="ctrTeacherForm.remarks" required autofocus ngmessage="Please enter the remark"></textarea>
+                </div>
+
+                <div class="form-check">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 ">
+                            <input type="checkbox" class="form-check-input" ng-model="ctrTeacherForm.isactive">
+                            <label class="form-check-label" for="exampleCheck1">Is Active</label>
+
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 ">
+                            @* <input type="checkbox" class="form-check-input" ng-model="ctrTeacherForm.isblockadmin">
+        <label class="form-check-label" for="exampleCheck1">Block Admin</label>*@
+
+                            <label for="exampleFormControlSelect1">Role<lable style="color: red">&nbsp*</lable></label>
+                            <select ng-model="ctrTeacherForm.userroleid" autocomplete="off" ng-options="x.userroleid as x.rolename for x in roleList" class="form-control" required teacher autofocus ngmessage="Please select user role">
+                            </select>
+                            @*<select ng-model="ctrTeacherForm.userroleid" autocomplete="off" ng-options="x.userroleid as x.rolename for x in roleList" ng-disabled="rolereadonly"  class="form-control" required teacher autofocus ngmessage="Please select user role">
+        </select>*@
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 ">
+                            <label for="exampleFormControlSelect1">Block</label>
+                            <select ng-model="ctrTeacherForm.blockid" autocomplete="off" ng-options="x.blockid as x.blockname for x in BlockList" class="form-control" required autofocus ngmessage="Please select Block">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                @Html.Partial("~/Areas/Admin/Views/Shared/_Crop_Image.cshtml")
+
+
+            </form>
+
+            <br>
+            <hr class="style1">
+            <div style="margin-top: 10px" class="form-group">
+                <!-- Button -->
+
+                <div class="col-sm-12 controls">
+                    <a id="btn-Save" class="btn btn-primary" ng-click="SaveUpdateDeleteTeacher(false)">Save</a>
+                    <a id="btn-cancel" class="btn btn-secondary" href="@Url.Action("index", "Teacher")">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@*http://embed.plnkr.co/5rBdbd/*@
+
+<script>
+    app.controller("ctrTeacherForm", function ($scope, $http, $q, $interval, $window, DTOptionsBuilder, DTColumnBuilder) {
+
+        $scope.ctrTeacherForm = {};
+
+        debugger
+        $scope.rolereadonly = "@WebApp.Utility.SessionFacade.AdminUserSession.blockid" == 1 ? false : true;
+        
+        $scope.ctrTeacherForm.isactive = true;
+
+        $scope.ClassSelectmodel = [];
+        $scope.SubjectSelectmodel = [];
+
+        $scope.example2settings = {
+            displayProp: 'id'
+        };
+        $scope.setting2 = {
+            scrollableHeight: '200px',
+            scrollable: true,
+            enableSearch: false
+
+        };
+        $scope.yourEvents = {
+            onItemSelect: function (item) {
+                $scope.SubjectSelectmodel = [];
+                $scope.getSubjectList()
+            },
+            onItemDeselect: function (item) {
+                $scope.SubjectSelectmodel = [];
+                $scope.getSubjectList()
+            }
+        };
+        $scope.resetSelection = function () {
+            angular.forEach($scope.SubjectSelectmodel, function (option) {
+                option.checked = undefined;
+            });
+        };
+
+
+
+
+        $scope.getuserroleList = function () {
+            $http.post('@Url.Action("Get_User_Role_List", "Teacher")').then(
+                                     function (response) {
+                                         $scope.roleList = _.where(response.data.aaData, { isactive: true });
+                                     },
+                                     function (err) {
+                                         var error = err;
+                                     });
+        }
+        $scope.getuserroleList();
+
+        $scope.getCountryList = function () {
+            $http.post('@Url.Action("Get_Country_List", "Country")').then(
+                                  function (response) {
+                                      $scope.CountryList = _.where(response.data.aaData, { isactive: true });
+
+                                      //$scope.CountryList = response.data.aaData;
+                                      $scope.getStateList();
+                                  },
+                                  function (err) {
+                                      var error = err;
+                                  });
+        }
+        $scope.getCountryList();
+        $scope.getStateList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_State_List", "State")', obj).then(
+                           function (response) {
+                               $scope.StateList = _.where(response.data.aaData, { isactive: true });
+                               $scope.TStateList = _.where(response.data.aaData, { isactive: true });
+
+                               //$scope.StateList = response.data.aaData;
+                               //$scope.TStateList = response.data.aaData;
+                               $scope.getCityList();
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getCityList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_city_List", "City")', obj).then(
+                           function (response) {
+                               $scope.CityList = _.where(response.data.aaData, { isactive: true });
+                               $scope.TCityList = _.where(response.data.aaData, { isactive: true });
+
+                               //$scope.CityList = response.data.aaData;
+                               //$scope.TCityList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getSchoolList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_School_List", "School")', obj).then(
+                           function (response) {
+                               $scope.SchoolList = _.where(response.data.aaData, { isactive: true });
+                               // $scope.SchoolList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getSchoolList();
+        $scope.getClassList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_Class_List", "ClassLevel")', obj).then(
+                           function (response) {
+
+                               $scope.ClassLevelList = _.where(response.data.aaData, { isactive: true });
+                               $scope.Classdata = _.map(_.where($scope.ClassLevelList),
+                                    function (person) {
+                                        return { id: person.classid, label: person.classlevelname };
+                                    }
+                                );
+                               setTimeout($scope.getSubjectList(), 2000)
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getClassList();
+
+        $scope.getSubjectList = function () {
+            var classids = $scope.ClassSelectmodel.map(function (idObj) { return idObj.id; }).toString();
+            if (classids == "") {
+                classids = "0";
+            }
+
+
+            var obj = {};
+            obj.classid = classids;
+            $http.post('@Url.Action("Get_subjectforClass_List", "subject")', obj).then(//Get_subjects_List
+                           function (response) {
+                               $scope.SubjectList = _.where(response.data.aaData, { isactive: true });
+
+                               //$scope.SubjectList = response.data.aaData;
+                               $scope.Subjectdata = _.map(_.where($scope.SubjectList),
+                                    function (person) {
+                                        return { id: person.subjectid, label: person.subjectname }
+                                    }
+                                );
+
+
+
+
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+        $scope.getblockList = function () {
+            var obj = {};
+            obj.Search = "";
+            $http.post('@Url.Action("Get_block_List", "block")', obj).then(
+                           function (response) {
+                               $scope.BlockList = _.where(response.data.aaData, { isactive: true });
+                               // $scope.BlockList = response.data.aaData;
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+        $scope.getblockList();
+
+        $scope.FilterState = function () {
+            if ($scope.ctrTeacherForm.countryid > 0) {
+                $scope.StateList = _.where($scope.TStateList, { countryid: $scope.ctrTeacherForm.countryid });
+            }
+            //else {
+            //    showInfoToast("Please Select Country..");
+            //}
+        }
+        $scope.Filtercity = function () {
+
+            if ($scope.ctrTeacherForm.stateid > 0) {
+                $scope.CityList = _.where($scope.TCityList, { stateid: $scope.ctrTeacherForm.stateid });
+            } //else {
+            //    showInfoToast("Please Select Country..");
+            //}
+        }
+
+        var tid = parseInt(getQueryStringValue("id") != "" ? getQueryStringValue("id") : "0");
+        if (tid > 0) {
+            $scope.getTeacherList = function () {
+                var obj = {};
+                obj.Search = " and t.teacherid=" + tid;
+
+                $http.post('@Url.Action("Get_Teacher_List", "Teacher")', obj).then(
+                                            function (response) {
+                                                $scope.ctrTeacherForm = response.data.aaData[0];
+
+                                                // $scope.ctrTeacherForm.confirmpassword = response.data.aaData[0].password
+
+                                                $scope.FilterState();
+                                                $scope.Filtercity();
+
+                                                toDataUrl(document.location.origin + response.data.aaData[0].imgprofile, function (base64Img) {
+                                                    $scope.ctrTeacherForm.imgprofile = base64Img;
+                                                })
+                                                $scope.ClassSelectmodel = _.map(_.where($scope.ctrTeacherForm.classid.replace(/\s/g, '').split(',')),
+                                                                                function (person) {
+                                                                                    return { id: parseInt(person) };
+                                                                                })
+                                                $scope.SubjectSelectmodel = _.map(_.where($scope.ctrTeacherForm.subjectid.replace(/\s/g, '').split(',')),
+                                                                               function (person) {
+                                                                                   return { id: parseInt(person) };
+                                                                               })
+                                            },
+                                            function (err) {
+                                                var error = err;
+                                            });
+            }
+            $scope.getTeacherList();
+        } else {
+            debugger
+            $scope.ctrTeacherForm.userroleid = parseInt('@WebApp.Utility.SessionFacade.AdminUserSession.userroleid');
+        }
+
+
+        $scope.SaveUpdateDeleteTeacher = function (Delete) {
+            //$scope.ctrTeacherForm.userroleid = 1;
+
+            if (!ValidateRequired("teacher")) {
+                return;
+            }
+
+            //if ($scope.ctrTeacherForm.confirmpassword != $scope.ctrTeacherForm.password) {
+            //    showInfoToast("Password will not matched..");
+            //    return
+            //}
+
+
+            $scope.ctrTeacherForm.classid = $scope.ClassSelectmodel.map(function (a) { return a.id; }).join();
+            $scope.ctrTeacherForm.subjectid = $scope.SubjectSelectmodel.map(function (a) { return a.id; }).join();
+
+            if ($scope.ctrTeacherForm.classid == "") {
+                showInfoToast("Please Select Class");
+                return
+            }
+            if ($scope.ctrTeacherForm.subjectid == "") {
+                showInfoToast("Please Select subject");
+                return
+            }
+
+            $scope.ctrTeacherForm.imgprofile = $("#imgprofile").attr('src');
+            var obj = {};
+            obj.tch = $scope.ctrTeacherForm;
+            obj.isDelete = Delete;
+
+            $http.post('@Url.Action("SaveUpdate_Delete_Teacher", "Teacher")', obj).then(
+                           function (response) {
+                               if (response.data.aaData == 1) {
+                                   showSuccessToast("Data Saved Sucessfully");
+                                   setTimeout(window.location.href = "@Url.Action("Index", "Teacher")", 1000)
+                               }
+                               else if (response.data.aaData == 2) {
+                                   showInfoToast("Already exist Email or Mobile No...");
+                               }
+                               else {
+                                   showWarningToast("Something went wrong.Please Try Again..")
+                               };
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+    });
+
+</script>

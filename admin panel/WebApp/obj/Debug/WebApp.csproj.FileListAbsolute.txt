@@ -1,0 +1,80 @@
+E:\uvtech\teacher\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
+E:\uvtech\teacher\WebApp\bin\WebApp.dll
+E:\uvtech\teacher\WebApp\bin\WebApp.pdb
+E:\uvtech\teacher\WebApp\bin\Data.dll
+E:\uvtech\teacher\WebApp\bin\EntityFramework.dll
+E:\uvtech\teacher\WebApp\bin\EntityFramework.SqlServer.dll
+E:\uvtech\teacher\WebApp\bin\Microsoft.Web.Infrastructure.dll
+E:\uvtech\teacher\WebApp\bin\Model.dll
+E:\uvtech\teacher\WebApp\bin\Newtonsoft.Json.dll
+E:\uvtech\teacher\WebApp\bin\System.Net.Http.Formatting.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Cors.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Helpers.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Http.Cors.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Http.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Http.WebHost.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Mvc.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Razor.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Webpages.Deployment.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Webpages.dll
+E:\uvtech\teacher\WebApp\bin\System.Web.Webpages.Razor.dll
+E:\uvtech\teacher\WebApp\bin\Data.pdb
+E:\uvtech\teacher\WebApp\bin\Model.pdb
+E:\uvtech\teacher\WebApp\bin\EntityFramework.xml
+E:\uvtech\teacher\WebApp\bin\EntityFramework.SqlServer.xml
+E:\uvtech\teacher\WebApp\bin\Newtonsoft.Json.xml
+E:\uvtech\teacher\WebApp\bin\System.Net.Http.Formatting.xml
+E:\uvtech\teacher\WebApp\bin\System.Web.Http.xml
+E:\uvtech\teacher\WebApp\bin\System.Web.Http.Cors.xml
+E:\uvtech\teacher\WebApp\bin\System.Web.Http.WebHost.xml
+E:\uvtech\teacher\WebApp\bin\System.Web.Razor.xml
+E:\uvtech\teacher\WebApp\bin\System.Web.Webpages.xml
+E:\uvtech\teacher\WebApp\bin\System.Web.Webpages.Deployment.xml
+E:\uvtech\teacher\WebApp\bin\System.Web.Webpages.Razor.xml
+E:\uvtech\teacher\WebApp\bin\System.Web.Helpers.xml
+E:\uvtech\teacher\WebApp\bin\System.Web.Mvc.xml
+E:\uvtech\teacher\WebApp\obj\Debug\WebApp.dll
+E:\uvtech\teacher\WebApp\obj\Debug\WebApp.pdb
+E:\uvtech\teacher\WebApp\bin\Microsoft.IO.RecyclableMemoryStream.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\WebApp.dll.config
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\WebApp.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\WebApp.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\Data.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\EntityFramework.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\EntityFramework.SqlServer.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\Microsoft.IO.RecyclableMemoryStream.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\Microsoft.Web.Infrastructure.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\Model.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\Newtonsoft.Json.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Net.Http.Formatting.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Cors.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Helpers.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Http.Cors.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Http.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Http.WebHost.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Mvc.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Razor.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Webpages.Deployment.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Webpages.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Webpages.Razor.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\Data.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\Data.dll.config
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\Model.pdb
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\EntityFramework.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\EntityFramework.SqlServer.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\Newtonsoft.Json.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Net.Http.Formatting.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Http.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Http.Cors.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Http.WebHost.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Razor.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Webpages.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Webpages.Deployment.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Webpages.Razor.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Helpers.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\bin\System.Web.Mvc.xml
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\obj\Debug\WebApp.csprojAssemblyReference.cache
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\obj\Debug\WebApp.csproj.CoreCompileInputs.cache
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\obj\Debug\WebApp.csproj.CopyComplete
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\obj\Debug\WebApp.dll
+D:\UVTECH GLOBAL\Projects\MakerWala\mw-webapp\WebApp\obj\Debug\WebApp.pdb

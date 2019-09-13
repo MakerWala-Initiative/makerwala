@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "State";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrStateForm" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">State</h6>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlInput1">Name<lable style="color: red">&nbsp*</lable></label>
+                        <input type="text" class="form-control" autocomplete="off" ng-model="ctrStateForm.statename" maxlength="50" required state autofocus ngmessage="Please enter the State Name">
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 ">
+                        <label for="exampleFormControlSelect1">Country<lable style="color: red">&nbsp*</lable></label>
+                        <select ng-model="ctrStateForm.countryid" autocomplete="off" ng-options="x.countryid as x.countryname for x in CountryList" class="form-control" required state autofocus ngmessage="Please select Country">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Remark </label>
+                    <textarea class="form-control" rows="3" autocomplete="off" ng-model="ctrStateForm.remakrs" required autofocus ngmessage="Please enter the Remark"></textarea>
+                </div>
+                <div class="form-check">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 ">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" ng-model="ctrStateForm.isactive">
+                            <label class="form-check-label" for="exampleCheck1">Is Active</label>
+                        </div>
+                    </div>
+                </div>
+                <hr class="style1">
+                <div style="margin-top: 10px" class="form-group">
+                    <!-- Button -->
+                    <div class="col-sm-12 controls">
+                        <a id="btn-Save" class="btn btn-primary" ng-click="SaveUpdateDeleteState(false)">Save</a>
+                        <a id="btn-cancel" class="btn btn-secondary" href="@Url.Action("index", "State")">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    app.controller("ctrStateForm", function ($scope, $http, $q, $interval, $window, DTOptionsBuilder, DTColumnBuilder) {
+
+        $scope.ctrStateForm = {};
+        $scope.ctrStateForm.isactive = true;
+
+
+        $scope.getCountryList = function () {
+
+            $http.post('@Url.Action("Get_Country_List", "Country")').then(
+                                   function (response) {
+                                       // $scope.CountryList = response.data.aaData;
+                                       $scope.CountryList = _.where(response.data.aaData, { isactive: true });
+                                   },
+                                   function (err) {
+                                       var error = err;
+                                   });
+        }
+
+        $scope.getCountryList();
+
+        var stid = parseInt(getQueryStringValue("id") != "" ? getQueryStringValue("id") : "0");
+        if (stid > 0) {
+            $scope.getStateList = function () {
+                var obj = {};
+                obj.Search = "";
+                $http.post('@Url.Action("Get_State_List", "State")', obj).then(
+                               function (response) {
+
+                                   $scope.ctrStateForm = _.where(response.data.aaData, { stateid: stid })[0];
+                               },
+                               function (err) {
+                                   var error = err;
+                               });
+            }
+            $scope.getStateList();
+        }
+
+
+        $scope.SaveUpdateDeleteState = function (Delete) {
+            if (!ValidateRequired("state")) {
+                return;
+            }
+            var obj = {};
+            obj.st = $scope.ctrStateForm;
+            obj.isDelete = Delete;
+
+            $http.post('@Url.Action("SaveUpdate_Delete_State", "State")', obj).then(
+                           function (response) {
+                               debugger
+                               if (response.data.aaData == 1) {
+                                   showSuccessToast("Data Saved Sucessfully");
+                                   setTimeout(window.location.href = "@Url.Action("Index", "State")", 1000)
+                               } else if (response.data.aaData == 2) {
+                                   showInfoToast("Already exist State Name...");
+                               }
+                               else {
+                                   showWarningToast("Something went wrong.Please Try Again..")
+                               };
+
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+
+        }
+
+    });
+
+</script>

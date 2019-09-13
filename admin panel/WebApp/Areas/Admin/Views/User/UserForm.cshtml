@@ -1,0 +1,282 @@
+﻿@{
+    ViewBag.Title = "User Form";
+    Layout = "~/Areas/Admin/Views/Shared/_AfterLayout.cshtml";
+}
+
+<div ng-controller="ctrUserForm" class="wrapper">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">User Details</h6>
+        </div>
+        <div class="card-body">
+            <input type="hidden" class="form-control" ng-model="ctrUserForm.UserID">
+            <form>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 ">
+                        <label for="exampleFormControlInput1">First Name </label>
+                        <input type="text" class="form-control" ng-model="ctrUserForm.FirstNm" autocomplete="off" required autofocus ngmessage="Please enter the First Name">
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 ">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Last Name </label>
+                            <input type="text" class="form-control" ng-model="ctrUserForm.LastNm" autocomplete="off" required autofocus ngmessage="Please enter the Second Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 ">
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">User Name </label>
+                            <input type="text" class="form-control"id="txtUserName" ng-model="ctrUserForm.UserNm" ng-blur='CheckUserName()' autocomplete="off"required autofocus ngmessage="Please enter the User Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 ">
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Password</label>
+                            <input type="password" class="form-control" ng-model="ctrUserForm.Pass"  autocomplete="off" required autofocus ngmessage="Please enter the Password">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Address </label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" autocomplete="off" ng-model="ctrUserForm.Addr" required autofocus ngmessage="Please enter the Address"></textarea>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 ">
+                        <div class="form-group">
+                            <input type="radio" ng-model="ctrUserForm.Gender" value="male" />
+                            <label>Male</label>
+                            <input type="radio" ng-model="ctrUserForm.Gender" value="female" />
+                            <label>Female</label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 ">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Date Of Birth </label>
+                            <input type="text" id="DOB" class="date" ng-model="ctrUserForm.DOB" readonly="" required autofocus ngmessage="Please enter the DOB">
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-3 ">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Email</label>
+                            <input type="text" class="form-control" ng-model="ctrUserForm.Email" autocomplete="off" required autofocus ngmessage="Please enter the Email">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" ng-model="ctrUserForm.IsActive">
+                    <label class="form-check-label" for="exampleCheck1">Is Active</label>
+                </div>
+
+            </form>
+
+
+            @*    <div class="col-sm-4">
+                        <label>{{ctrUserForm.DOB}}</label><br />
+                        <input type="text" class="form-control" ng-model="ctrUserForm.DOB"  datepicker="" ng-model="date" />
+                    </div>*@
+
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Company Details</h6>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 ">
+                            <label for="exampleFormControlInput1">Emp No</label>
+                            <input type="text" class="form-control" ng-model="ctrUserForm.EmpNo" >
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 ">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Ref No </label>
+                                <input type="number" class="form-control" ng-model="ctrUserForm.RefNo" >
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 ">
+
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Department</label>
+                                <select ng-model="ctrUserForm.DeptID" ng-options="x.DeptID as x.DepartmentName for x in DepartmentList" class="form-control" ngmessage="Please select City">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 ">
+
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">User Type</label>
+                                <select ng-model="ctrUserForm.DesinationID" ng-options="x.ID as x.GroupName for x in UserGroupList" class="form-control" ngmessage="Please select City">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 ">
+                            <div class="form-group">
+                                <label for="exampleSelect2">User Group</label>
+                                <select ng-options="x.ID as x.GroupName for x in UserGroupList" ng-model="ctrUserForm.Group_Ids" multiple class="form-control" required autofocus ngmessage="Select The User Group"></select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+
+
+            <br>
+            <hr class="style1">
+            <div style="margin-top: 10px" class="form-group">
+                <!-- Button -->
+
+                <div class="col-sm-12 controls">
+                    <a id="btn-Save" href="javscript:void(0)" class="btn btn-primary" ng-click="SaveUpdateDeleteUser(false)">Save</a>
+                    <button id="btn-cancel" class="btn btn-secondary" ng-click="CleanAddUserForm()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+<script>
+    app.controller("ctrUserForm", function ($scope, $http, $q, $interval, $window, $filter) {
+
+        $scope.ctrUserForm = {};
+
+        $scope.ctrUserForm.UserID = '@ViewBag.UserID' * 1;
+
+        $scope.getUserList = function () {
+            var obj = {};
+            obj.User_Id = $scope.ctrUserForm.UserID;
+            obj.Search = " and GU.UserID='" + $scope.ctrUserForm.UserID + "'";
+
+            $http.post('@Url.Action("Get_User_List", "User")', obj).then(
+                           function (response) {
+                               if ($scope.ctrUserForm.UserID > 0) {
+                                   response.data.aaData[0].DOB = $filter('jsonDate')(response.data.aaData[0].DOB, 'dd/MM/yyyy');
+
+                                   $scope.ctrUserForm = response.data.aaData[0];
+
+                                   // $scope.ctrUserForm.DOB = new Date($filter('jsonDate')($scope.ctrUserForm.DOB, 'dd/mm/yyyy'));
+
+                                   if ($scope.ctrUserForm.Group_Ids != "") {
+                                       $scope.ctrUserForm.Group_Ids = $scope.ctrUserForm.Group_Ids.split(",").map(Number);
+                                   } else {
+                                       $scope.ctrUserForm.Group_Ids = []
+                                   }
+                               }
+                               else {
+                                   $scope.ctrUserForm.Group_Ids = [];
+                               }
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+        $scope.getUserList();
+
+
+        $scope.UserGroupList = function () {
+
+            $http.post('@Url.Action("Get_UserGroup_List", "Dashboard")').then(
+                              function (response) {
+                                  $scope.UserGroupList = response.data.aaData;
+                              },
+                              function (err) {
+                                  var error = err;
+                              });
+        }
+
+        $scope.UserGroupList();
+
+        $scope.DepartmentList = function () {
+
+            $http.post('@Url.Action("Get_Department_List", "Dashboard")').then(
+                                  function (response) {
+                                      $scope.DepartmentList = response.data.aaData;
+                                  },
+                                  function (err) {
+                                      var error = err;
+                                  });
+        }
+
+        $scope.DepartmentList();
+
+        $scope.CheckUserName = function () {
+            var obj = {};
+            obj.User_Id = $scope.ctrUserForm.UserID;
+            obj.Name = $scope.ctrUserForm.UserNm;
+
+            $http.post('@Url.Action("check_User", "User")', obj).then(
+                           function (response) {
+                               if (response.data.aaData > 0) {
+                                   $scope.ctrUserForm.UserNm = "";
+                                   $("#txtUserName").focus()
+                                   showInfoToast("User Name Is Already Exist...");
+                               }
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+
+        $scope.SaveUpdateDeleteUser = function (Isdelete) {
+            if (!ValidateRequired()) {
+                return;
+            }
+
+          
+
+            $scope.ctrUserForm.DOB = new Date(moment(moment($("#DOB").val(), 'DD-MM-YYYY')).format('MM-DD-YYYY'))
+            $scope.ctrUserForm.Group_Ids = $scope.ctrUserForm.Group_Ids.toString();
+
+            var obj = {
+                CM: $scope.ctrUserForm,
+                IsDelete: Isdelete
+            };
+            $http.post('@Url.Action("SaveUpdateDeleteUser", "User")', obj).then(
+                           function (response) {
+                               if (response.data.aaData == 1 && Isdelete) {
+                                   showSuccessToast("Data Deleted Sucessfully");
+                               }
+                               else if (response.data.aaData == 1) {
+                                   showSuccessToast("Data Saved Sucessfully");
+                               };
+                               setTimeout(window.location.href = "@Url.Action("Index", "User")", 1000)
+                           },
+                           function (err) {
+                               var error = err;
+                           });
+        }
+
+        $scope.CleanAddUserForm = function () {
+
+            if ($window.confirm("Do you want to cancel Form") == false) {
+                return
+            }
+
+            window.location.href = "@Url.Action("Index", "User")";
+            $scope.ctrUserForm = {};
+        }
+    });
+
+</script>
+
+
