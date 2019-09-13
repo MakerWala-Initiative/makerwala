@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>System.Net.Http.Extensions.Compression.Client</id>
+    <version>2.0.5</version>
+    <title>Microsoft HTTP Client Compression Support</title>
+    <authors>Ove Andersen</authors>
+    <owners>Ove Andersen</owners>
+    <licenseUrl>http://www.eyecatch.no/licenses/apache-20/</licenseUrl>
+    <projectUrl>https://github.com/azzlack/Microsoft.AspNet.WebApi.MessageHandlers.Compression</projectUrl>
+    <iconUrl>http://www.eyecatch.no/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Module for Microsoft HTTP Client that enables GZip and Deflate support for incoming and outgoing requests. 
+Please note that this is not an official Microsoft package.</description>
+    <summary>Module for Microsoft HTTP Client that enables GZip and Deflate support for incoming and outgoing requests. Please note that this is not an official Microsoft package.</summary>
+    <copyright>Copyright EyeCatch 2016</copyright>
+    <language>en-US</language>
+    <tags>aspnet webapi aspnetwebapi http compression gzip deflate eyecatch</tags>
+  </metadata>
+</package>
