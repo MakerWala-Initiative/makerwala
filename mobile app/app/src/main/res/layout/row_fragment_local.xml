@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
+
+    <LinearLayout
+            android:id="@+id/llVideoParent"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <ImageView
+                android:id="@+id/ivVideoImage"
+                android:contentDescription="@string/str_add_comment"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/tvVideoTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:ems="3"
+                    android:fontFamily="@font/roboto_regular"
+                    android:lines="1"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+
+            <ImageButton
+                    android:id="@+id/ibVideoDelete"
+                    android:contentDescription="@string/str_video_play"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_delete"
+                    android:padding="5dp"
+                    android:background="@drawable/round_circle_theme_button_background"/>
+
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDarkGrayText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/llDownloadParent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+            <TextView
+                    android:id="@+id/tvDownloadTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:ems="3"
+                    android:fontFamily="@font/roboto_regular"
+                    android:lines="1"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+
+            <ProgressBar
+                    android:id="@+id/pbDownloadProgress"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:progressTint="@color/colorPrimaryDark"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/tvDownloadProgress"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:textAlignment="center"/>
+
+                <ImageButton
+                        android:id="@+id/ibPlay"
+                        android:contentDescription="@string/str_video_play"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_action_play"
+                        android:padding="5dp"
+                        android:background="@drawable/round_circle_theme_button_background"/>
+
+                <ImageButton
+                        android:id="@+id/ibCancel"
+                        android:contentDescription="@string/str_video_play"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_action_cancel"
+                        android:padding="5dp"
+                        android:background="@drawable/round_circle_theme_button_background"/>
+
+                <ImageButton
+                        android:id="@+id/ibDelete"
+                        android:contentDescription="@string/str_video_play"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_action_delete"
+                        android:padding="5dp"
+                        android:background="@drawable/round_circle_theme_button_background"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDarkGrayText"/>
+
+    </LinearLayout>
+
+</FrameLayout>

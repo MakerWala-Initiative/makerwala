@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical"
+              tools:context=".activities.ProfileActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorGrayLight">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="35dp">
+
+            <FrameLayout
+                    android:id="@+id/flProfile"
+                    android:layout_width="70dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_gravity="center"
+                    android:layout_height="70dp">
+
+                <ImageView
+                        android:id="@+id/ivProfile"
+                        android:contentDescription="@string/str_add_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/ic_launcher"/>
+
+                <ImageView
+                        android:id="@+id/ivEdit"
+                        android:contentDescription="@string/str_add_comment"
+                        android:layout_gravity="bottom|end"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_action_edit"/>
+            </FrameLayout>
+
+            <EditText
+                    android:id="@+id/etFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/str_first_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords|textPersonName"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <EditText
+                    android:id="@+id/etLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/str_last_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords|textPersonName"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <EditText
+                    android:id="@+id/etEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/str_email_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <EditText
+                    android:id="@+id/etMobileNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/str_mobile_number"
+                    android:imeOptions="actionNext"
+                    android:digits="0123456789"
+                    android:inputType="phone|number"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <EditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="top|start"
+                    android:hint="@string/str_address"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapWords|textMultiLine"
+                    android:lines="4"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/tvCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:drawableEnd="@drawable/ic_action_drop_down"
+                    android:drawableRight="@drawable/ic_action_drop_down"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity=""
+                    android:hint="@string/str_select_country"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/tvState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:drawableEnd="@drawable/ic_action_drop_down"
+                    android:drawableRight="@drawable/ic_action_drop_down"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity=""
+                    android:hint="@string/str_select_state"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/tvCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:drawableEnd="@drawable/ic_action_drop_down"
+                    android:drawableRight="@drawable/ic_action_drop_down"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity=""
+                    android:hint="@string/str_select_city"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/tvSchool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:drawableEnd="@drawable/ic_action_drop_down"
+                    android:drawableRight="@drawable/ic_action_drop_down"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity=""
+                    android:hint="@string/str_select_school"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/tvClass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:drawableEnd="@drawable/ic_action_drop_down"
+                    android:drawableRight="@drawable/ic_action_drop_down"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity=""
+                    android:hint="@string/str_select_class_level"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/tvSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:drawableEnd="@drawable/ic_action_drop_down"
+                    android:drawableRight="@drawable/ic_action_drop_down"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity=""
+                    android:hint="@string/str_select_subject"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/tvBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_white_edittext_background"
+                    android:drawableEnd="@drawable/ic_action_drop_down"
+                    android:drawableRight="@drawable/ic_action_drop_down"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity=""
+                    android:hint="@string/str_select_block"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="14sp"/>
+
+            <Button
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/round_theme_background"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/str_submit"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"/>
+
+            <TextView
+                    android:id="@+id/tvTermsAndConditions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/str_terms_and_conditions"
+                    android:textColor="@color/colorGray"
+                    android:textSize="14sp"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

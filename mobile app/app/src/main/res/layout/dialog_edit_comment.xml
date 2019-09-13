@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="20dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <RatingBar
+                android:id="@+id/rbCommentRate"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:numStars="5"
+                android:rating="0"
+                android:isIndicator="false"
+                android:stepSize="1"/>
+
+        <EditText
+                android:id="@+id/etComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/theme_line_edittext_background"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="start|top"
+                android:hint="@string/str_add_comment"
+                android:imeOptions="actionDone"
+                android:inputType="textCapSentences|textMultiLine"
+                android:lines="4"
+                android:maxLines="10"
+                android:scrollbars="vertical"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack"
+                android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/btnDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rect_theme_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/str_done"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"/>
+
+</LinearLayout>

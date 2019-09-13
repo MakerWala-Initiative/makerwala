@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">MakerWala</string>
+    <string name="str_app_name">Maker Wala</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="file_provider_authority" translatable="false">com.uvtech.makerwala.fileprovider</string>
+
+    <string name="no_internet_connection">No Internet Connection</string>
+
+    <string name="config_host" translatable="false">makerwala.com/share</string>
+    <string name="config_scheme" translatable="false">https</string>
+
+    <!-- strings -->
+    <string name="str_home">Home</string>
+    <string name="str_profile">Profile</string>
+    <string name="str_change_password">Change Password</string>
+    <string name="str_log_out">Log Out</string>
+    <string name="str_settings">Settings</string>
+    <string name="str_download">Download</string>
+    <string name="str_login">Login</string>
+    <string name="str_verify_otp">Verify OTP</string>
+    <string name="str_send_otp">Send OTP</string>
+    <string name="str_done">Done</string>
+    <string name="str_apply">Apply</string>
+    <string name="str_add">Add</string>
+    <string name="str_clear">Clear</string>
+    <string name="str_next">Next</string>
+    <string name="str_share">Share</string>
+    <string name="str_start">Start</string>
+    <string name="str_pause">Pause</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_resume">Resume</string>
+    <string name="str_completed">Completed</string>
+    <string name="str_yes">Yes</string>
+    <string name="str_no">No</string>
+    <string name="str_no_result_found">No Result Found</string>
+    <string name="str_comment">Comment</string>
+    <string name="str_invalid_youtube_link">Invalid Youtube Link</string>
+    <string name="str_view_all">View All</string>
+    <string name="str_register">Register</string>
+    <string name="str_first_name">First Name</string>
+    <string name="str_current_password">Current Password</string>
+    <string name="str_new_password">New Password</string>
+    <string name="str_confirm_new_password">Confirm New Password</string>
+    <string name="str_please_enter_current_password">Please Enter Current Password</string>
+    <string name="str_please_enter_new_password">Please Enter New Password</string>
+    <string name="str_new_password_and_confirm_password_must_be_same">New Password and confirm password must be same..</string>
+    <string name="str_please_enter_first_name">Please Enter First Name</string>
+    <string name="str_please_enter_last_name">Please Enter Last Name</string>
+    <string name="str_please_enter_email_address">Please Enter Email Address</string>
+    <string name="str_please_enter_valid_email_address">Please Enter Valid Email Address</string>
+    <string name="str_please_enter_mobile_number">Please Enter Mobile Number</string>
+    <string name="str_please_enter_OTP">Please Enter OTP</string>
+    <string name="str_please_enter_correct_otp">Please Enter Correct OTP</string>
+    <string name="str_please_enter_valid_mobile_number">Please Enter Valid Mobile Number</string>
+    <string name="str_login_required">Login Required</string>
+    <string name="str_last_name">Last Name</string>
+    <string name="str_confirm_password">Confirm Password</string>
+    <string name="str_submit">Submit</string>
+    <string name="str_add_comment">Add Comment</string>
+    <string name="str_please_enter_comment">Please Enter Comment</string>
+    <string name="str_edit_comment">Edit Comment</string>
+    <string name="str_no_data_found">No Data Found</string>
+    <string name="str_login_with_google">Login with Google</string>
+    <string name="str_login_with_otp">Login with OTP</string>
+    <string name="str_login_with_email">Login with Email</string>
+    <string name="str_email_mobile">Email/Mobile</string>
+    <string name="str_email_address">Email Address</string>
+    <string name="str_mobile_number">Mobile Number</string>
+    <string name="str_select_country">Select Country</string>
+    <string name="str_select_class">Select Class</string>
+    <string name="str_select_school">Select School</string>
+    <string name="str_select_state">Select State</string>
+    <string name="str_select_city">Select City</string>
+    <string name="str_select_class_level">Select Class Level</string>
+    <string name="str_select_subject">Select Subject</string>
+    <string name="str_select_at_least_one_option">Select at least one option</string>
+    <string name="str_select_block">Select Block</string>
+    <string name="str_password">Password</string>
+    <string name="str_address">Address</string>
+    <string name="str_enter_otp">Enter OTP</string>
+    <string name="str_select_extension_for_download">Select Extension for Download</string>
+    <string name="str_forgot_password_question">Forgot Password?</string>
+    <string name="str_forgot_password">Forgot Password</string>
+    <string name="str_new_user_sign_up">New User? Sign Up</string>
+    <string name="str_terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="str_enter_your_email_mobile_to_reset">Enter your email address to reset password.</string>
+    <string name="str_filter_class_level">Filter - Class Level</string>
+    <string name="str_filter_subject_level">Filter - Subject Level</string>
+    <string name="str_video_play">Video Play</string>
+    <string name="str_related_videos">Related Videos</string>
+    <string name="str_please_click_back_again_to_exit">Please click BACK again to exit</string>
+    <string name="str_downloading">Downloading</string>
+    <string name="str_loading">Loading</string>
+    <string name="str_question_bracket_question">%s %s(%s)</string>
+    <string name="str_please_enter_password">Please Enter Password</string>
+    <string name="str_are_you_sure_to_delete">Are you sure you want to delete?</string>
+
+    <string name="str_invoice_downloaded_successfully">Video Downloaded Successfully</string>
+
+    <!-- concatenation strings-->
+    <string name="str_version_v_question">Version: V%s</string>
+
+    //////------------- crop image -------------------////////////
+    <string name="crop_image_activity_title">Crop This Image</string>
+    <string name="crop_image_menu_rotate_left">Rotate counter clockwise</string>
+    <string name="crop_image_menu_rotate_right">Rotate</string>
+    <string name="crop_image_menu_crop">Crop</string>
+    <string name="crop_image_menu_flip">Flip</string>
+    <string name="crop_image_menu_flip_horizontally">Flip horizontally</string>
+    <string name="crop_image_menu_flip_vertically">Flip vertically</string>
+
+    <string name="pick_image_intent_chooser_title">Select source</string>
+
+    <string name="crop_image_activity_no_permissions">Cancelling, required permissions are not granted</string>
+
+</resources>

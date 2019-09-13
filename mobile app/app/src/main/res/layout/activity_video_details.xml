@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical"
+              android:weightSum="3"
+              tools:context=".activities.VideoDetailsActivity">
+
+    <LinearLayout
+            android:id="@+id/llInvalidYoutubeLink"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:background="@color/colorRed"
+            android:gravity="center">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/str_invalid_youtube_link"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <fragment
+            android:id="@+id/youtube_fragment"
+            android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+        <androidx.core.widget.NestedScrollView
+                android:id="@+id/nsvDetails"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                    <ImageView
+                            android:id="@+id/ivProfile"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:contentDescription="@string/str_apply"/>
+
+                    <TextView
+                            android:id="@+id/tvTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:ems="3"
+                            android:fontFamily="@font/roboto_regular"
+                            android:lines="1"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="14sp"/>
+
+                    <RatingBar
+                            android:id="@+id/rbRating"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:numStars="5"
+                            android:rating="2.5"
+                            android:stepSize="1"/>
+
+                    <ImageView
+                            android:id="@+id/ivComment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:contentDescription="@string/str_password"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_action_comment"/>
+
+                    <ImageView
+                            android:id="@+id/ivShare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:contentDescription="@string/str_password"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_action_share"/>
+
+                    <ImageView
+                            android:id="@+id/ivDownload"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:contentDescription="@string/str_password"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_action_download"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp">
+
+                    <com.uvtech.makerwala.views.ExpandableTextView
+                            android:id="@+id/etvDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@+id/ivExpandDetails"
+                            android:layout_toLeftOf="@+id/ivExpandDetails"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="12sp"/>
+
+                    <ImageView
+                            android:id="@+id/ivExpandDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:contentDescription="@string/app_name"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_action_drop_down"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:id="@+id/llCommentSection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp"
+                        android:visibility="gone">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="3dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="@string/str_comment"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="14sp"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="@string/str_view_all"
+                                android:visibility="invisible"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewComments"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"/>
+
+                    <LinearLayout
+                            android:id="@+id/llAddCommentSection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="3dp"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:text="@string/str_add_comment"
+                                    android:textColor="@color/colorBlack"
+                                    android:textSize="14sp"/>
+
+                            <RatingBar
+                                    android:id="@+id/rbCommentRate"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:numStars="5"
+                                    android:rating="0"
+                                    android:isIndicator="false"
+                                    android:stepSize="1"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_weight="1">
+
+                                <Spinner
+                                        android:id="@+id/spinnerCommentTypes"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"/>
+                            </LinearLayout>
+
+                            <Button
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/rect_round_theme_background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:text="@string/str_add"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="16sp"
+                                    android:visibility="invisible"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_weight="1">
+
+                                <EditText
+                                        android:id="@+id/etComment"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/theme_line_edittext_background"
+                                        android:fontFamily="@font/roboto_regular"
+                                        android:gravity="start|top"
+                                        android:hint="@string/str_add_comment"
+                                        android:imeOptions="actionDone"
+                                        android:inputType="textCapSentences|textMultiLine"
+                                        android:lines="4"
+                                        android:maxLines="10"
+                                        android:scrollbars="vertical"
+                                        android:textColor="@color/colorBlack"
+                                        android:textColorHint="@color/colorBlack"
+                                        android:textSize="14sp"/>
+                            </LinearLayout>
+
+                            <Button
+                                    android:id="@+id/btnAdd"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/rect_round_theme_background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:text="@string/str_add"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="16sp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/str_related_videos"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewRelatedVideo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/pbLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"/>
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "48300592726",
+    "firebase_url": "https://mwuat-8a631.firebaseio.com",
+    "project_id": "mwuat-8a631",
+    "storage_bucket": "mwuat-8a631.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48300592726:android:427a5a419ed962df4475f7",
+        "android_client_info": {
+          "package_name": "com.uvtech.makerwala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48300592726-37uvmsechi7bhs31np57vt758oqsoi91.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uvtech.makerwala",
+            "certificate_hash": "bcb55c9c69d9f872e238f9bade6799a6be87271f"
+          }
+        },
+        {
+          "client_id": "48300592726-592dti2kob48p6u7soprekeoll7o0uij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7LBeorMM4Rhn_PIxSEb6tZQKMoaeG8Mw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48300592726-592dti2kob48p6u7soprekeoll7o0uij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
